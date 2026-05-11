@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H",
+    "R"
+  ],
+  "key": {
+    "H": {
+      "item": "primitivetoolworks:flint_pickaxe_head"
+    },
+    "R": {
+      "item": "primitivetoolworks:wooden_handle"
+    }
+  },
+  "result": {
+    "item": "primitivetoolworks:test_pickaxe"
+  }
+}
