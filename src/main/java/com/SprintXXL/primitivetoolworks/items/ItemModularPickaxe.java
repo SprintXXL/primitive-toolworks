@@ -6,23 +6,28 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.List;
 
 import static com.SprintXXL.primitivetoolworks.util.Reference.MODID;
 
-public class ItemModularPickaxe extends Item {
+public class ItemModularPickaxe extends ItemPickaxe {
+
+    public static final ToolMaterial DUMMY_MATERIAL =
+            EnumHelper.addToolMaterial(
+                    "MODULAR_DUMMY",0,0,2,0,0
+            );
 
     public ItemModularPickaxe(String name) {
+        super(DUMMY_MATERIAL);
 
         setRegistryName(MODID, name);
         setUnlocalizedName(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
-
-        setMaxStackSize(1);
     }
 
     @Override
@@ -35,6 +40,11 @@ public class ItemModularPickaxe extends Item {
 
     @Override
     public float getDestroySpeed(ItemStack stack, IBlockState state) {
+        float vanillaSpeed = super.getDestroySpeed(stack, state);
+
+        if (vanillaSpeed <= 1) {
+            return 1;
+        }
         return ToolCalculator.getMiningSpeed(stack);
     }
 

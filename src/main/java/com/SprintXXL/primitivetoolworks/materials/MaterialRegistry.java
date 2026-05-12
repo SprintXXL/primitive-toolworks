@@ -20,7 +20,7 @@ public class MaterialRegistry {
                     MaterialIDs.FLINT,
                     1,
                     256,
-                    5,
+                    15,
                     5
             );
 
