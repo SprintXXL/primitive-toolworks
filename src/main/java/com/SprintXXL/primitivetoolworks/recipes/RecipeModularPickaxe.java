@@ -1,57 +1,61 @@
 package com.SprintXXL.primitivetoolworks.recipes;
 
 import com.SprintXXL.primitivetoolworks.init.ModItems;
+import com.SprintXXL.primitivetoolworks.parts.PartIDs;
+import com.SprintXXL.primitivetoolworks.parts.PartNBT;
+import com.SprintXXL.primitivetoolworks.tools.ToolNBT;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-import static com.SprintXXL.primitivetoolworks.tools.ToolNBT.*;
-
 public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 
     @Override
-    public boolean matches(InventoryCrafting inv, World worldin) {
+    public boolean matches(InventoryCrafting inv, World worldIn) {
 
         boolean inventoryGridMatch =
-                inv.getStackInSlot(0).getItem() == ModItems.FLINT_PICKAXE_HEAD &&
-                        inv.getStackInSlot(2).getItem() == ModItems.WOODEN_HANDLE;
+                inv.getWidth() == 2 &&
+                        inv.getHeight() == 2 &&
+                        PartIDs.PICKAXE_HEAD.equals(PartNBT.getPartType(inv.getStackInSlot(0))) &&
+                        PartIDs.HANDLE.equals(PartNBT.getPartType(inv.getStackInSlot(2)));
 
-        boolean craftingTableMatch =
-                inv.getStackInSlot(0).getItem() == ModItems.FLINT_PICKAXE_HEAD &&
-                        inv.getStackInSlot(3).getItem() == ModItems.WOODEN_HANDLE;
+        boolean craftingGridMatch =
+                inv.getWidth() == 3 &&
+                        inv.getHeight() == 3 &&
+                        PartIDs.PICKAXE_HEAD.equals(PartNBT.getPartType(inv.getStackInSlot(0))) &&
+                        PartIDs.HANDLE.equals(PartNBT.getPartType(inv.getStackInSlot(3)));
 
-        return inventoryGridMatch || craftingTableMatch;
+        return inventoryGridMatch || craftingGridMatch;
     }
 
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inv) {
 
+        int handleSlot = inv.getWidth() == 2 ? 2 : 3;
+
+        ItemStack mainStack = inv.getStackInSlot(0);
+        ItemStack handleStack = inv.getStackInSlot(handleSlot);
+
         ItemStack result = new ItemStack(ModItems.TEST_PICKAXE);
 
-        setHeadMaterial(result, "flint");
-        setHandleMaterial(result, "wood");
+        ToolNBT.setMainMaterial(result, PartNBT.getMaterial(mainStack));
+        ToolNBT.setMainPart(result, PartNBT.getPartType(mainStack));
+
+        ToolNBT.setHandleMaterial(result, PartNBT.getMaterial(handleStack));
+        ToolNBT.setHandlePart(result, PartNBT.getPartType(handleStack));
 
         return result;
-
     }
 
     @Override
     public boolean canFit(int width, int height) {
-
-        return width * height >= 2;
+        return width >= 1 && height >= 2;
     }
 
     @Override
     public ItemStack getRecipeOutput() {
-
         return new ItemStack(ModItems.TEST_PICKAXE);
-    }
-
-    @Override
-    public boolean isDynamic() {
-
-        return true;
     }
 }

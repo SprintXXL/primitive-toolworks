@@ -15,7 +15,7 @@ public class ModRecipes {
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 
         event.getRegistry().register(
-                new RecipeModularPickaxe().setRegistryName(MODID, "flint_pickaxe")
+                new RecipeModularPickaxe().setRegistryName(MODID, "modular_pickaxe")
         );
     }
 }
