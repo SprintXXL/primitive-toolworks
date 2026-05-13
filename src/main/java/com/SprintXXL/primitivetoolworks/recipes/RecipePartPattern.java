@@ -12,6 +12,7 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
 
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn) {
+
         return !getResultPatternType(inv).equals("unknown");
     }
 
@@ -36,7 +37,7 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
 
     @Override
     public ItemStack getRecipeOutput() {
-        return new ItemStack(ModItems.PART_PATTERN);
+        return ItemStack.EMPTY;
     }
 
     private String getResultPatternType(InventoryCrafting inv) {
@@ -51,22 +52,54 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
     }
 
     private boolean matchesPickaxeHeadPattern(InventoryCrafting inv) {
-        boolean craftingGridMatch =
-                inv.getWidth() == 3 &&
-                        inv.getHeight() == 3 &&
-                        inv.getStackInSlot(4).getItem() == ModItems.BLANK_PATTERN &&
-                        inv.getStackInSlot(0).getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE;
 
-        return craftingGridMatch;
+        if (inv.getWidth() != 3 || inv.getHeight() != 3) {
+            return false;
+        }
+
+        ItemStack knifeStack = inv.getStackInSlot(0);
+        ItemStack patternStack = inv.getStackInSlot(4);
+
+        if (knifeStack.isEmpty() || patternStack.isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            if (i == 0 || i == 4) {
+                continue;
+            }
+            if (!inv.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return knifeStack.getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE &&
+                patternStack.getItem() == ModItems.BLANK_PATTERN;
     }
 
     private boolean matchesHandlePattern(InventoryCrafting inv) {
-        boolean craftingGridMatch =
-                inv.getWidth() == 3 &&
-                        inv.getHeight() == 3 &&
-                        inv.getStackInSlot(4).getItem() == ModItems.BLANK_PATTERN &&
-                        inv.getStackInSlot(1).getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE;
 
-        return craftingGridMatch;
+        if (inv.getWidth() != 3 || inv.getHeight() != 3) {
+            return false;
+        }
+
+        ItemStack knifeStack = inv.getStackInSlot(1);
+        ItemStack patternStack = inv.getStackInSlot(4);
+
+        if (knifeStack.isEmpty() || patternStack.isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            if (i == 1 || i == 4) {
+                continue;
+            }
+            if (!inv.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return knifeStack.getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE &&
+                patternStack.getItem() == ModItems.BLANK_PATTERN;
     }
 }

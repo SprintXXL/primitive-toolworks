@@ -57,14 +57,6 @@ public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> impl
 
     @Override
     public ItemStack getRecipeOutput() {
-        ItemStack result = new ItemStack(ModItems.MODULAR_PICKAXE);
-
-        ToolNBT.setMainMaterial(result, MaterialIDs.FLINT);
-        ToolNBT.setMainPart(result, PartIDs.PICKAXE_HEAD);
-
-        ToolNBT.setHandleMaterial(result, MaterialIDs.WOOD);
-        ToolNBT.setHandlePart(result, PartIDs.HANDLE);
-
-        return result;
+        return ItemStack.EMPTY;
     }
 }

@@ -21,5 +21,20 @@ public class ItemModelHandler {
                 0,
                 new ModelResourceLocation(ModItems.BLANK_PATTERN.getRegistryName(), "inventory")
         );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.PART_PATTERN,
+                0,
+                new ModelResourceLocation(ModItems.PART_PATTERN.getRegistryName(), "inventory")
+        );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.TOOL_PART,
+                0,
+                new ModelResourceLocation(ModItems.TOOL_PART.getRegistryName(), "inventory")
+        );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.MODULAR_PICKAXE,
+                0,
+                new ModelResourceLocation(ModItems.MODULAR_PICKAXE.getRegistryName(), "inventory")
+        );
     }
 }

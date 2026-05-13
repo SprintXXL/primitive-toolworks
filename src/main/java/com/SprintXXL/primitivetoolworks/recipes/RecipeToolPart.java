@@ -44,13 +44,24 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
 
     @Override
     public ItemStack getRecipeOutput() {
-        return new ItemStack(ModItems.TOOL_PART);
+        return ItemStack.EMPTY;
     }
 
     private PartData getResultPartData(InventoryCrafting inv) {
 
+        if (inv.getWidth() != 3 || inv.getHeight() != 3) {
+            return null;
+        }
+
         ItemStack materialStack = inv.getStackInSlot(1);
         ItemStack patternStack = inv.getStackInSlot(4);
+
+        if (materialStack.isEmpty() || patternStack.isEmpty()) {
+            return null;
+        }
+        if (patternStack.getItem() != ModItems.PART_PATTERN) {
+            return null;
+        }
 
         for (int i = 0; i < inv.getSizeInventory(); i++) {
             if (i == 1 || i == 4) {
@@ -78,6 +89,10 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
 
     private String getMaterialID(ItemStack stack) {
 
+        if (stack.isEmpty()) {
+            return "unknown";
+        }
+
         if (stack.getItem() == Items.FLINT) {
             return MaterialIDs.FLINT;
         }
@@ -100,6 +115,10 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
     }
 
     private boolean isPlankWood(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
         int[] oreIDs = OreDictionary.getOreIDs(stack);
 
         for (int id : oreIDs) {
