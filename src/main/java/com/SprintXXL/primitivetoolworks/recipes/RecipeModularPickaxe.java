@@ -1,6 +1,7 @@
 package com.SprintXXL.primitivetoolworks.recipes;
 
 import com.SprintXXL.primitivetoolworks.init.ModItems;
+import com.SprintXXL.primitivetoolworks.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.parts.PartIDs;
 import com.SprintXXL.primitivetoolworks.parts.PartNBT;
 import com.SprintXXL.primitivetoolworks.tools.ToolNBT;
@@ -38,7 +39,7 @@ public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> impl
         ItemStack mainStack = inv.getStackInSlot(0);
         ItemStack handleStack = inv.getStackInSlot(handleSlot);
 
-        ItemStack result = new ItemStack(ModItems.TEST_PICKAXE);
+        ItemStack result = new ItemStack(ModItems.MODULAR_PICKAXE);
 
         ToolNBT.setMainMaterial(result, PartNBT.getMaterial(mainStack));
         ToolNBT.setMainPart(result, PartNBT.getPartType(mainStack));
@@ -56,6 +57,14 @@ public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> impl
 
     @Override
     public ItemStack getRecipeOutput() {
-        return new ItemStack(ModItems.TEST_PICKAXE);
+        ItemStack result = new ItemStack(ModItems.MODULAR_PICKAXE);
+
+        ToolNBT.setMainMaterial(result, MaterialIDs.FLINT);
+        ToolNBT.setMainPart(result, PartIDs.PICKAXE_HEAD);
+
+        ToolNBT.setHandleMaterial(result, MaterialIDs.WOOD);
+        ToolNBT.setHandlePart(result, PartIDs.HANDLE);
+
+        return result;
     }
 }

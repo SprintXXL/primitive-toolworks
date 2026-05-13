@@ -16,6 +16,7 @@ public class PartRegistry {
     public static final PartDefinition HANDLE =
             new PartDefinition(
                     PartIDs.HANDLE,
+                    "Handle",
                     1,
                     1,
                     1
@@ -23,6 +24,7 @@ public class PartRegistry {
     public static final PartDefinition PICKAXE_HEAD =
             new PartDefinition(
                     PartIDs.PICKAXE_HEAD,
+                    "Pickaxe Head",
                     1,
                     1,
                     1

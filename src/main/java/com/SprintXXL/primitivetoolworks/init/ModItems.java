@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.init;
 
-import com.SprintXXL.primitivetoolworks.items.ItemModularPickaxe;
-import com.SprintXXL.primitivetoolworks.items.ItemToolPart;
-import com.SprintXXL.primitivetoolworks.materials.MaterialIDs;
-import com.SprintXXL.primitivetoolworks.parts.PartIDs;
+import com.SprintXXL.primitivetoolworks.parts.ItemToolPart;
+import com.SprintXXL.primitivetoolworks.patterns.ItemBlankPattern;
+import com.SprintXXL.primitivetoolworks.patterns.ItemPartPattern;
+import com.SprintXXL.primitivetoolworks.tools.ItemModularPickaxe;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,18 +12,25 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class ModItems {
 
-    public static final Item WOODEN_HANDLE = new ItemToolPart("wooden_handle", MaterialIDs.WOOD, PartIDs.HANDLE);
+    // Patterns
+    public static final Item BLANK_PATTERN = new ItemBlankPattern();
 
-    public static final Item FLINT_PICKAXE_HEAD = new ItemToolPart("flint_pickaxe_head", MaterialIDs.FLINT, PartIDs.PICKAXE_HEAD);
+    public static final Item PART_PATTERN = new ItemPartPattern("part_pattern");
 
-    public static final Item TEST_PICKAXE = new ItemModularPickaxe("test_pickaxe");
+    // Parts
+
+    public static final Item TOOL_PART = new ItemToolPart("tool_part");
+
+    // Tools
+    public static final Item MODULAR_PICKAXE = new ItemModularPickaxe("modular_pickaxe");
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register <Item> event) {
+    public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
-                WOODEN_HANDLE,
-                FLINT_PICKAXE_HEAD,
-                TEST_PICKAXE
+                BLANK_PATTERN,
+                PART_PATTERN,
+                TOOL_PART,
+                MODULAR_PICKAXE
         );
     }
 }

@@ -1,5 +1,7 @@
 package com.SprintXXL.primitivetoolworks.materials;
 
+import net.minecraft.util.text.TextFormatting;
+
 public class MaterialRegistry {
 
     public static MaterialDefinition getMaterial(String id) {
@@ -17,17 +19,22 @@ public class MaterialRegistry {
 
     public static final MaterialDefinition FLINT =
             new MaterialDefinition(
-                    MaterialIDs.FLINT,
-                    1,
-                    256,
-                    15,
-                    5
+                    MaterialIDs.FLINT, // Material ID
+                    "FLINT", // Display Name
+                    TextFormatting.DARK_GRAY, // Display Color
+                    1, // Harvest Level
+                    128, // Durability
+                    15, // Mining Speed
+                    3 // Attack Damage
+
             );
 
     public static final MaterialDefinition WOOD =
             new MaterialDefinition(
                     MaterialIDs.WOOD,
-                    1,
+                    "WOOD",
+                    TextFormatting.GOLD,
+                    0,
                     256,
                     5,
                     5

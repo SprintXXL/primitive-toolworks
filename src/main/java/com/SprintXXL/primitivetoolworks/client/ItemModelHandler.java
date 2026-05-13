@@ -17,21 +17,9 @@ public class ItemModelHandler {
     public static void registerModels(ModelRegistryEvent event) {
 
         ModelLoader.setCustomModelResourceLocation(
-                ModItems.WOODEN_HANDLE,
+                ModItems.BLANK_PATTERN,
                 0,
-                new ModelResourceLocation(ModItems.WOODEN_HANDLE.getRegistryName(), "inventory")
-        );
-
-        ModelLoader.setCustomModelResourceLocation(
-                ModItems.FLINT_PICKAXE_HEAD,
-                0,
-                new ModelResourceLocation(ModItems.FLINT_PICKAXE_HEAD.getRegistryName(), "inventory")
-        );
-
-        ModelLoader.setCustomModelResourceLocation(
-                ModItems.TEST_PICKAXE,
-                0,
-                new ModelResourceLocation(ModItems.TEST_PICKAXE.getRegistryName(), "inventory")
+                new ModelResourceLocation(ModItems.BLANK_PATTERN.getRegistryName(), "inventory")
         );
     }
 }
