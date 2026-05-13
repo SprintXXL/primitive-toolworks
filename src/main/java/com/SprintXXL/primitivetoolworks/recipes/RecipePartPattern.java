@@ -5,6 +5,7 @@ import com.SprintXXL.primitivetoolworks.patterns.PatternNBT;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -49,6 +50,35 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
             return PatternIDs.HANDLE;
         }
         return "unknown";
+    }
+
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
+        NonNullList<ItemStack> remaining = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            ItemStack stack = inv.getStackInSlot(i);
+
+            if (stack.isEmpty()) {
+                continue;
+            }
+
+            if (stack.getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE) {
+                ItemStack knife = stack.copy();
+                knife.setCount(1);
+
+                int newDamage = knife.getItemDamage() + 1;
+
+                if (newDamage >= knife.getMaxDamage()) {
+                    remaining.set(i, ItemStack.EMPTY);
+                }
+                else {
+                    knife.setItemDamage(newDamage);
+                    remaining.set(i, knife);
+                }
+            }
+        }
+        return remaining;
     }
 
     private boolean matchesPickaxeHeadPattern(InventoryCrafting inv) {

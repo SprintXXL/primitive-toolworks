@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -45,6 +46,26 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
     @Override
     public ItemStack getRecipeOutput() {
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
+        NonNullList<ItemStack> remaining = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            ItemStack stack = inv.getStackInSlot(i);
+
+            if (stack.isEmpty()) {
+                continue;
+            }
+
+            if (stack.getItem() == ModItems.PART_PATTERN) {
+                ItemStack pattern = stack.copy();
+                pattern.setCount(1);
+                remaining.set(i, pattern);
+            }
+        }
+        return remaining;
     }
 
     private PartData getResultPartData(InventoryCrafting inv) {
