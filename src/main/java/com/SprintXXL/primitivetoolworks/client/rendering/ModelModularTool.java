@@ -9,7 +9,10 @@ import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.PerspectiveMapWrapper;
+import org.apache.commons.lang3.tuple.Pair;
 
+import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +58,18 @@ public class ModelModularTool implements IBakedModel {
     }
 
     @Override
+    public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
+        Pair<? extends IBakedModel, Matrix4f> pair = originalModel.handlePerspective(cameraTransformType);
+
+        return Pair.of(this, pair.getRight());
+    }
+
+    @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
+
+        if (renderData == null) {
+            return originalModel.getQuads(state, side, rand);
+        }
 
         ResourceLocation mainTexture = ToolTextureResolver.getMainTexture(renderData);
         ResourceLocation handleTexture = ToolTextureResolver.getHandleTexture(renderData);
@@ -63,14 +77,10 @@ public class ModelModularTool implements IBakedModel {
         TextureAtlasSprite mainSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(mainTexture.toString());
         TextureAtlasSprite handleSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(handleTexture.toString());
 
-        if (renderData == null) {
-            return originalModel.getQuads(state, side, rand);
-        }
-
         List<BakedQuad> quads = new ArrayList<>();
 
-        quads.addAll(ToolLayerQuadBuilder.buildLayer(mainSprite));
         quads.addAll(ToolLayerQuadBuilder.buildLayer(handleSprite));
+        quads.addAll(ToolLayerQuadBuilder.buildLayer(mainSprite));
 
         return quads;
     }
