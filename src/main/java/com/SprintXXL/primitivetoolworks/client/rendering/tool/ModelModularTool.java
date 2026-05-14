@@ -1,5 +1,6 @@
-package com.SprintXXL.primitivetoolworks.client.rendering;
+package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
+import com.SprintXXL.primitivetoolworks.client.rendering.common.ToolLayerQuadBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -9,7 +10,6 @@ import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.PerspectiveMapWrapper;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;

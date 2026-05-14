@@ -1,6 +1,6 @@
-package com.SprintXXL.primitivetoolworks.client;
+package com.SprintXXL.primitivetoolworks.client.rendering.common;
 
-import com.SprintXXL.primitivetoolworks.client.rendering.ModelModularTool;
+import com.SprintXXL.primitivetoolworks.client.rendering.tool.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.init.ModItems;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

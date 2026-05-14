@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.client.rendering;
+package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;

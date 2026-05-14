@@ -2,5 +2,12 @@
   "parent": "item/handheld",
   "textures": {
     "layer0": "primitivetoolworks:tools/modular_pickaxe"
+  },
+  "display": {
+    "gui": {
+      "rotation": [0, 0, 0],
+      "translation": [0, 0, 0],
+      "scale": [1.08, 1.08, 1.08]
+    }
   }
 }

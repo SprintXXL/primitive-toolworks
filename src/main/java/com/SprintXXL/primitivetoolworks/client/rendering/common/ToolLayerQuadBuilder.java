@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.client.rendering;
+package com.SprintXXL.primitivetoolworks.client.rendering.common;
 
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

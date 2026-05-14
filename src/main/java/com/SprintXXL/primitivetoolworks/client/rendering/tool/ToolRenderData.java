@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.client.rendering;
+package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 public class ToolRenderData {
 

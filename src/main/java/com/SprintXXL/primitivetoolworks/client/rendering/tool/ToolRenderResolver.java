@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.client.rendering;
+package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 import com.SprintXXL.primitivetoolworks.tools.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.tools.ToolNBT;
