@@ -41,7 +41,7 @@ public class ModelModularTool implements IBakedModel {
 
     @Override
     public ItemOverrideList getOverrides() {
-        return originalModel.getOverrides();
+        return new ModelOverrideModularTool();
     }
 
     @Override
@@ -51,9 +51,6 @@ public class ModelModularTool implements IBakedModel {
 
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-
-        System.out.println("Getting quads");
-
         return originalModel.getQuads(state, side, rand);
     }
 }
