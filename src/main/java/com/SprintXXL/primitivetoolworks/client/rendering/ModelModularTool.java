@@ -1,22 +1,27 @@
 package com.SprintXXL.primitivetoolworks.client.rendering;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModelModularTool implements IBakedModel {
 
     private final IBakedModel originalModel;
+    private final ToolRenderData renderData;
 
-    public ModelModularTool(IBakedModel originalModel) {
+    public ModelModularTool(IBakedModel originalModel, ToolRenderData renderData) {
 
         this.originalModel = originalModel;
+        this.renderData = renderData;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class ModelModularTool implements IBakedModel {
 
     @Override
     public ItemOverrideList getOverrides() {
-        return new ModelOverrideModularTool();
+        return new ModelOverrideModularTool(originalModel);
     }
 
     @Override
@@ -51,6 +56,22 @@ public class ModelModularTool implements IBakedModel {
 
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-        return originalModel.getQuads(state, side, rand);
+
+        ResourceLocation mainTexture = ToolTextureResolver.getMainTexture(renderData);
+        ResourceLocation handleTexture = ToolTextureResolver.getHandleTexture(renderData);
+
+        TextureAtlasSprite mainSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(mainTexture.toString());
+        TextureAtlasSprite handleSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(handleTexture.toString());
+
+        if (renderData == null) {
+            return originalModel.getQuads(state, side, rand);
+        }
+
+        List<BakedQuad> quads = new ArrayList<>();
+
+        quads.addAll(ToolLayerQuadBuilder.buildLayer(mainSprite));
+        quads.addAll(ToolLayerQuadBuilder.buildLayer(handleSprite));
+
+        return quads;
     }
 }

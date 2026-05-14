@@ -4,8 +4,10 @@ import com.SprintXXL.primitivetoolworks.client.rendering.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.init.ModItems;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -42,6 +44,17 @@ public class ItemModelHandler {
     }
 
     @SubscribeEvent
+    public static void onTextureStitch(TextureStitchEvent.Pre event) {
+
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "tool_layers/pickaxe/0_handle/wood")
+        );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "tool_layers/pickaxe/1_main/flint")
+        );
+    }
+
+    @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event) {
 
         ModelResourceLocation location = new ModelResourceLocation(
@@ -61,7 +74,7 @@ public class ItemModelHandler {
 
         event.getModelRegistry().putObject(
                 location,
-                new ModelModularTool(originalModel)
+                new ModelModularTool(originalModel, null)
         );
     }
 }

@@ -10,8 +10,12 @@ import java.util.Collections;
 
 public class ModelOverrideModularTool extends ItemOverrideList {
 
-    public ModelOverrideModularTool() {
+    private final IBakedModel originalModel;
+
+    public ModelOverrideModularTool(IBakedModel originalModel) {
         super(Collections.emptyList());
+
+        this.originalModel = originalModel;
     }
 
     @Override
@@ -19,8 +23,6 @@ public class ModelOverrideModularTool extends ItemOverrideList {
 
         ToolRenderData data = ToolRenderResolver.resolve(stack);
 
-        System.out.println("Rendering tool main material: " + data.mainMaterial);
-
-        return originalModel;
+        return new ModelModularTool(originalModel, data);
     }
 }
