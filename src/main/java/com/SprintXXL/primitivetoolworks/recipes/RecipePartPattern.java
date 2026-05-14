@@ -49,6 +49,9 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
         if (matchesHandlePattern(inv)) {
             return PatternIDs.HANDLE;
         }
+        if (matchesBindingPattern(inv)) {
+            return PatternIDs.BINDING;
+        }
         return "unknown";
     }
 
@@ -88,6 +91,32 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
         }
 
         ItemStack knifeStack = inv.getStackInSlot(0);
+        ItemStack patternStack = inv.getStackInSlot(1);
+
+        if (knifeStack.isEmpty() || patternStack.isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            if (i == 0 || i == 1) {
+                continue;
+            }
+            if (!inv.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+
+        return knifeStack.getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE &&
+                patternStack.getItem() == ModItems.BLANK_PATTERN;
+    }
+
+    private boolean matchesBindingPattern(InventoryCrafting inv) {
+
+        if (inv.getWidth() != 3 || inv.getHeight() != 3) {
+            return false;
+        }
+
+        ItemStack knifeStack = inv.getStackInSlot(0);
         ItemStack patternStack = inv.getStackInSlot(4);
 
         if (knifeStack.isEmpty() || patternStack.isEmpty()) {
@@ -113,15 +142,15 @@ public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> impleme
             return false;
         }
 
-        ItemStack knifeStack = inv.getStackInSlot(1);
-        ItemStack patternStack = inv.getStackInSlot(4);
+        ItemStack knifeStack = inv.getStackInSlot(0);
+        ItemStack patternStack = inv.getStackInSlot(7);
 
         if (knifeStack.isEmpty() || patternStack.isEmpty()) {
             return false;
         }
 
         for (int i = 0; i < inv.getSizeInventory(); i++) {
-            if (i == 1 || i == 4) {
+            if (i == 0 || i == 7) {
                 continue;
             }
             if (!inv.getStackInSlot(i).isEmpty()) {

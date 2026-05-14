@@ -120,6 +120,9 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
         if (isPlankWood(stack)) {
             return MaterialIDs.WOOD;
         }
+        if (stack.getItem() == Items.BONE) {
+            return MaterialIDs.BONE;
+        }
 
         return "unknown";
     }
@@ -130,6 +133,9 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
             return true;
         }
         if (materialID.equals(MaterialIDs.WOOD) && partType.equals(PartIDs.HANDLE)) {
+            return true;
+        }
+        if (materialID.equals(MaterialIDs.BONE) && partType.equals(PartIDs.BINDING)) {
             return true;
         }
         return false;

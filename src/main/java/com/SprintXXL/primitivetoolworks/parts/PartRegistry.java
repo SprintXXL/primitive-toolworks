@@ -10,7 +10,10 @@ public class PartRegistry {
         if (id.equals(PartIDs.PICKAXE_HEAD)) {
             return PICKAXE_HEAD;
         }
-        return PICKAXE_HEAD;
+        if (id.equals(PartIDs.BINDING)) {
+            return BINDING;
+        }
+        return null;
     }
 
     public static final PartDefinition HANDLE =
@@ -21,10 +24,20 @@ public class PartRegistry {
                     1,
                     1
             );
+
     public static final PartDefinition PICKAXE_HEAD =
             new PartDefinition(
                     PartIDs.PICKAXE_HEAD,
                     "Pickaxe Head",
+                    1,
+                    1,
+                    1
+            );
+
+    public static final PartDefinition BINDING =
+            new PartDefinition(
+                    PartIDs.BINDING,
+                    "Binding",
                     1,
                     1,
                     1

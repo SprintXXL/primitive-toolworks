@@ -13,6 +13,14 @@ public class ToolCalculator {
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
         PartDefinition mainPart = PartRegistry.getPart(ToolNBT.getMainPart(stack));
 
+        if (mainMaterial == null) {
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        }
+
+        if (mainPart == null) {
+            mainPart = PartRegistry.getPart(ToolDefaults.DEFAULT_MAIN_PART);
+        }
+
         if (mainMaterial == null || mainPart == null) {
             return 1;
         }
@@ -25,6 +33,9 @@ public class ToolCalculator {
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
 
         if (mainMaterial == null) {
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        }
+        if (mainMaterial == null) {
             return 1;
         }
 
@@ -35,19 +46,44 @@ public class ToolCalculator {
 
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
         PartDefinition mainPart = PartRegistry.getPart(ToolNBT.getMainPart(stack));
+        PartDefinition extraPart = PartRegistry.getPart(ToolNBT.getExtraPart(stack));
         PartDefinition handlePart = PartRegistry.getPart(ToolNBT.getHandlePart(stack));
 
-        if (mainMaterial == null || mainPart == null || handlePart == null) {
+        if (mainMaterial == null) {
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        }
+
+        if (mainPart == null) {
+            mainPart = PartRegistry.getPart(ToolDefaults.DEFAULT_MAIN_PART);
+        }
+
+        if (extraPart == null) {
+            extraPart = PartRegistry.getPart(ToolDefaults.DEFAULT_EXTRA_PART);
+        }
+
+        if (handlePart == null) {
+            handlePart = PartRegistry.getPart(ToolDefaults.DEFAULT_HANDLE_PART);
+        }
+
+        if (mainMaterial == null || mainPart == null || extraPart == null || handlePart == null) {
             return 1;
         }
 
-        return mainMaterial.getDurability() * mainPart.getDurabilityMultiplier() * handlePart.getDurabilityMultiplier();
+        return mainMaterial.getDurability() * mainPart.getDurabilityMultiplier() * extraPart.getDurabilityMultiplier() * handlePart.getDurabilityMultiplier();
     }
 
     public static float getAttackDamage(ItemStack stack) {
 
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
         PartDefinition mainPart = PartRegistry.getPart(ToolNBT.getMainPart(stack));
+
+        if (mainMaterial == null) {
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        }
+
+        if (mainPart == null) {
+            mainPart = PartRegistry.getPart(ToolDefaults.DEFAULT_MAIN_PART);
+        }
 
         if (mainMaterial == null || mainPart == null) {
             return 1;

@@ -26,6 +26,9 @@ public class ItemPartPattern extends Item {
         if (patternType.equals(PatternIDs.HANDLE)) {
             return "Handle Pattern";
         }
+        if (patternType.equals(PatternIDs.BINDING)) {
+            return "Binding Pattern";
+        }
 
         return "Part Pattern";
     }

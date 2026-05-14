@@ -14,7 +14,11 @@ public class MaterialRegistry {
             return WOOD;
         }
 
-        return WOOD;
+        if (id.equals(MaterialIDs.BONE)) {
+            return BONE;
+        }
+
+        return null;
     }
 
     public static final MaterialDefinition FLINT =
@@ -35,7 +39,18 @@ public class MaterialRegistry {
                     "WOOD",
                     TextFormatting.GOLD,
                     0,
-                    256,
+                    0,
+                    0,
+                    0
+            );
+
+    public static final MaterialDefinition BONE =
+            new MaterialDefinition(
+                    MaterialIDs.BONE,
+                    "BONE",
+                    TextFormatting.WHITE,
+                    0,
+                    128,
                     5,
                     5
             );

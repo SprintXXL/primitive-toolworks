@@ -16,33 +16,49 @@ public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> impl
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn) {
 
-        boolean inventoryGridMatch =
-                inv.getWidth() == 2 &&
-                        inv.getHeight() == 2 &&
-                        PartIDs.PICKAXE_HEAD.equals(PartNBT.getPartType(inv.getStackInSlot(0))) &&
-                        PartIDs.HANDLE.equals(PartNBT.getPartType(inv.getStackInSlot(2)));
+        if (inv.getWidth() != 3 || inv.getHeight() !=3) {
+            return false;
+        }
 
-        boolean craftingGridMatch =
-                inv.getWidth() == 3 &&
-                        inv.getHeight() == 3 &&
-                        PartIDs.PICKAXE_HEAD.equals(PartNBT.getPartType(inv.getStackInSlot(0))) &&
-                        PartIDs.HANDLE.equals(PartNBT.getPartType(inv.getStackInSlot(3)));
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            if (i != 1 && i != 4 && i != 7) {
+                if (!inv.getStackInSlot(i).isEmpty()) {
+                    return false;
+                }
+            }
+        }
 
-        return inventoryGridMatch || craftingGridMatch;
+        ItemStack mainStack = inv.getStackInSlot(1);
+        ItemStack extraStack = inv.getStackInSlot(4);
+        ItemStack handleStack = inv.getStackInSlot(7);
+
+        if (mainStack.isEmpty() || extraStack.isEmpty() || handleStack.isEmpty()) {
+            return false;
+        }
+
+        if (mainStack.getItem() != ModItems.TOOL_PART || extraStack.getItem() != ModItems.TOOL_PART || handleStack.getItem() != ModItems.TOOL_PART) {
+            return false;
+        }
+
+        return PartIDs.PICKAXE_HEAD.equals(PartNBT.getPartType(mainStack)) &&
+                PartIDs.BINDING.equals(PartNBT.getPartType(extraStack)) &&
+                PartIDs.HANDLE.equals(PartNBT.getPartType(handleStack));
     }
 
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inv) {
 
-        int handleSlot = inv.getWidth() == 2 ? 2 : 3;
-
-        ItemStack mainStack = inv.getStackInSlot(0);
-        ItemStack handleStack = inv.getStackInSlot(handleSlot);
+        ItemStack mainStack = inv.getStackInSlot(1);
+        ItemStack extraStack = inv.getStackInSlot(4);
+        ItemStack handleStack = inv.getStackInSlot(7);
 
         ItemStack result = new ItemStack(ModItems.MODULAR_PICKAXE);
 
         ToolNBT.setMainMaterial(result, PartNBT.getMaterial(mainStack));
         ToolNBT.setMainPart(result, PartNBT.getPartType(mainStack));
+
+        ToolNBT.setExtraMaterial(result, PartNBT.getMaterial(extraStack));
+        ToolNBT.setExtraPart(result, PartNBT.getPartType(extraStack));
 
         ToolNBT.setHandleMaterial(result, PartNBT.getMaterial(handleStack));
         ToolNBT.setHandlePart(result, PartNBT.getPartType(handleStack));

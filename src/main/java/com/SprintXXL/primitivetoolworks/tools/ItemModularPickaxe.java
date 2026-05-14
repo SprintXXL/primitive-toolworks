@@ -57,6 +57,10 @@ public class ItemModularPickaxe extends ItemPickaxe {
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
 
         if (mainMaterial == null) {
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        }
+
+        if (mainMaterial == null) {
             return "Modular Pickaxe";
         }
 
@@ -68,6 +72,7 @@ public class ItemModularPickaxe extends ItemPickaxe {
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
+        MaterialDefinition extraMaterial = MaterialRegistry.getMaterial(ToolNBT.getExtraMaterial(stack));
         MaterialDefinition handleMaterial = MaterialRegistry.getMaterial(ToolNBT.getHandleMaterial(stack));
         int maxDurability = ToolCalculator.getDurability(stack);
         int usedDurability = stack.getItemDamage();
@@ -76,14 +81,32 @@ public class ItemModularPickaxe extends ItemPickaxe {
         float miningSpeed = ToolCalculator.getMiningSpeed(stack);
 
         if (mainMaterial == null) {
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        }
+
+        if (mainMaterial == null) {
             tooltip.add("Unknown");
         }
+
+        if (extraMaterial == null) {
+            extraMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_EXTRA_MATERIAL);
+        }
+
+        if (extraMaterial == null) {
+            tooltip.add("Unknown");
+        }
+
+        if (handleMaterial == null) {
+            handleMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_HANDLE_MATERIAL);
+        }
+
         if (handleMaterial == null) {
             tooltip.add("Unknown");
         }
 
         tooltip.add("");
         tooltip.add("Main Material: " + mainMaterial.getFormattedDisplayName());
+        tooltip.add("Extra Material: " + extraMaterial.getFormattedDisplayName());
         tooltip.add("Handle Material: " + handleMaterial.getFormattedDisplayName());
         tooltip.add("");
         tooltip.add("Mining Speed: " + TextFormatting.WHITE + miningSpeed);
