@@ -1,6 +1,8 @@
 package com.SprintXXL.primitivetoolworks;
 
+import com.SprintXXL.primitivetoolworks.client.ItemModelHandler;
 import com.SprintXXL.primitivetoolworks.util.Reference;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

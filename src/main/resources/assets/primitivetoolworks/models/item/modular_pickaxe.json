@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "primitivetoolworks:items/modular_pickaxe"
+    "layer0": "primitivetoolworks:tools/modular_pickaxe"
   }
 }

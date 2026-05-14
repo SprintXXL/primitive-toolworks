@@ -1,7 +1,10 @@
 package com.SprintXXL.primitivetoolworks.client;
 
+import com.SprintXXL.primitivetoolworks.client.rendering.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.init.ModItems;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
@@ -35,6 +38,30 @@ public class ItemModelHandler {
                 ModItems.MODULAR_PICKAXE,
                 0,
                 new ModelResourceLocation(ModItems.MODULAR_PICKAXE.getRegistryName(), "inventory")
+        );
+    }
+
+    @SubscribeEvent
+    public static void onModelBake(ModelBakeEvent event) {
+
+        ModelResourceLocation location = new ModelResourceLocation(
+                "primitivetoolworks:modular_pickaxe",
+                "inventory"
+        );
+
+        System.out.println("ModelBakeEvent Fired");
+
+        IBakedModel originalModel = event.getModelRegistry().getObject(location);
+
+        System.out.println("Original Model: " + originalModel);
+
+        if (originalModel == null) {
+            return;
+        }
+
+        event.getModelRegistry().putObject(
+                location,
+                new ModelModularTool(originalModel)
         );
     }
 }
