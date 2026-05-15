@@ -1,5 +1,8 @@
 package com.SprintXXL.primitivetoolworks;
 
+import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
+import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.util.Reference;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -16,6 +19,9 @@ public class PrimitiveToolworks {
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
+        PartRegistry.init();
+        MaterialRegistry.init();
+        PatternRegistry.init();
     }
 
     @EventHandler

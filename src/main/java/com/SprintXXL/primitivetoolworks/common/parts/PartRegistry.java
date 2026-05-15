@@ -1,20 +1,32 @@
 package com.SprintXXL.primitivetoolworks.common.parts;
 
-import static com.SprintXXL.primitivetoolworks.common.parts.PartDefinitions.*;
+import java.util.*;
 
 public class PartRegistry {
 
-    public static PartDefinition getPart(String id) {
+    private static final Map<String, PartDefinition> PARTS =
+            new HashMap<>();
 
-        if (id.equals(PartIDs.HANDLE)) {
-            return HANDLE;
-        }
-        if (id.equals(PartIDs.PICKAXE_HEAD)) {
-            return PICKAXE_HEAD;
-        }
-        if (id.equals(PartIDs.BINDING)) {
-            return BINDING;
-        }
-        return null;
+    private static final List<PartDefinition> ALL_PARTS =
+            new ArrayList<>();
+
+    public static List<PartDefinition> getAllParts() {
+        return Collections.unmodifiableList(ALL_PARTS);
+    }
+
+    public static PartDefinition getPart(String id) {
+        return PARTS.get(id);
+    }
+
+    public static void register(PartDefinition part) {
+        PARTS.put(part.getPartID(), part);
+        ALL_PARTS.add(part);
+    }
+
+    public static void init() {
+
+        register(PartDefinitions.PICKAXE_HEAD);
+        register(PartDefinitions.BINDING);
+        register(PartDefinitions.HANDLE);
     }
 }
