@@ -2,7 +2,10 @@ package com.SprintXXL.primitivetoolworks.client;
 
 import com.SprintXXL.primitivetoolworks.client.rendering.part.ModelToolPart;
 import com.SprintXXL.primitivetoolworks.client.rendering.pattern.ModelPartPattern;
+import com.SprintXXL.primitivetoolworks.client.rendering.pattern.PatternRenderData;
+import com.SprintXXL.primitivetoolworks.client.rendering.pattern.PatternTextureResolver;
 import com.SprintXXL.primitivetoolworks.client.rendering.tool.ModelModularTool;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -63,15 +66,16 @@ public class ItemModelHandler {
         event.getMap().registerSprite(
                 new ResourceLocation("primitivetoolworks", "parts/handle/handle/wood")
         );
-        event.getMap().registerSprite(
-                new ResourceLocation("primitivetoolworks", "patterns/pickaxe_head")
-        );
-        event.getMap().registerSprite(
-                new ResourceLocation("primitivetoolworks", "patterns/binding")
-        );
-        event.getMap().registerSprite(
-                new ResourceLocation("primitivetoolworks", "patterns/handle")
-        );
+
+        for (String patternID : PatternRegistry.getAllPatterns()) {
+
+            PatternRenderData data =
+                    new PatternRenderData(patternID);
+
+            event.getMap().registerSprite(
+                    PatternTextureResolver.getPatternTexture(data)
+            );
+        }
     }
 
     @SubscribeEvent
