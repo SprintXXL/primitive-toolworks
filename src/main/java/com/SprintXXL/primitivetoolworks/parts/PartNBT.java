@@ -49,4 +49,26 @@ public class PartNBT {
 
         return nbt.getString("PartType");
     }
+
+    public static void setRenderRole(ItemStack stack, String renderRole) {
+
+        NBTTagCompound nbt = stack.getOrCreateSubCompound("PartData");
+
+        nbt.setString("RenderRole", renderRole);
+    }
+
+    public static String getRenderRole(ItemStack stack) {
+
+        if (stack.isEmpty()) {
+            return "unknown";
+        }
+
+        NBTTagCompound nbt = stack.getSubCompound("PartData");
+
+        if (nbt == null) {
+            return "unknown";
+        }
+
+        return nbt.getString("RenderRole");
+    }
 }

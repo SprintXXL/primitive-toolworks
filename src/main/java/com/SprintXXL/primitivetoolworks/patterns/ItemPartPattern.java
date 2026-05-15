@@ -1,8 +1,10 @@
 package com.SprintXXL.primitivetoolworks.patterns;
 
+import com.SprintXXL.primitivetoolworks.parts.PartDefaults;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import static com.SprintXXL.primitivetoolworks.util.Reference.MODID;
 
@@ -31,5 +33,18 @@ public class ItemPartPattern extends Item {
         }
 
         return "Part Pattern";
+    }
+
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+
+        if (!isInCreativeTab(tab)) {
+            return;
+        }
+
+        subItems.add(PatternDefaults.createDefaultPickaxeHeadPattern());
+        subItems.add(PatternDefaults.createDefaultBindingPattern());
+        subItems.add(PatternDefaults.createDefaultHandlePattern());
+
     }
 }

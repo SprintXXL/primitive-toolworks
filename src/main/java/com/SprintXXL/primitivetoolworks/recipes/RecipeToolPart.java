@@ -34,6 +34,7 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
         ItemStack result = new ItemStack(ModItems.TOOL_PART);
         PartNBT.setMaterial(result, partData.getMaterialID());
         PartNBT.setPartType(result, partData.getPartType());
+        PartNBT.setRenderRole(result, partData.getRenderRole());
 
         return result;
     }
@@ -96,16 +97,17 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
 
         String materialID = getMaterialID(materialStack);
         String partType = PatternNBT.getPatternType(patternStack);
+        String renderRole = getRenderRole(partType);
 
         if (!isValidMaterialPartCombo(materialID, partType)) {
             return null;
         }
 
-        if (materialID.equals("unknown") || partType.equals("unknown")) {
+        if (materialID.equals("unknown") || partType.equals("unknown") || renderRole.equals("unknown")) {
             return null;
         }
 
-        return new PartData(materialID, partType);
+        return new PartData(materialID, partType, renderRole);
     }
 
     private String getMaterialID(ItemStack stack) {
@@ -154,5 +156,22 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
             }
         }
         return false;
+    }
+
+    private String getRenderRole(String partType) {
+
+        if (partType.equals(PartIDs.PICKAXE_HEAD)) {
+            return "main";
+        }
+
+        if (partType.equals(PartIDs.BINDING)) {
+            return "extra";
+        }
+
+        if (partType.equals(PartIDs.HANDLE)) {
+            return "handle";
+        }
+
+        return "unknown";
     }
 }

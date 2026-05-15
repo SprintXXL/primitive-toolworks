@@ -5,6 +5,7 @@ import com.SprintXXL.primitivetoolworks.materials.MaterialRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import static com.SprintXXL.primitivetoolworks.util.Reference.MODID;
 
@@ -38,5 +39,18 @@ public class ItemToolPart extends Item {
             return "Tool Part";
         }
         return materialName + " " + partName;
+    }
+
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+
+        if (!isInCreativeTab(tab)) {
+            return;
+        }
+
+        subItems.add(PartDefaults.createDefaultPickaxeHead());
+        subItems.add(PartDefaults.createDefaultBinding());
+        subItems.add(PartDefaults.createDefaultHandle());
+
     }
 }

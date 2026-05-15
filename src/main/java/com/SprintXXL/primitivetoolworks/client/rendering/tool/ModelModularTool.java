@@ -14,6 +14,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ModelModularTool implements IBakedModel {
@@ -69,6 +70,10 @@ public class ModelModularTool implements IBakedModel {
 
         if (renderData == null) {
             return originalModel.getQuads(state, side, rand);
+        }
+
+        if (side != null) {
+            return Collections.emptyList();
         }
 
         ResourceLocation mainTexture = ToolTextureResolver.getMainTexture(renderData);

@@ -1,5 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.common;
 
+import com.SprintXXL.primitivetoolworks.client.rendering.part.ModelToolPart;
+import com.SprintXXL.primitivetoolworks.client.rendering.pattern.ModelPartPattern;
 import com.SprintXXL.primitivetoolworks.client.rendering.tool.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.init.ModItems;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -52,29 +54,61 @@ public class ItemModelHandler {
         event.getMap().registerSprite(
                 new ResourceLocation("primitivetoolworks", "tool_layers/pickaxe/1_main/flint")
         );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "parts/main/pickaxe_head/flint")
+        );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "parts/extra/binding/bone")
+        );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "parts/handle/handle/wood")
+        );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "patterns/pickaxe_head")
+        );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "patterns/binding")
+        );
+        event.getMap().registerSprite(
+                new ResourceLocation("primitivetoolworks", "patterns/handle")
+        );
     }
 
     @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event) {
 
-        ModelResourceLocation location = new ModelResourceLocation(
+        ModelResourceLocation pickaxeLocation = new ModelResourceLocation(
                 "primitivetoolworks:modular_pickaxe",
                 "inventory"
         );
+        ModelResourceLocation toolPartLocation = new ModelResourceLocation(
+                "primitivetoolworks:tool_part",
+                "inventory"
+        );
+        ModelResourceLocation partPatternLocation = new ModelResourceLocation(
+                "primitivetoolworks:part_pattern",
+                "inventory"
+        );
 
-        System.out.println("ModelBakeEvent Fired");
+        IBakedModel originalModel = event.getModelRegistry().getObject(pickaxeLocation);
+        IBakedModel baseModel = event.getModelRegistry().getObject(toolPartLocation);
+        IBakedModel patternModel = event.getModelRegistry().getObject(partPatternLocation);
 
-        IBakedModel originalModel = event.getModelRegistry().getObject(location);
-
-        System.out.println("Original Model: " + originalModel);
-
-        if (originalModel == null) {
+        if (originalModel == null || baseModel == null || patternModel == null) {
             return;
         }
 
         event.getModelRegistry().putObject(
-                location,
+                pickaxeLocation,
                 new ModelModularTool(originalModel, null)
+        );
+        event.getModelRegistry().putObject(
+                toolPartLocation,
+                new ModelToolPart(baseModel, null)
+        );
+        event.getModelRegistry().putObject(
+                partPatternLocation,
+                new ModelPartPattern(patternModel, null)
         );
     }
 }

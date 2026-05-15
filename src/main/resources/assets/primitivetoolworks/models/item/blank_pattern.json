@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "primitivetoolworks:patterns/blank_pattern"
+    "layer0": "primitivetoolworks:patterns/blank"
   }
 }

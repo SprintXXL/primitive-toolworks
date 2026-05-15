@@ -1,7 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "primitivetoolworks:tools/modular_pickaxe"
+    "layer0": "primitivetoolworks:generic/modular_pickaxe"
   },
   "display": {
     "gui": {

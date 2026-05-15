@@ -9,7 +9,8 @@ public class PartRenderResolver {
 
         String materialID = PartNBT.getMaterial(stack);
         String partType = PartNBT.getPartType(stack);
+        String renderRole = PartNBT.getRenderRole(stack);
 
-        return new PartRenderData(materialID, partType);
+        return new PartRenderData(materialID, partType, renderRole);
     }
 }
