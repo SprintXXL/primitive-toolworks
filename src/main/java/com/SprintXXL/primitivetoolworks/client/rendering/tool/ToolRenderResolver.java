@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
-import com.SprintXXL.primitivetoolworks.tools.ToolDefaults;
-import com.SprintXXL.primitivetoolworks.tools.ToolNBT;
+import com.SprintXXL.primitivetoolworks.common.tools.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
 import net.minecraft.item.ItemStack;
 
 public class ToolRenderResolver {

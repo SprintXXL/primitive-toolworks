@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
-import com.SprintXXL.primitivetoolworks.client.rendering.common.ToolLayerQuadBuilder;
+import com.SprintXXL.primitivetoolworks.client.rendering.common.LayerQuadBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -84,8 +84,8 @@ public class ModelModularTool implements IBakedModel {
 
         List<BakedQuad> quads = new ArrayList<>();
 
-        quads.addAll(ToolLayerQuadBuilder.buildLayer(handleSprite));
-        quads.addAll(ToolLayerQuadBuilder.buildLayer(mainSprite));
+        quads.addAll(LayerQuadBuilder.buildLayer(handleSprite));
+        quads.addAll(LayerQuadBuilder.buildLayer(mainSprite));
 
         return quads;
     }

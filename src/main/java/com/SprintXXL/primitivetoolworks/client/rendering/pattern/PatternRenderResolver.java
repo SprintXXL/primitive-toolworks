@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.pattern;
 
-import com.SprintXXL.primitivetoolworks.patterns.PatternNBT;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
 import net.minecraft.item.ItemStack;
 
 public class PatternRenderResolver {

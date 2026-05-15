@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.part;
 
-import com.SprintXXL.primitivetoolworks.parts.PartNBT;
+import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
 import net.minecraft.item.ItemStack;
 
 public class PartRenderResolver {
