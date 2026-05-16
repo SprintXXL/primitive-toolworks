@@ -17,12 +17,12 @@ import java.util.List;
 
 public class ModelToolPart implements IBakedModel {
 
-    private final IBakedModel baseModel;
+    private final IBakedModel partModel;
     private final PartRenderData renderData;
 
-    public ModelToolPart(IBakedModel baseModel, PartRenderData renderData) {
+    public ModelToolPart(IBakedModel partModel, PartRenderData renderData) {
 
-        this.baseModel = baseModel;
+        this.partModel = partModel;
         this.renderData = renderData;
     }
 
@@ -30,7 +30,7 @@ public class ModelToolPart implements IBakedModel {
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
 
         if (renderData == null) {
-            return baseModel.getQuads(state, side, rand);
+            return partModel.getQuads(state, side, rand);
         }
 
         if (side != null) {
@@ -50,22 +50,22 @@ public class ModelToolPart implements IBakedModel {
 
     @Override
     public boolean isGui3d() {
-        return baseModel.isGui3d();
+        return partModel.isGui3d();
     }
 
     @Override
     public boolean isBuiltInRenderer() {
-        return baseModel.isBuiltInRenderer();
+        return partModel.isBuiltInRenderer();
     }
 
     @Override
     public boolean isAmbientOcclusion() {
-        return baseModel.isAmbientOcclusion();
+        return partModel.isAmbientOcclusion();
     }
 
     @Override
     public TextureAtlasSprite getParticleTexture() {
-        return baseModel.getParticleTexture();
+        return partModel.getParticleTexture();
     }
 
     @Override
@@ -75,6 +75,6 @@ public class ModelToolPart implements IBakedModel {
 
     @Override
     public ItemCameraTransforms getItemCameraTransforms() {
-        return baseModel.getItemCameraTransforms();
+        return partModel.getItemCameraTransforms();
     }
 }

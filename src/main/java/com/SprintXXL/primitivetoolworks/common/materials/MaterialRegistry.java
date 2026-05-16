@@ -25,8 +25,8 @@ public class MaterialRegistry {
 
     public static void init() {
 
-        register(MaterialDefinitions.FLINT);
-        register(MaterialDefinitions.BONE);
-        register(MaterialDefinitions.WOOD);
+        register(ModMaterials.FLINT);
+        register(ModMaterials.BONE);
+        register(ModMaterials.WOOD);
     }
 }

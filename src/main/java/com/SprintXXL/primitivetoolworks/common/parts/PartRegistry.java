@@ -25,8 +25,8 @@ public class PartRegistry {
 
     public static void init() {
 
-        register(PartDefinitions.PICKAXE_HEAD);
-        register(PartDefinitions.BINDING);
-        register(PartDefinitions.HANDLE);
+        register(ModParts.PICKAXE_HEAD);
+        register(ModParts.BINDING);
+        register(ModParts.HANDLE);
     }
 }

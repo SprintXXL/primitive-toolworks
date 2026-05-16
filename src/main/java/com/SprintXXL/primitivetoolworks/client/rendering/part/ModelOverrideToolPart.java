@@ -10,19 +10,19 @@ import java.util.Collections;
 
 public class ModelOverrideToolPart extends ItemOverrideList {
 
-    private final IBakedModel baseModel;
+    private final IBakedModel partModel;
 
-    public ModelOverrideToolPart(IBakedModel baseModel) {
+    public ModelOverrideToolPart(IBakedModel partModel) {
         super(Collections.emptyList());
 
-        this.baseModel = baseModel;
+        this.partModel = partModel;
     }
 
     @Override
-    public IBakedModel handleItemState(IBakedModel baseModel, ItemStack stack, World world, EntityLivingBase entity) {
+    public IBakedModel handleItemState(IBakedModel partModel, ItemStack stack, World world, EntityLivingBase entity) {
 
         PartRenderData data = PartRenderResolver.resolve(stack);
 
-        return new ModelToolPart(baseModel, data);
+        return new ModelToolPart(partModel, data);
     }
 }

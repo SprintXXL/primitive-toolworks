@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.common.tools;
+package com.SprintXXL.primitivetoolworks.common.tools.defaults;
 
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.parts.PartIDs;

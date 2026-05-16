@@ -1,9 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 import com.SprintXXL.primitivetoolworks.client.rendering.common.LayerQuadBuilder;
-import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
-import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -22,48 +20,48 @@ import java.util.List;
 
 public class ModelModularTool implements IBakedModel {
 
-    private final IBakedModel originalModel;
+    private final IBakedModel toolModel;
     private final ToolRenderData renderData;
 
-    public ModelModularTool(IBakedModel originalModel, ToolRenderData renderData) {
+    public ModelModularTool(IBakedModel toolModel, ToolRenderData renderData) {
 
-        this.originalModel = originalModel;
+        this.toolModel = toolModel;
         this.renderData = renderData;
     }
 
     @Override
     public boolean isGui3d() {
-        return originalModel.isGui3d();
+        return toolModel.isGui3d();
     }
 
     @Override
     public boolean isBuiltInRenderer() {
-        return originalModel.isBuiltInRenderer();
+        return toolModel.isBuiltInRenderer();
     }
 
     @Override
     public boolean isAmbientOcclusion() {
-        return originalModel.isAmbientOcclusion();
+        return toolModel.isAmbientOcclusion();
     }
 
     @Override
     public TextureAtlasSprite getParticleTexture() {
-        return originalModel.getParticleTexture();
+        return toolModel.getParticleTexture();
     }
 
     @Override
     public ItemOverrideList getOverrides() {
-        return new ModelOverrideModularTool(originalModel);
+        return new ModelOverrideModularTool(toolModel);
     }
 
     @Override
     public ItemCameraTransforms getItemCameraTransforms() {
-        return originalModel.getItemCameraTransforms();
+        return toolModel.getItemCameraTransforms();
     }
 
     @Override
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
-        Pair<? extends IBakedModel, Matrix4f> pair = originalModel.handlePerspective(cameraTransformType);
+        Pair<? extends IBakedModel, Matrix4f> pair = toolModel.handlePerspective(cameraTransformType);
 
         return Pair.of(this, pair.getRight());
     }
@@ -72,7 +70,7 @@ public class ModelModularTool implements IBakedModel {
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
 
         if (renderData == null) {
-            return originalModel.getQuads(state, side, rand);
+            return toolModel.getQuads(state, side, rand);
         }
 
         if (side != null) {

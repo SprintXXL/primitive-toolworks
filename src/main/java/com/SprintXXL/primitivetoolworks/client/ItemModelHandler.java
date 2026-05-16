@@ -146,17 +146,17 @@ public class ItemModelHandler {
                 "inventory"
         );
 
-        IBakedModel originalModel = event.getModelRegistry().getObject(pickaxeLocation);
+        IBakedModel toolModel = event.getModelRegistry().getObject(pickaxeLocation);
         IBakedModel baseModel = event.getModelRegistry().getObject(toolPartLocation);
         IBakedModel patternModel = event.getModelRegistry().getObject(partPatternLocation);
 
-        if (originalModel == null || baseModel == null || patternModel == null) {
+        if (toolModel == null || baseModel == null || patternModel == null) {
             return;
         }
 
         event.getModelRegistry().putObject(
                 pickaxeLocation,
-                new ModelModularTool(originalModel, null)
+                new ModelModularTool(toolModel, null)
         );
         event.getModelRegistry().putObject(
                 toolPartLocation,

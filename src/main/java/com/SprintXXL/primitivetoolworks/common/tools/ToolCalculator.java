@@ -5,12 +5,13 @@ import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.materials.stats.ExtraMaterialStats;
 import com.SprintXXL.primitivetoolworks.common.materials.stats.HandleMaterialStats;
 import com.SprintXXL.primitivetoolworks.common.materials.stats.MainMaterialStats;
-import com.SprintXXL.primitivetoolworks.common.parts.PartDefaults;
+import com.SprintXXL.primitivetoolworks.common.parts.defaults.PartDefaults;
 import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.ExtraPartStats;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.HandlePartStats;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.MainPartStats;
+import com.SprintXXL.primitivetoolworks.common.tools.defaults.ToolDefaults;
 import net.minecraft.item.ItemStack;
 
 public class ToolCalculator {

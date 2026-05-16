@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.common.registry;
 
-import com.SprintXXL.primitivetoolworks.common.parts.ItemToolPart;
-import com.SprintXXL.primitivetoolworks.common.patterns.ItemBlankPattern;
-import com.SprintXXL.primitivetoolworks.common.patterns.ItemPartPattern;
-import com.SprintXXL.primitivetoolworks.common.tools.ItemModularPickaxe;
+import com.SprintXXL.primitivetoolworks.common.parts.items.ItemToolPart;
+import com.SprintXXL.primitivetoolworks.common.patterns.items.ItemBlankPattern;
+import com.SprintXXL.primitivetoolworks.common.patterns.items.ItemPartPattern;
+import com.SprintXXL.primitivetoolworks.common.tools.items.ItemModularPickaxe;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -1,5 +1,8 @@
-package com.SprintXXL.primitivetoolworks.common.parts;
+package com.SprintXXL.primitivetoolworks.common.parts.defaults;
 
+import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
+import com.SprintXXL.primitivetoolworks.common.parts.PartIDs;
+import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import net.minecraft.item.ItemStack;

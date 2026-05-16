@@ -10,19 +10,19 @@ import java.util.Collections;
 
 public class ModelOverrideModularTool extends ItemOverrideList {
 
-    private final IBakedModel originalModel;
+    private final IBakedModel toolModel;
 
-    public ModelOverrideModularTool(IBakedModel originalModel) {
+    public ModelOverrideModularTool(IBakedModel toolModel) {
         super(Collections.emptyList());
 
-        this.originalModel = originalModel;
+        this.toolModel = toolModel;
     }
 
     @Override
-    public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
+    public IBakedModel handleItemState(IBakedModel toolModel, ItemStack stack, World world, EntityLivingBase entity) {
 
         ToolRenderData data = ToolRenderResolver.resolve(stack);
 
-        return new ModelModularTool(originalModel, data);
+        return new ModelModularTool(toolModel, data);
     }
 }

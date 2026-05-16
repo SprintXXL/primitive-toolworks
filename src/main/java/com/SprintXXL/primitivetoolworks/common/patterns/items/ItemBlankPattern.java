@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.common.patterns;
+package com.SprintXXL.primitivetoolworks.common.patterns.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -1,6 +1,7 @@
 package com.SprintXXL.primitivetoolworks.common.recipes;
 
 import com.SprintXXL.primitivetoolworks.common.parts.*;
+import com.SprintXXL.primitivetoolworks.common.parts.data.PartData;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;

@@ -5,9 +5,9 @@ import com.SprintXXL.primitivetoolworks.common.materials.stats.HandleMaterialSta
 import com.SprintXXL.primitivetoolworks.common.materials.stats.MainMaterialStats;
 import net.minecraft.util.text.TextFormatting;
 
-public class MaterialDefinitions {
+public class ModMaterials {
 
-    private MaterialDefinitions() {}
+    private ModMaterials() {}
 
     // MAIN MATERIALS \\
     public static final MaterialDefinition FLINT =

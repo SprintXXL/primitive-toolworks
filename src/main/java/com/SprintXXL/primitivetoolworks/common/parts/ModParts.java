@@ -4,7 +4,7 @@ import com.SprintXXL.primitivetoolworks.common.parts.stats.ExtraPartStats;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.HandlePartStats;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.MainPartStats;
 
-public class PartDefinitions {
+public class ModParts {
 
     // MAIN PARTS \\
     public static final PartDefinition PICKAXE_HEAD =

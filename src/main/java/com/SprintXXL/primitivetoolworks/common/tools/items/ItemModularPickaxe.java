@@ -1,7 +1,10 @@
-package com.SprintXXL.primitivetoolworks.common.tools;
+package com.SprintXXL.primitivetoolworks.common.tools.items;
 
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialDefinition;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
+import com.SprintXXL.primitivetoolworks.common.tools.ToolCalculator;
+import com.SprintXXL.primitivetoolworks.common.tools.defaults.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;

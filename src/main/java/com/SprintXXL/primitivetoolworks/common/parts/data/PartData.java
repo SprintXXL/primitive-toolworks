@@ -1,4 +1,6 @@
-package com.SprintXXL.primitivetoolworks.common.parts;
+package com.SprintXXL.primitivetoolworks.common.parts.data;
+
+import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
 
 public class PartData {
 

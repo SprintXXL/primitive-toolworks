@@ -1,5 +1,8 @@
-package com.SprintXXL.primitivetoolworks.common.patterns;
+package com.SprintXXL.primitivetoolworks.common.patterns.items;
 
+import com.SprintXXL.primitivetoolworks.common.patterns.defaults.PatternDefaults;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternIDs;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
