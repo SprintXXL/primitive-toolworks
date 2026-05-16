@@ -37,17 +37,7 @@ public class ModelToolPart implements IBakedModel {
             return Collections.emptyList();
         }
 
-        ResourceLocation texture;
-
-        if (renderData.renderRole.equals("main")) {
-            texture = PartTextureResolver.getMainPartTexture(renderData);
-        }
-        else if (renderData.renderRole.equals("extra")) {
-            texture = PartTextureResolver.getExtraPartTexture(renderData);
-        }
-        else {
-            texture = PartTextureResolver.getHandlePartTexture(renderData);
-        }
+        ResourceLocation texture = PartTextureResolver.getPartTexture(renderData);
 
         TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(texture.toString());
 

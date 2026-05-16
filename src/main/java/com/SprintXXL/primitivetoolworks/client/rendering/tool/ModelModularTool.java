@@ -1,6 +1,9 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 import com.SprintXXL.primitivetoolworks.client.rendering.common.LayerQuadBuilder;
+import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
+import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
+import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -76,8 +79,19 @@ public class ModelModularTool implements IBakedModel {
             return Collections.emptyList();
         }
 
-        ResourceLocation mainTexture = ToolTextureResolver.getMainTexture(renderData);
-        ResourceLocation handleTexture = ToolTextureResolver.getHandleTexture(renderData);
+        ToolLayerRenderData mainData = new ToolLayerRenderData(
+                renderData.toolType,
+                PartGroup.MAIN,
+                renderData.mainMaterial
+        );
+        ToolLayerRenderData handleData = new ToolLayerRenderData(
+                renderData.toolType,
+                PartGroup.HANDLE,
+                renderData.handleMaterial
+        );
+
+        ResourceLocation mainTexture = ToolTextureResolver.getToolLayerTexture(mainData);
+        ResourceLocation handleTexture = ToolTextureResolver.getToolLayerTexture(handleData);
 
         TextureAtlasSprite mainSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(mainTexture.toString());
         TextureAtlasSprite handleSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(handleTexture.toString());

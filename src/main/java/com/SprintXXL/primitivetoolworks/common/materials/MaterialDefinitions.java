@@ -17,10 +17,10 @@ public class MaterialDefinitions {
                     "FLINT",
                     TextFormatting.DARK_GRAY,
                     new MainMaterialStats(
-                            250, // Durability
-                            5.0F, // Mining Speed
+                            128, // Durability
+                            1.0F, // Mining Speed
                             1, // Harvest Level
-                            5.0F // Attack Damage
+                            3.0F // Attack Damage
                     )
             );
 
@@ -32,7 +32,7 @@ public class MaterialDefinitions {
                     "BONE",
                     TextFormatting.WHITE,
                     new ExtraMaterialStats(
-                            2.0F // Mining Speed Bonus
+                            1.0F // Mining Speed Bonus
                     )
             );
 
@@ -44,7 +44,7 @@ public class MaterialDefinitions {
                     "WOOD",
                     TextFormatting.GOLD,
                     new HandleMaterialStats(
-                            50 // Durability Bonus
+                            10 // Durability Bonus
                     )
             );
 }

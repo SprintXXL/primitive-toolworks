@@ -4,13 +4,13 @@ public class PartData {
 
     private final String materialID;
     private final String partType;
-    private final String renderRole;
+    private final PartGroup group;
 
-    public PartData(String materialID, String partType, String renderRole) {
+    public PartData(String materialID, String partType, PartGroup group) {
 
         this.materialID = materialID;
         this.partType = partType;
-        this.renderRole = renderRole;
+        this.group = group;
     }
 
     public String getMaterialID() {
@@ -21,7 +21,7 @@ public class PartData {
         return partType;
     }
 
-    public String getRenderRole() {
-        return renderRole;
+    public PartGroup getPartGroup() {
+        return group;
     }
 }

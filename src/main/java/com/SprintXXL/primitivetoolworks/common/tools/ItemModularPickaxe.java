@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
@@ -155,5 +156,26 @@ public class ItemModularPickaxe extends ItemPickaxe {
         tooltip.add("Mining Speed: " + TextFormatting.WHITE + miningSpeed);
         tooltip.add("Harvest Level: " + TextFormatting.WHITE + harvestLevel);
         tooltip.add("Durability: " + TextFormatting.WHITE + remainingDurability + " / " + maxDurability);
+    }
+
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+
+        if (!isInCreativeTab(tab)) {
+            return;
+        }
+
+        ItemStack stack = new ItemStack(this);
+
+        ToolNBT.setMainMaterial(stack, ToolDefaults.DEFAULT_MAIN_MATERIAL);
+        ToolNBT.setMainPart(stack, ToolDefaults.DEFAULT_MAIN_PART);
+
+        ToolNBT.setExtraMaterial(stack, ToolDefaults.DEFAULT_EXTRA_MATERIAL);
+        ToolNBT.setExtraPart(stack, ToolDefaults.DEFAULT_EXTRA_PART);
+
+        ToolNBT.setHandleMaterial(stack, ToolDefaults.DEFAULT_HANDLE_MATERIAL);
+        ToolNBT.setHandlePart(stack, ToolDefaults.DEFAULT_HANDLE_PART);
+
+        items.add(stack);
     }
 }

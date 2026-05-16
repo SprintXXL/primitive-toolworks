@@ -1,10 +1,8 @@
 package com.SprintXXL.primitivetoolworks.common.recipes;
 
+import com.SprintXXL.primitivetoolworks.common.parts.*;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
-import com.SprintXXL.primitivetoolworks.common.parts.PartData;
-import com.SprintXXL.primitivetoolworks.common.parts.PartIDs;
-import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
@@ -14,6 +12,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
+import static com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation.isValidMaterialPartCombo;
 
 public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 
@@ -34,7 +34,7 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
         ItemStack result = new ItemStack(ModItems.TOOL_PART);
         PartNBT.setMaterial(result, partData.getMaterialID());
         PartNBT.setPartType(result, partData.getPartType());
-        PartNBT.setRenderRole(result, partData.getRenderRole());
+        PartNBT.setPartGroup(result, partData.getPartGroup());
 
         return result;
     }
@@ -97,17 +97,24 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
 
         String materialID = getMaterialID(materialStack);
         String partType = PatternNBT.getPatternType(patternStack);
-        String renderRole = getRenderRole(partType);
+
+        PartDefinition partDefinition = PartRegistry.getPart(partType);
+
+        if (partDefinition == null) {
+            return null;
+        }
+
+        PartGroup group = partDefinition.getGroup();
 
         if (!isValidMaterialPartCombo(materialID, partType)) {
             return null;
         }
 
-        if (materialID.equals("unknown") || partType.equals("unknown") || renderRole.equals("unknown")) {
+        if (materialID.equals("unknown") || partType.equals("unknown") || group.equals("unknown")) {
             return null;
         }
 
-        return new PartData(materialID, partType, renderRole);
+        return new PartData(materialID, partType, group);
     }
 
     private String getMaterialID(ItemStack stack) {
@@ -127,20 +134,6 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
         }
 
         return "unknown";
-    }
-
-    private boolean isValidMaterialPartCombo(String materialID, String partType) {
-
-        if (materialID.equals(MaterialIDs.FLINT) &&  partType.equals(PartIDs.PICKAXE_HEAD)) {
-            return true;
-        }
-        if (materialID.equals(MaterialIDs.WOOD) && partType.equals(PartIDs.HANDLE)) {
-            return true;
-        }
-        if (materialID.equals(MaterialIDs.BONE) && partType.equals(PartIDs.BINDING)) {
-            return true;
-        }
-        return false;
     }
 
     private boolean isPlankWood(ItemStack stack) {

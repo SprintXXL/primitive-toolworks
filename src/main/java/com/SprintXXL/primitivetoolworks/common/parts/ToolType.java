@@ -1,9 +1,20 @@
 package com.SprintXXL.primitivetoolworks.common.parts;
 
 public enum ToolType {
-    SWORD,
-    PICKAXE,
-    AXE,
-    SHOVEL,
-    HOE
+
+    SWORD("sword"),
+    PICKAXE("pickaxe"),
+    AXE("axe"),
+    SHOVEL("shovel"),
+    HOE("hoe");
+
+    private final String id;
+
+    ToolType(String id) {
+        this.id = id;
+    }
+
+    public String getID() {
+        return id;
+    }
 }

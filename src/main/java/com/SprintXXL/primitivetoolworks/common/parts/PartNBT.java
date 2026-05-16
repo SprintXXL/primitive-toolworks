@@ -50,25 +50,27 @@ public class PartNBT {
         return nbt.getString("PartType");
     }
 
-    public static void setRenderRole(ItemStack stack, String renderRole) {
+    public static void setPartGroup(ItemStack stack, PartGroup group) {
 
         NBTTagCompound nbt = stack.getOrCreateSubCompound("PartData");
 
-        nbt.setString("RenderRole", renderRole);
+        nbt.setString("PartGroup", group.name());
     }
 
-    public static String getRenderRole(ItemStack stack) {
+    public static PartGroup getPartGroup(ItemStack stack) {
 
         if (stack.isEmpty()) {
-            return "unknown";
+            return null;
         }
 
         NBTTagCompound nbt = stack.getSubCompound("PartData");
 
         if (nbt == null) {
-            return "unknown";
+            return null;
         }
 
-        return nbt.getString("RenderRole");
+        String group = nbt.getString("PartGroup");
+
+        return PartGroup.valueOf(group);
     }
 }

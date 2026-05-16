@@ -14,7 +14,7 @@ public class PartDefinitions {
                     "Pickaxe Head",
                     new MainPartStats(
                             ToolType.PICKAXE,
-                            1.4F, // Mining Speed Multiplier
+                            1.0F, // Mining Speed Multiplier
                             0.7F, // Attack Damage Modifier
                             -3.2F // Attack Speed Modifier
                     )
@@ -27,7 +27,7 @@ public class PartDefinitions {
                     PartIDs.BINDING,
                     "Binding",
                     new ExtraPartStats(
-                            1.5F // Mining Speed Multiplier
+                            1.0F // Mining Speed Multiplier
                     )
             );
 
@@ -38,7 +38,7 @@ public class PartDefinitions {
                     PartIDs.HANDLE,
                     "Handle",
                     new HandlePartStats(
-                            1.5F // Durability Multiplier
+                            1.0F // Durability Multiplier
                     )
             );
 }

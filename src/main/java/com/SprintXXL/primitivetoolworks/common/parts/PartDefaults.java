@@ -14,16 +14,16 @@ public class PartDefaults {
     public static final String DEFAULT_EXTRA_PART = PartIDs.BINDING;
     public static final String DEFAULT_HANDLE_PART = PartIDs.HANDLE;
 
-    public static final String DEFAULT_MAIN_RENDER_ROLE = "main";
-    public static final String DEFAULT_EXTRA_RENDER_ROLE = "extra";
-    public static final String DEFAULT_HANDLE_RENDER_ROLE = "handle";
+    public static final PartGroup DEFAULT_MAIN_GROUP = PartGroup.MAIN;
+    public static final PartGroup DEFAULT_EXTRA_GROUP = PartGroup.EXTRA;
+    public static final PartGroup DEFAULT_HANDLE_GROUP = PartGroup.HANDLE;
 
     public static ItemStack createDefaultPickaxeHead() {
         ItemStack stack = new ItemStack(ModItems.TOOL_PART);
 
         PartNBT.setMaterial(stack, DEFAULT_MAIN_MATERIAL);
         PartNBT.setPartType(stack, DEFAULT_MAIN_PART);
-        PartNBT.setRenderRole(stack, DEFAULT_MAIN_RENDER_ROLE);
+        PartNBT.setPartGroup(stack, DEFAULT_MAIN_GROUP);
 
         return stack;
     }
@@ -32,7 +32,7 @@ public class PartDefaults {
 
         PartNBT.setMaterial(stack, DEFAULT_EXTRA_MATERIAL);
         PartNBT.setPartType(stack, DEFAULT_EXTRA_PART);
-        PartNBT.setRenderRole(stack, DEFAULT_EXTRA_RENDER_ROLE);
+        PartNBT.setPartGroup(stack, DEFAULT_EXTRA_GROUP);
 
         return stack;
     }
@@ -41,7 +41,7 @@ public class PartDefaults {
 
         PartNBT.setMaterial(stack, DEFAULT_HANDLE_MATERIAL);
         PartNBT.setPartType(stack, DEFAULT_HANDLE_PART);
-        PartNBT.setRenderRole(stack, DEFAULT_HANDLE_RENDER_ROLE);
+        PartNBT.setPartGroup(stack, DEFAULT_HANDLE_GROUP);
 
         return stack;
     }
