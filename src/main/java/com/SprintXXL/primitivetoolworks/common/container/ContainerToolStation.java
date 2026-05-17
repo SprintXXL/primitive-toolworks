@@ -78,11 +78,6 @@ public class ContainerToolStation extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        return ItemStack.EMPTY;
-    }
-
-    @Override
     public void onCraftMatrixChanged(IInventory inventoryIn) {
         this.craftResult.setInventorySlotContents(
                 0,
@@ -107,6 +102,47 @@ public class ContainerToolStation extends Container {
 
             playerIn.inventory.markDirty();
         }
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+
+        ItemStack originalStack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
+
+        if (slot != null && slot.getHasStack()) {
+            ItemStack stackInSlot = slot.getStack();
+            originalStack = stackInSlot.copy();
+
+            if (index >= 10 && index < 46) {
+                if (!this.mergeItemStack(stackInSlot, 0, 9, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if (index >= 0 && index < 9) {
+                if (!this.mergeItemStack(stackInSlot, 10, 46, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if (index == 9) {
+                if (!this.mergeItemStack(stackInSlot, 10, 46, true)) {
+                    return ItemStack.EMPTY;
+                }
+                slot.onSlotChange(stackInSlot, originalStack);
+            }
+            if (stackInSlot.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
+            }
+            else {
+                slot.onSlotChanged();
+            }
+            if (stackInSlot.getCount() == originalStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+            slot.onTake(playerIn, stackInSlot);
+        }
+
+        return originalStack;
     }
 
     private ItemStack findMatchingResult() {
