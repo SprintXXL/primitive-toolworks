@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks;
 
+import com.SprintXXL.primitivetoolworks.common.gui.GuiHandler;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
@@ -8,10 +9,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class PrimitiveToolworks {
+
+    @Mod.Instance
+    public static PrimitiveToolworks INSTANCE;
 
     private static Logger logger;
 
@@ -26,5 +31,6 @@ public class PrimitiveToolworks {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
     }
 }
