@@ -9,7 +9,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class RecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+public class OLDRecipePartPattern extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
 
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn) {

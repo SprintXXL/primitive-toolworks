@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.common.registry;
 
 import com.SprintXXL.primitivetoolworks.common.recipes.RecipeModularPickaxe;
-import com.SprintXXL.primitivetoolworks.common.recipes.RecipePartPattern;
+import com.SprintXXL.primitivetoolworks.common.recipes.OLDRecipePartPattern;
 import com.SprintXXL.primitivetoolworks.common.recipes.RecipeToolPart;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
@@ -18,7 +18,7 @@ public class ModRecipes {
 
         event.getRegistry().registerAll(
                 new RecipeModularPickaxe().setRegistryName(MODID, "modular_pickaxe"),
-                new RecipePartPattern().setRegistryName(MODID, "part_pattern"),
+                new OLDRecipePartPattern().setRegistryName(MODID, "part_pattern"),
                 new RecipeToolPart().setRegistryName(MODID, "tool_part")
         );
     }
