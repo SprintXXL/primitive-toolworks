@@ -3,6 +3,7 @@ package com.SprintXXL.primitivetoolworks.common.container;
 import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipeModularPickaxe;
 import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipePartPattern;
 import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipeToolPart;
+import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipeToolRepair;
 import com.SprintXXL.primitivetoolworks.common.slots.SlotToolStationOutput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,6 +26,9 @@ public class ContainerToolStation extends Container {
 
     private final RecipeModularPickaxe pickaxeRecipe =
             new RecipeModularPickaxe();
+
+    private final RecipeToolRepair repairRecipe =
+            new RecipeToolRepair();
 
     public ContainerToolStation(InventoryPlayer playerInventory) {
 
@@ -156,6 +160,9 @@ public class ContainerToolStation extends Container {
         if (pickaxeRecipe.matches(craftMatrix)) {
             return pickaxeRecipe.getOutput(craftMatrix);
         }
+        if (repairRecipe.matches(craftMatrix)) {
+            return repairRecipe.getOutput(craftMatrix);
+        }
 
         return ItemStack.EMPTY;
     }
@@ -170,6 +177,9 @@ public class ContainerToolStation extends Container {
         }
         if (pickaxeRecipe.matches(craftMatrix)) {
             pickaxeRecipe.consumeIngredients(craftMatrix);
+        }
+        if (repairRecipe.matches(craftMatrix)) {
+            repairRecipe.consumeIngredients(craftMatrix);
         }
 
         onCraftMatrixChanged(craftMatrix);
