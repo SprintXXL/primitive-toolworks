@@ -1,19 +1,18 @@
 package com.SprintXXL.primitivetoolworks.common.slots;
 
+import com.SprintXXL.primitivetoolworks.common.container.ContainerToolStation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class SlotToolStationOutput extends Slot {
 
-    private final InventoryCrafting craftMatrix;
+    private final ContainerToolStation container;
 
-    public SlotToolStationOutput(IInventory inventoryIn, InventoryCrafting craftMatrix, int index, int xPosition, int yPosition) {
+    public SlotToolStationOutput(IInventory inventoryIn, ContainerToolStation container, int index, int xPosition, int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);
-
-        this.craftMatrix = craftMatrix;
+        this.container = container;
     }
 
     @Override
@@ -23,13 +22,7 @@ public class SlotToolStationOutput extends Slot {
 
     @Override
     public ItemStack onTake(EntityPlayer player, ItemStack stack) {
-
-        ItemStack input = craftMatrix.getStackInSlot(4);
-
-        if (!input.isEmpty()) {
-            input.shrink(1);
-        }
-
+        container.consumeIngredients();
         return super.onTake(player, stack);
     }
 }

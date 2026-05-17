@@ -32,7 +32,7 @@ public class ContainerToolStation extends Container {
         // Output Slot \\
         this.addSlotToContainer(new SlotToolStationOutput(
                 craftResult,
-                craftMatrix,
+                this,
                 0,
                 124,
                 35
@@ -81,17 +81,29 @@ public class ContainerToolStation extends Container {
 
     private ItemStack findMatchingResult() {
 
+        if (matchesFlintRecipe()) {
+            return new ItemStack(Items.STICK);
+        }
+        if (matchesCoalRecipe()) {
+            return new ItemStack(Items.SUGAR);
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+    private boolean matchesFlintRecipe() {
+
         if(craftMatrix.getWidth() != 3 || craftMatrix.getHeight() != 3) {
-            return ItemStack.EMPTY;
+            return false;
         }
 
         ItemStack slot4 = craftMatrix.getStackInSlot(4);
 
         if (slot4.isEmpty()){
-            return ItemStack.EMPTY;
+            return false;
         }
         if (slot4.getItem() != Items.FLINT) {
-            return ItemStack.EMPTY;
+            return false;
         }
 
         for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
@@ -99,9 +111,65 @@ public class ContainerToolStation extends Container {
                 continue;
             }
             if (!craftMatrix.getStackInSlot(i).isEmpty()) {
-                return ItemStack.EMPTY;
+                return false;
             }
         }
-            return new ItemStack(Items.STICK);
+        return true;
+    }
+
+    private boolean matchesCoalRecipe() {
+
+        if(craftMatrix.getWidth() != 3 || craftMatrix.getHeight() != 3) {
+            return false;
+        }
+
+        ItemStack slot4 = craftMatrix.getStackInSlot(4);
+
+        if (slot4.isEmpty()){
+            return false;
+        }
+        if (slot4.getItem() != Items.COAL) {
+            return false;
+        }
+
+        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
+            if(i == 4) {
+                continue;
+            }
+            if (!craftMatrix.getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void consumeIngredients() {
+
+        if (matchesFlintRecipe()) {
+            consumeFlintRecipe();
+        }
+        if (matchesCoalRecipe()) {
+            consumeCoalRecipe();
+        }
+
+        onCraftMatrixChanged(craftMatrix);
+    }
+
+    private void consumeFlintRecipe() {
+
+        ItemStack input = craftMatrix.getStackInSlot(4);
+
+        if (!input.isEmpty()) {
+            input.shrink(1);
+        }
+    }
+
+    private void consumeCoalRecipe() {
+
+        ItemStack input = craftMatrix.getStackInSlot(4);
+
+        if (!input.isEmpty()) {
+            input.shrink(1);
+        }
     }
 }
