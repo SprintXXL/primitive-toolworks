@@ -24,6 +24,14 @@ public class GuiToolStation extends GuiContainer {
 
     }
 
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+
+        this.fontRenderer.drawString("Tool Station", 8, 6, 4210752);
+        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+
+    }
+
     private static final ResourceLocation GUI =
             new ResourceLocation(
                     MODID,

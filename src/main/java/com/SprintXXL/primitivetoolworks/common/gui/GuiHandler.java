@@ -15,7 +15,7 @@ public class GuiHandler implements IGuiHandler {
 
         if (ID == TOOL_STATION) {
 
-            return new ContainerToolStation();
+            return new ContainerToolStation(player.inventory);
         }
 
         return null;
@@ -26,7 +26,7 @@ public class GuiHandler implements IGuiHandler {
 
         if (ID == TOOL_STATION) {
 
-            return new GuiToolStation(new ContainerToolStation());
+            return new GuiToolStation(new ContainerToolStation(player.inventory));
         }
 
         return null;
