@@ -2,6 +2,7 @@ package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternIDs;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -89,7 +90,7 @@ public class RecipePartPattern {
 
     private boolean matchesPickaxeHeadPattern(InventoryCrafting craftMatrix) {
 
-        if (!matchesCraftMatrix(craftMatrix)) {
+        if (!helpers.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
@@ -115,7 +116,7 @@ public class RecipePartPattern {
 
     private boolean matchesBindingPattern(InventoryCrafting craftMatrix) {
 
-        if (!matchesCraftMatrix(craftMatrix)) {
+        if (!helpers.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
@@ -141,7 +142,7 @@ public class RecipePartPattern {
 
     private boolean matchesHandlePattern(InventoryCrafting craftMatrix) {
 
-        if (!matchesCraftMatrix(craftMatrix)) {
+        if (!helpers.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
@@ -163,14 +164,5 @@ public class RecipePartPattern {
 
         return knifeStack.getItem() == com.SprintXXL.primitivetools.init.ModItems.FLINT_KNIFE &&
                 patternStack.getItem() == ModItems.BLANK_PATTERN;
-    }
-
-    private boolean matchesCraftMatrix(InventoryCrafting craftMatrix) {
-
-        if (craftMatrix.getWidth() != 3 || craftMatrix.getHeight() != 3) {
-            return false;
-        }
-
-        return true;
     }
 }

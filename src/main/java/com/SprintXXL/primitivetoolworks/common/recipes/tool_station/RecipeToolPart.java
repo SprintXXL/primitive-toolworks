@@ -1,32 +1,30 @@
-package com.SprintXXL.primitivetoolworks.common.recipes;
+package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
-import com.SprintXXL.primitivetoolworks.common.parts.*;
-import com.SprintXXL.primitivetoolworks.common.parts.data.PartData;
-import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
+import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
+import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
+import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
+import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
+import com.SprintXXL.primitivetoolworks.common.parts.data.PartData;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
+import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import static com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation.isValidMaterialPartCombo;
 
-public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+public class RecipeToolPart {
 
-    @Override
-    public boolean matches(InventoryCrafting inv, World worldIn) {
-        return getResultPartData(inv) != null;
+    public boolean matches(InventoryCrafting craftMatrix) {
+        return getResultPartData(craftMatrix) != null;
     }
 
-    @Override
-    public ItemStack getCraftingResult(InventoryCrafting inv) {
+    public ItemStack getOutput(InventoryCrafting craftMatrix) {
 
-        PartData partData = getResultPartData(inv);
+        PartData partData = getResultPartData(craftMatrix);
 
         if (partData == null) {
             return ItemStack.EMPTY;
@@ -40,44 +38,28 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
         return result;
     }
 
-    @Override
-    public boolean canFit(int width, int height) {
-        return width >= 3 && height >= 3;
+    public void consumeIngredients(InventoryCrafting craftMatrix) {
+
+        consumeSlot(craftMatrix, 1);
     }
 
-    @Override
-    public ItemStack getRecipeOutput() {
-        return ItemStack.EMPTY;
-    }
+    private void consumeSlot(InventoryCrafting craftMatrix, int slot) {
 
-    @Override
-    public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
-        NonNullList<ItemStack> remaining = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+        ItemStack stack = craftMatrix.getStackInSlot(1);
 
-        for (int i = 0; i < inv.getSizeInventory(); i++) {
-            ItemStack stack = inv.getStackInSlot(i);
-
-            if (stack.isEmpty()) {
-                continue;
-            }
-
-            if (stack.getItem() == ModItems.PART_PATTERN) {
-                ItemStack pattern = stack.copy();
-                pattern.setCount(1);
-                remaining.set(i, pattern);
-            }
+        if (!stack.isEmpty()) {
+            stack.shrink(1);
         }
-        return remaining;
     }
 
-    private PartData getResultPartData(InventoryCrafting inv) {
+    private PartData getResultPartData(InventoryCrafting craftMatrix) {
 
-        if (inv.getWidth() != 3 || inv.getHeight() != 3) {
+        if (!helpers.matchesCraftMatrix(craftMatrix)) {
             return null;
         }
 
-        ItemStack materialStack = inv.getStackInSlot(1);
-        ItemStack patternStack = inv.getStackInSlot(4);
+        ItemStack materialStack = craftMatrix.getStackInSlot(1);
+        ItemStack patternStack = craftMatrix.getStackInSlot(4);
 
         if (materialStack.isEmpty() || patternStack.isEmpty()) {
             return null;
@@ -86,12 +68,12 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
             return null;
         }
 
-        for (int i = 0; i < inv.getSizeInventory(); i++) {
+        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
             if (i == 1 || i == 4) {
                 continue;
             }
 
-            if (!inv.getStackInSlot(i).isEmpty()) {
+            if (!craftMatrix.getStackInSlot(i).isEmpty()) {
                 return null;
             }
         }
@@ -150,22 +132,5 @@ public class RecipeToolPart extends IForgeRegistryEntry.Impl<IRecipe> implements
             }
         }
         return false;
-    }
-
-    private String getRenderRole(String partType) {
-
-        if (partType.equals(PartIDs.PICKAXE_HEAD)) {
-            return "main";
-        }
-
-        if (partType.equals(PartIDs.BINDING)) {
-            return "extra";
-        }
-
-        if (partType.equals(PartIDs.HANDLE)) {
-            return "handle";
-        }
-
-        return "unknown";
     }
 }

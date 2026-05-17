@@ -1,35 +1,32 @@
-package com.SprintXXL.primitivetoolworks.common.recipes;
+package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
-import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.parts.PartIDs;
 import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
+import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.world.World;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+public class RecipeModularPickaxe {
 
-    @Override
-    public boolean matches(InventoryCrafting inv, World worldIn) {
+    public boolean matches(InventoryCrafting craftMatrix) {
 
-        if (inv.getWidth() != 3 || inv.getHeight() !=3) {
+        if (!helpers.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
-        for (int i = 0; i < inv.getSizeInventory(); i++) {
+        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
             if (i != 1 && i != 4 && i != 7) {
-                if (!inv.getStackInSlot(i).isEmpty()) {
+                if (!craftMatrix.getStackInSlot(i).isEmpty()) {
                     return false;
                 }
             }
         }
 
-        ItemStack mainStack = inv.getStackInSlot(1);
-        ItemStack extraStack = inv.getStackInSlot(4);
-        ItemStack handleStack = inv.getStackInSlot(7);
+        ItemStack mainStack = craftMatrix.getStackInSlot(1);
+        ItemStack extraStack = craftMatrix.getStackInSlot(4);
+        ItemStack handleStack = craftMatrix.getStackInSlot(7);
 
         if (mainStack.isEmpty() || extraStack.isEmpty() || handleStack.isEmpty()) {
             return false;
@@ -44,12 +41,11 @@ public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> impl
                 PartIDs.HANDLE.equals(PartNBT.getPartType(handleStack));
     }
 
-    @Override
-    public ItemStack getCraftingResult(InventoryCrafting inv) {
+    public ItemStack getOutput(InventoryCrafting craftMatrix) {
 
-        ItemStack mainStack = inv.getStackInSlot(1);
-        ItemStack extraStack = inv.getStackInSlot(4);
-        ItemStack handleStack = inv.getStackInSlot(7);
+        ItemStack mainStack = craftMatrix.getStackInSlot(1);
+        ItemStack extraStack = craftMatrix.getStackInSlot(4);
+        ItemStack handleStack = craftMatrix.getStackInSlot(7);
 
         ItemStack result = new ItemStack(ModItems.MODULAR_PICKAXE);
 
@@ -65,13 +61,15 @@ public class RecipeModularPickaxe extends IForgeRegistryEntry.Impl<IRecipe> impl
         return result;
     }
 
-    @Override
-    public boolean canFit(int width, int height) {
-        return width >= 1 && height >= 2;
-    }
+    public void consumeIngredients(InventoryCrafting craftMatrix) {
 
-    @Override
-    public ItemStack getRecipeOutput() {
-        return ItemStack.EMPTY;
+        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
+
+            ItemStack stack = craftMatrix.getStackInSlot(i);
+
+            if (!stack.isEmpty()) {
+                stack.shrink(1);
+            }
+        }
     }
 }

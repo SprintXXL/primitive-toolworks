@@ -1,10 +1,11 @@
 package com.SprintXXL.primitivetoolworks.common.container;
 
+import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipeModularPickaxe;
 import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipePartPattern;
+import com.SprintXXL.primitivetoolworks.common.recipes.tool_station.RecipeToolPart;
 import com.SprintXXL.primitivetoolworks.common.slots.SlotToolStationOutput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 
@@ -18,6 +19,12 @@ public class ContainerToolStation extends Container {
 
     private final RecipePartPattern patternRecipe =
             new RecipePartPattern();
+
+    private final RecipeToolPart partRecipe =
+            new RecipeToolPart();
+
+    private final RecipeModularPickaxe pickaxeRecipe =
+            new RecipeModularPickaxe();
 
     public ContainerToolStation(InventoryPlayer playerInventory) {
 
@@ -107,6 +114,12 @@ public class ContainerToolStation extends Container {
         if (patternRecipe.matches(craftMatrix)) {
             return patternRecipe.getOutput(craftMatrix);
         }
+        if (partRecipe.matches(craftMatrix)) {
+            return partRecipe.getOutput(craftMatrix);
+        }
+        if (pickaxeRecipe.matches(craftMatrix)) {
+            return pickaxeRecipe.getOutput(craftMatrix);
+        }
 
         return ItemStack.EMPTY;
     }
@@ -115,6 +128,12 @@ public class ContainerToolStation extends Container {
 
         if (patternRecipe.matches(craftMatrix)) {
             patternRecipe.consumeIngredients(craftMatrix);
+        }
+        if (partRecipe.matches(craftMatrix)) {
+            partRecipe.consumeIngredients(craftMatrix);
+        }
+        if (pickaxeRecipe.matches(craftMatrix)) {
+            pickaxeRecipe.consumeIngredients(craftMatrix);
         }
 
         onCraftMatrixChanged(craftMatrix);
