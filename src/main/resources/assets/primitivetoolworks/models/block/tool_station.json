@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures":{
+    "all": "primitivetoolworks:blocks/tool_station"
+  }
+}

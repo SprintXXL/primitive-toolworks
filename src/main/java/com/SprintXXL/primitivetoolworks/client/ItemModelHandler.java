@@ -18,9 +18,12 @@ import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
 import com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
+import com.SprintXXL.primitivetoolworks.common.registry.ModBlocks;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -56,6 +59,19 @@ public class ItemModelHandler {
                 ModItems.MODULAR_PICKAXE,
                 0,
                 new ModelResourceLocation(ModItems.MODULAR_PICKAXE.getRegistryName(), "inventory")
+        );
+
+        registerBlock(ModBlocks.TOOL_STATION);
+    }
+
+    public static void registerBlock(Block block) {
+
+        Item item = Item.getItemFromBlock(block);
+
+        ModelLoader.setCustomModelResourceLocation(
+                item,
+                0,
+                new ModelResourceLocation(block.getRegistryName(), "inventory")
         );
     }
 

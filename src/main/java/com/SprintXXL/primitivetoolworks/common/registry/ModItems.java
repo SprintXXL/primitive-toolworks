@@ -5,6 +5,7 @@ import com.SprintXXL.primitivetoolworks.common.patterns.items.ItemBlankPattern;
 import com.SprintXXL.primitivetoolworks.common.patterns.items.ItemPartPattern;
 import com.SprintXXL.primitivetoolworks.common.tools.items.ItemModularPickaxe;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -31,6 +32,11 @@ public class ModItems {
                 PART_PATTERN,
                 TOOL_PART,
                 MODULAR_PICKAXE
+        );
+
+        event.getRegistry().register(
+                new ItemBlock(ModBlocks.TOOL_STATION)
+                        .setRegistryName(ModBlocks.TOOL_STATION.getRegistryName())
         );
     }
 }
