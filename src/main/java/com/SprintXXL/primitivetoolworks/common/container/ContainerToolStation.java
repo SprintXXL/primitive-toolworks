@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.common.container;
 
+import com.SprintXXL.primitivetoolworks.common.slots.SlotToolStationOutput;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -29,10 +30,9 @@ public class ContainerToolStation extends Container {
         }
 
         // Output Slot \\
-        this.addSlotToContainer(new SlotCrafting(
-                playerInventory.player,
-                craftMatrix,
+        this.addSlotToContainer(new SlotToolStationOutput(
                 craftResult,
+                craftMatrix,
                 0,
                 124,
                 35
@@ -81,9 +81,27 @@ public class ContainerToolStation extends Container {
 
     private ItemStack findMatchingResult() {
 
-        if (!craftMatrix.getStackInSlot(0).isEmpty()) {
+        if(craftMatrix.getWidth() != 3 || craftMatrix.getHeight() != 3) {
             return ItemStack.EMPTY;
         }
-        return new ItemStack(Items.STICK);
+
+        ItemStack slot4 = craftMatrix.getStackInSlot(4);
+
+        if (slot4.isEmpty()){
+            return ItemStack.EMPTY;
+        }
+        if (slot4.getItem() != Items.FLINT) {
+            return ItemStack.EMPTY;
+        }
+
+        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
+            if(i == 4) {
+                continue;
+            }
+            if (!craftMatrix.getStackInSlot(i).isEmpty()) {
+                return ItemStack.EMPTY;
+            }
+        }
+            return new ItemStack(Items.STICK);
     }
 }
