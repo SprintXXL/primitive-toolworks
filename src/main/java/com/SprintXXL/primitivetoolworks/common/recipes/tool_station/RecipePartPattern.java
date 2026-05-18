@@ -2,7 +2,7 @@ package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternIDs;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
-import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RH;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -90,7 +90,7 @@ public class RecipePartPattern {
 
     private boolean matchesPickaxeHeadPattern(InventoryCrafting craftMatrix) {
 
-        if (!helpers.matchesCraftMatrix(craftMatrix)) {
+        if (!RH.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
@@ -116,7 +116,7 @@ public class RecipePartPattern {
 
     private boolean matchesBindingPattern(InventoryCrafting craftMatrix) {
 
-        if (!helpers.matchesCraftMatrix(craftMatrix)) {
+        if (!RH.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
@@ -142,7 +142,7 @@ public class RecipePartPattern {
 
     private boolean matchesHandlePattern(InventoryCrafting craftMatrix) {
 
-        if (!helpers.matchesCraftMatrix(craftMatrix)) {
+        if (!RH.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 

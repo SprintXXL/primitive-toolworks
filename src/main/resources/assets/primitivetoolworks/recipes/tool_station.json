@@ -1,0 +1,23 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "LLL",
+    "FPF",
+    "LLL"
+  ],
+  "key": {
+    "P": {
+      "item": "primitivetoolworks:blank_pattern"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "primitivetoolworks:tool_station"
+  }
+}

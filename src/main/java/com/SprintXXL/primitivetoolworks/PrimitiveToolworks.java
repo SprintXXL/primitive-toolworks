@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
+@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:primitivetools")
 public class PrimitiveToolworks {
 
     @Mod.Instance

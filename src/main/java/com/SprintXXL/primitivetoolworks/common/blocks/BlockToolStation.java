@@ -32,14 +32,16 @@ public class BlockToolStation extends Block {
                                     EntityPlayer playerIn, EnumHand hand,
                                     EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-        playerIn.openGui(
-                PrimitiveToolworks.INSTANCE,
-                GuiHandler.TOOL_STATION,
-                worldIn,
-                pos.getX(),
-                pos.getY(),
-                pos.getZ()
-        );
+        if (!worldIn.isRemote) {
+            playerIn.openGui(
+                    PrimitiveToolworks.INSTANCE,
+                    GuiHandler.TOOL_STATION,
+                    worldIn,
+                    pos.getX(),
+                    pos.getY(),
+                    pos.getZ()
+            );
+        }
 
         return true;
     }

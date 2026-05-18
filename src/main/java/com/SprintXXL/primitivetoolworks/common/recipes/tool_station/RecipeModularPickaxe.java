@@ -2,7 +2,7 @@ package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
 import com.SprintXXL.primitivetoolworks.common.parts.PartIDs;
 import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
-import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RH;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
 import net.minecraft.inventory.InventoryCrafting;
@@ -12,7 +12,7 @@ public class RecipeModularPickaxe {
 
     public boolean matches(InventoryCrafting craftMatrix) {
 
-        if (!helpers.matchesCraftMatrix(craftMatrix)) {
+        if (!RH.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 

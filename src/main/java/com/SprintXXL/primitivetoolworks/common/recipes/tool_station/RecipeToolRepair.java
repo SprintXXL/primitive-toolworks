@@ -1,19 +1,18 @@
 package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
-import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
-import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RH;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+
+import static com.SprintXXL.primitivetoolworks.common.recipes.helpers.RH.*;
 
 public class RecipeToolRepair {
 
     public boolean matches(InventoryCrafting craftMatrix) {
 
-        if (!helpers.matchesCraftMatrix(craftMatrix)) {
+        if (!RH.matchesCraftMatrix(craftMatrix)) {
             return false;
         }
 
@@ -84,39 +83,5 @@ public class RecipeToolRepair {
         if (!toolStack.isEmpty()) {
             toolStack.shrink(1);
         }
-    }
-
-    private String getMaterialID(ItemStack stack) {
-
-        if (stack.isEmpty()) {
-            return "unknown";
-        }
-
-        if (stack.getItem() == Items.FLINT) {
-            return MaterialIDs.FLINT;
-        }
-        if (isPlankWood(stack)) {
-            return MaterialIDs.WOOD;
-        }
-        if (stack.getItem() == Items.BONE) {
-            return MaterialIDs.BONE;
-        }
-
-        return "unknown";
-    }
-
-    private boolean isPlankWood(ItemStack stack) {
-        if (stack.isEmpty()) {
-            return false;
-        }
-
-        int[] oreIDs = OreDictionary.getOreIDs(stack);
-
-        for (int id : oreIDs) {
-            if (OreDictionary.getOreName(id).equals("plankWood")) {
-                return true;
-            }
-        }
-        return false;
     }
 }

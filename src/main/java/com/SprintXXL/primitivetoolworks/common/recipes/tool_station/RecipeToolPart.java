@@ -1,20 +1,18 @@
 package com.SprintXXL.primitivetoolworks.common.recipes.tool_station;
 
-import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
 import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
 import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.data.PartData;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
-import com.SprintXXL.primitivetoolworks.common.recipes.helpers.helpers;
+import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RH;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 import static com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation.isValidMaterialPartCombo;
+import static com.SprintXXL.primitivetoolworks.common.recipes.helpers.RH.*;
 
 public class RecipeToolPart {
 
@@ -45,7 +43,7 @@ public class RecipeToolPart {
 
     private void consumeSlot(InventoryCrafting craftMatrix, int slot) {
 
-        ItemStack stack = craftMatrix.getStackInSlot(1);
+        ItemStack stack = craftMatrix.getStackInSlot(slot);
 
         if (!stack.isEmpty()) {
             stack.shrink(1);
@@ -54,7 +52,7 @@ public class RecipeToolPart {
 
     private PartData getResultPartData(InventoryCrafting craftMatrix) {
 
-        if (!helpers.matchesCraftMatrix(craftMatrix)) {
+        if (!RH.matchesCraftMatrix(craftMatrix)) {
             return null;
         }
 
@@ -98,39 +96,5 @@ public class RecipeToolPart {
         }
 
         return new PartData(materialID, partType, group);
-    }
-
-    private String getMaterialID(ItemStack stack) {
-
-        if (stack.isEmpty()) {
-            return "unknown";
-        }
-
-        if (stack.getItem() == Items.FLINT) {
-            return MaterialIDs.FLINT;
-        }
-        if (isPlankWood(stack)) {
-            return MaterialIDs.WOOD;
-        }
-        if (stack.getItem() == Items.BONE) {
-            return MaterialIDs.BONE;
-        }
-
-        return "unknown";
-    }
-
-    private boolean isPlankWood(ItemStack stack) {
-        if (stack.isEmpty()) {
-            return false;
-        }
-
-        int[] oreIDs = OreDictionary.getOreIDs(stack);
-
-        for (int id : oreIDs) {
-            if (OreDictionary.getOreName(id).equals("plankWood")) {
-                return true;
-            }
-        }
-        return false;
     }
 }
