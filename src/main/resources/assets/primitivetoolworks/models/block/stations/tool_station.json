@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "primitivetoolworks:blocks/tool_station_side",
+    "down": "primitivetoolworks:blocks/tool_station_bottom",
+    "up": "primitivetoolworks:blocks/tool_station_top",
+    "north": "primitivetoolworks:blocks/tool_station_side",
+    "south": "primitivetoolworks:blocks/tool_station_side",
+    "west": "primitivetoolworks:blocks/tool_station_side",
+    "east": "primitivetoolworks:blocks/tool_station_side"
+  }
+}

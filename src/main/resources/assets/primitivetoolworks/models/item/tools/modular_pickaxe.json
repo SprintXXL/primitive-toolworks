@@ -1,0 +1,11 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "primitivetoolworks:generic/modular_pickaxe"
+  },
+  "display": {
+    "gui": {
+      "translation": [ 1, 0, 0 ]
+    }
+  }
+}

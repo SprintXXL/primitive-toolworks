@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
-import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 import net.minecraft.util.ResourceLocation;
 
 public class ToolTextureResolver {
@@ -22,6 +22,10 @@ public class ToolTextureResolver {
 
         if (group == PartGroup.MAIN) {
             return "1_main";
+        }
+
+        if (group == PartGroup.EXTRA) {
+            return "2_extra";
         }
 
         return "unknown";

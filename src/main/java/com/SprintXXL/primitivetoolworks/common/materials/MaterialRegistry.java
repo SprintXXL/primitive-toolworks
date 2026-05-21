@@ -25,8 +25,15 @@ public class MaterialRegistry {
 
     public static void init() {
 
+        // Main Materials \\
         register(ModMaterials.FLINT);
+        register(ModMaterials.IRON);
+        register(ModMaterials.BRONZE);
+
+        // Extra Materials \\
         register(ModMaterials.BONE);
+
+        // Handle Materials \\
         register(ModMaterials.WOOD);
     }
 }

@@ -1,25 +1,17 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
-import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
+
+import java.util.List;
 
 public class ToolRenderData {
 
     public final ToolType toolType;
+    public final List<ToolLayerRenderData> layers;
 
-    public final String mainMaterial;
-    public final String mainPart;
-
-    public final String handleMaterial;
-    public final String handlePart;
-
-    public ToolRenderData(ToolType toolType, String mainMaterial, String mainPart, String handleMaterial, String handlePart) {
+    public ToolRenderData(ToolType toolType, List<ToolLayerRenderData> layers) {
 
         this.toolType = toolType;
-
-        this.mainMaterial = mainMaterial;
-        this.mainPart = mainPart;
-
-        this.handleMaterial = handleMaterial;
-        this.handlePart = handlePart;
+        this.layers = layers;
     }
 }

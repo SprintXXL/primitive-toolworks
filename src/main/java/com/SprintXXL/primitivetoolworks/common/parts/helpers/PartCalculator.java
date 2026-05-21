@@ -31,23 +31,23 @@ public class PartCalculator {
 
         if (group == PartGroup.MAIN) {
 
-            if (!(material.getStats() instanceof MainMaterialStats)) {
+            if (!(material.getMaterialStats() instanceof MainMaterialStats)) {
                 return 0;
             }
 
-            MainMaterialStats materialStats = (MainMaterialStats) material.getStats();
+            MainMaterialStats materialStats = (MainMaterialStats) material.getMaterialStats();
 
             return materialStats.getDurability();
         }
 
         if (group == PartGroup.HANDLE) {
 
-            if (!(material.getStats() instanceof HandleMaterialStats) || !(part.getStats() instanceof HandlePartStats)) {
+            if (!(material.getMaterialStats() instanceof HandleMaterialStats) || !(part.getPartStats() instanceof HandlePartStats)) {
                 return 0;
             }
 
-            HandleMaterialStats materialStats = (HandleMaterialStats) material.getStats();
-            HandlePartStats partStats = (HandlePartStats) part.getStats();
+            HandleMaterialStats materialStats = (HandleMaterialStats) material.getMaterialStats();
+            HandlePartStats partStats = (HandlePartStats) part.getPartStats();
 
             return (int) (materialStats.getDurabilityBonus() * partStats.getDurabilityMultiplier());
         }
@@ -70,24 +70,24 @@ public class PartCalculator {
 
         if (group == PartGroup.MAIN) {
 
-            if (!(material.getStats() instanceof MainMaterialStats) || !(part.getStats() instanceof MainPartStats)) {
+            if (!(material.getMaterialStats() instanceof MainMaterialStats) || !(part.getPartStats() instanceof MainPartStats)) {
                 return 0;
             }
 
-            MainMaterialStats materialStats = (MainMaterialStats) material.getStats();
-            MainPartStats partStats = (MainPartStats) part.getStats();
+            MainMaterialStats materialStats = (MainMaterialStats) material.getMaterialStats();
+            MainPartStats partStats = (MainPartStats) part.getPartStats();
 
             return materialStats.getMiningSpeed() * partStats.getMiningSpeedMultiplier();
         }
 
         if (group == PartGroup.EXTRA) {
 
-            if (!(material.getStats() instanceof ExtraMaterialStats) || !(part.getStats() instanceof ExtraPartStats)) {
+            if (!(material.getMaterialStats() instanceof ExtraMaterialStats) || !(part.getPartStats() instanceof ExtraPartStats)) {
                 return 0;
             }
 
-            ExtraMaterialStats materialStats = (ExtraMaterialStats) material.getStats();
-            ExtraPartStats partStats = (ExtraPartStats) part.getStats();
+            ExtraMaterialStats materialStats = (ExtraMaterialStats) material.getMaterialStats();
+            ExtraPartStats partStats = (ExtraPartStats) part.getPartStats();
 
             return materialStats.getMiningSpeedBonus() * partStats.getMiningSpeedMultiplier();
         }

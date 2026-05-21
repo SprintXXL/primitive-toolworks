@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.rendering.tool;
 
 import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
-import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 
 public class ToolLayerRenderData {
 

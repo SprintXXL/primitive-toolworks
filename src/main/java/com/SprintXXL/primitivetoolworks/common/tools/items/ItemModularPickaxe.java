@@ -3,8 +3,9 @@ package com.SprintXXL.primitivetoolworks.common.tools.items;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialDefinition;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolCalculator;
-import com.SprintXXL.primitivetoolworks.common.tools.defaults.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.common.tools.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,18 +19,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.List;
 
-import static com.SprintXXL.primitivetoolworks.util.Reference.MODID;
+import static com.SprintXXL.primitivetoolworks.common.tools.helpers.DummyMaterial.DUMMY_MATERIAL;
+import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemModularPickaxe extends ItemPickaxe {
 
-    public static final ToolMaterial DUMMY_MATERIAL =
-            EnumHelper.addToolMaterial(
-                    "MODULAR_DUMMY",0,0,2,0,0
-            );
+    private static final ToolType toolType = ToolType.PICKAXE;
 
     public ItemModularPickaxe(String name) {
         super(DUMMY_MATERIAL);
@@ -103,8 +101,10 @@ public class ItemModularPickaxe extends ItemPickaxe {
     public String getItemStackDisplayName(ItemStack stack) {
         MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
 
+        ToolType toolType = ToolNBT.getToolType(stack);
+
         if (mainMaterial == null) {
-            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
         }
 
         if (mainMaterial == null) {
@@ -128,7 +128,7 @@ public class ItemModularPickaxe extends ItemPickaxe {
         float miningSpeed = ToolCalculator.getMiningSpeed(stack);
 
         if (mainMaterial == null) {
-            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
         }
 
         if (mainMaterial == null) {
@@ -136,7 +136,7 @@ public class ItemModularPickaxe extends ItemPickaxe {
         }
 
         if (extraMaterial == null) {
-            extraMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_EXTRA_MATERIAL);
+            extraMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultExtraMaterial(toolType));
         }
 
         if (extraMaterial == null) {
@@ -144,7 +144,7 @@ public class ItemModularPickaxe extends ItemPickaxe {
         }
 
         if (handleMaterial == null) {
-            handleMaterial = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_HANDLE_MATERIAL);
+            handleMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultHandleMaterial(toolType));
         }
 
         if (handleMaterial == null) {
@@ -170,14 +170,16 @@ public class ItemModularPickaxe extends ItemPickaxe {
 
         ItemStack stack = new ItemStack(this);
 
-        ToolNBT.setMainMaterial(stack, ToolDefaults.DEFAULT_MAIN_MATERIAL);
-        ToolNBT.setMainPart(stack, ToolDefaults.DEFAULT_MAIN_PART);
+        ToolNBT.setToolType(stack, toolType);
 
-        ToolNBT.setExtraMaterial(stack, ToolDefaults.DEFAULT_EXTRA_MATERIAL);
-        ToolNBT.setExtraPart(stack, ToolDefaults.DEFAULT_EXTRA_PART);
+        ToolNBT.setMainMaterial(stack, ToolDefaults.getDefaultMainMaterial(toolType));
+        ToolNBT.setMainPart(stack, ToolDefaults.getDefaultMainPart(toolType));
 
-        ToolNBT.setHandleMaterial(stack, ToolDefaults.DEFAULT_HANDLE_MATERIAL);
-        ToolNBT.setHandlePart(stack, ToolDefaults.DEFAULT_HANDLE_PART);
+        ToolNBT.setExtraMaterial(stack, ToolDefaults.getDefaultExtraMaterial(toolType));
+        ToolNBT.setExtraPart(stack, ToolDefaults.getDefaultExtraPart(toolType));
+
+        ToolNBT.setHandleMaterial(stack, ToolDefaults.getDefaultHandleMaterial(toolType));
+        ToolNBT.setHandlePart(stack, ToolDefaults.getDefaultHandlePart(toolType));
 
         items.add(stack);
     }

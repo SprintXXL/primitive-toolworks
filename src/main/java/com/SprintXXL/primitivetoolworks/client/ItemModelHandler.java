@@ -10,12 +10,11 @@ import com.SprintXXL.primitivetoolworks.client.rendering.tool.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.client.rendering.tool.ToolLayerRenderData;
 import com.SprintXXL.primitivetoolworks.client.rendering.tool.ToolTextureResolver;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialDefinition;
-import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
-import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
-import com.SprintXXL.primitivetoolworks.common.parts.ToolType;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternDefinition;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 import com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.common.registry.ModBlocks;
@@ -33,6 +32,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static com.SprintXXL.primitivetoolworks.Reference.MODID;
+
 @Mod.EventBusSubscriber(Side.CLIENT)
 @SideOnly(Side.CLIENT)
 public class ItemModelHandler {
@@ -40,38 +41,69 @@ public class ItemModelHandler {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
 
+        // Patterns \\
         ModelLoader.setCustomModelResourceLocation(
                 ModItems.BLANK_PATTERN,
                 0,
-                new ModelResourceLocation(ModItems.BLANK_PATTERN.getRegistryName(), "inventory")
+                new ModelResourceLocation(MODID + ":patterns/blank_pattern", "inventory")
         );
         ModelLoader.setCustomModelResourceLocation(
-                ModItems.PART_PATTERN,
+                ModItems.PATTERN,
                 0,
-                new ModelResourceLocation(ModItems.PART_PATTERN.getRegistryName(), "inventory")
+                new ModelResourceLocation(MODID + ":patterns/pattern", "inventory")
         );
+
+        // Parts \\
         ModelLoader.setCustomModelResourceLocation(
-                ModItems.TOOL_PART,
+                ModItems.PART,
                 0,
-                new ModelResourceLocation(ModItems.TOOL_PART.getRegistryName(), "inventory")
+                new ModelResourceLocation(MODID + ":parts/part", "inventory")
+        );
+
+        // Tools \\
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.MODULAR_SWORD,
+                0,
+                new ModelResourceLocation(MODID + ":tools/modular_sword", "inventory")
         );
         ModelLoader.setCustomModelResourceLocation(
                 ModItems.MODULAR_PICKAXE,
                 0,
-                new ModelResourceLocation(ModItems.MODULAR_PICKAXE.getRegistryName(), "inventory")
+                new ModelResourceLocation(MODID + ":tools/modular_pickaxe", "inventory")
+        );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.MODULAR_AXE,
+                0,
+                new ModelResourceLocation(MODID + ":tools/modular_axe", "inventory")
+        );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.MODULAR_SHOVEL,
+                0,
+                new ModelResourceLocation(MODID + ":tools/modular_shovel", "inventory")
+        );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.MODULAR_HOE,
+                0,
+                new ModelResourceLocation(MODID + ":tools/modular_hoe", "inventory")
+        );
+        ModelLoader.setCustomModelResourceLocation(
+                ModItems.MODULAR_HAMMER,
+                0,
+                new ModelResourceLocation(MODID + ":tools/modular_hammer", "inventory")
         );
 
-        registerBlock(ModBlocks.TOOL_STATION);
+        registerBlock(ModBlocks.TOOL_STATION, "stations/tool_station");
+        registerBlock(ModBlocks.TOOL_FORGE, "stations/tool_forge");
     }
 
-    public static void registerBlock(Block block) {
+    public static void registerBlock(Block block, String modelPath) {
 
         Item item = Item.getItemFromBlock(block);
 
         ModelLoader.setCustomModelResourceLocation(
                 item,
                 0,
-                new ModelResourceLocation(block.getRegistryName(), "inventory")
+                new ModelResourceLocation(MODID + ":" + modelPath, "inventory")
         );
     }
 
@@ -92,14 +124,13 @@ public class ItemModelHandler {
                         continue;
                     }
 
-                    if (part.getGroup() != PartGroup.MAIN &&
-                    part.getGroup() != PartGroup.HANDLE) {
+                    if (part.getPartGroup() == null) {
                         continue;
                     }
 
                     ToolLayerRenderData toolData = new ToolLayerRenderData(
                             toolType,
-                            part.getGroup(),
+                            part.getPartGroup(),
                             materialID
                     );
 
@@ -125,7 +156,7 @@ public class ItemModelHandler {
                 PartRenderData partData = new PartRenderData(
                         materialID,
                         partID,
-                        part.getGroup()
+                        part.getPartGroup()
                 );
 
                 event.getMap().registerSprite(
@@ -135,7 +166,9 @@ public class ItemModelHandler {
         }
 
         // Pattern Stitching \\
-        for (String patternID : PatternRegistry.getAllPatterns()) {
+        for (PatternDefinition pattern : PatternRegistry.getAllPatterns()) {
+
+            String patternID = pattern.getPatternID();
 
             PatternRenderData patternData =
                     new PatternRenderData(patternID);
@@ -149,38 +182,64 @@ public class ItemModelHandler {
     @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event) {
 
-        ModelResourceLocation pickaxeLocation = new ModelResourceLocation(
-                "primitivetoolworks:modular_pickaxe",
-                "inventory"
-        );
-        ModelResourceLocation toolPartLocation = new ModelResourceLocation(
-                "primitivetoolworks:tool_part",
-                "inventory"
-        );
-        ModelResourceLocation partPatternLocation = new ModelResourceLocation(
-                "primitivetoolworks:part_pattern",
+        replaceToolModel(event, "tools/modular_sword");
+        replaceToolModel(event, "tools/modular_pickaxe");
+        replaceToolModel(event, "tools/modular_axe");
+        replaceToolModel(event, "tools/modular_shovel");
+        replaceToolModel(event, "tools/modular_hoe");
+        replaceToolModel(event, "tools/modular_hammer");
+
+        replacePartModel(event, "parts/part");
+        replacePatternModel(event, "patterns/pattern");
+    }
+    private static void replaceToolModel(ModelBakeEvent event, String modelName) {
+
+        ModelResourceLocation location = new ModelResourceLocation(
+                MODID + ":" + modelName,
                 "inventory"
         );
 
-        IBakedModel toolModel = event.getModelRegistry().getObject(pickaxeLocation);
-        IBakedModel baseModel = event.getModelRegistry().getObject(toolPartLocation);
-        IBakedModel patternModel = event.getModelRegistry().getObject(partPatternLocation);
+        IBakedModel model = event.getModelRegistry().getObject(location);
 
-        if (toolModel == null || baseModel == null || patternModel == null) {
-            return;
+        if (model != null) {
+            event.getModelRegistry().putObject(
+                    location,
+                    new ModelModularTool(model, null)
+            );
         }
+    }
 
-        event.getModelRegistry().putObject(
-                pickaxeLocation,
-                new ModelModularTool(toolModel, null)
+    private static void replacePartModel(ModelBakeEvent event, String modelName) {
+
+        ModelResourceLocation location = new ModelResourceLocation(
+                MODID + ":" + modelName,
+                "inventory"
         );
-        event.getModelRegistry().putObject(
-                toolPartLocation,
-                new ModelToolPart(baseModel, null)
+
+        IBakedModel model = event.getModelRegistry().getObject(location);
+
+        if (model != null) {
+            event.getModelRegistry().putObject(
+                    location,
+                    new ModelToolPart(model, null)
+            );
+        }
+    }
+
+    private static void replacePatternModel(ModelBakeEvent event, String modelName) {
+
+        ModelResourceLocation location = new ModelResourceLocation(
+                MODID + ":" + modelName,
+                "inventory"
         );
-        event.getModelRegistry().putObject(
-                partPatternLocation,
-                new ModelPartPattern(patternModel, null)
-        );
+
+        IBakedModel model = event.getModelRegistry().getObject(location);
+
+        if (model != null) {
+            event.getModelRegistry().putObject(
+                    location,
+                    new ModelPartPattern(model, null)
+            );
+        }
     }
 }

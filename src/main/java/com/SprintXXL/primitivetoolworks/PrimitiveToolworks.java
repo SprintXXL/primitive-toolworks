@@ -3,8 +3,9 @@ package com.SprintXXL.primitivetoolworks;
 import com.SprintXXL.primitivetoolworks.common.gui.GuiHandler;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
+import com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
-import com.SprintXXL.primitivetoolworks.util.Reference;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolTypeRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,6 +28,8 @@ public class PrimitiveToolworks {
         PartRegistry.init();
         MaterialRegistry.init();
         PatternRegistry.init();
+        ToolTypeRegistry.init();
+        PartValidation.init();
     }
 
     @EventHandler

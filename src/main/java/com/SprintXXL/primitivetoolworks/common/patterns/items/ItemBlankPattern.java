@@ -3,7 +3,7 @@ package com.SprintXXL.primitivetoolworks.common.patterns.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-import static com.SprintXXL.primitivetoolworks.util.Reference.MODID;
+import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemBlankPattern extends Item {
 

@@ -5,31 +5,37 @@ import com.SprintXXL.primitivetoolworks.common.parts.stats.PartStats;
 public class PartDefinition {
 
     private final PartGroup group;
-    private final String partid;
+    private final String ID;
     private final String title;
+    private final int materialCost;
     private final PartStats stats;
 
-    public PartDefinition (PartGroup group, String partid, String title, PartStats stats) {
+    public PartDefinition (PartGroup group, String ID, String title, int materialCost, PartStats stats) {
 
         this.group = group;
-        this.partid = partid;
+        this.ID = ID;
         this.title = title;
+        this.materialCost = materialCost;
         this.stats = stats;
     }
 
-    public PartGroup getGroup() {
+    public PartGroup getPartGroup() {
         return group;
     }
 
     public String getPartID() {
-        return partid;
+        return ID;
     }
 
-    public String getTitle() {
+    public String getPartTitle() {
         return title;
     }
 
-    public PartStats getStats() {
+    public int getPartMaterialCost() {
+        return materialCost;
+    }
+
+    public PartStats getPartStats() {
         return stats;
     }
 }

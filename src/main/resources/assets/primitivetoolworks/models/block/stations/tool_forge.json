@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "primitivetoolworks:blocks/tool_forge_side",
+    "down": "primitivetoolworks:blocks/tool_forge_bottom",
+    "up": "primitivetoolworks:blocks/tool_forge_top",
+    "north": "primitivetoolworks:blocks/tool_forge_side",
+    "south": "primitivetoolworks:blocks/tool_forge_side",
+    "west": "primitivetoolworks:blocks/tool_forge_side",
+    "east": "primitivetoolworks:blocks/tool_forge_side"
+  }
+}

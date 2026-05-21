@@ -1,9 +1,39 @@
 package com.SprintXXL.primitivetoolworks.common.tools;
 
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class ToolNBT {
+
+    public static String TOOL_TYPE = "ToolType";
+
+    // Tool Type
+
+    public static void setToolType(ItemStack stack, ToolType toolType) {
+
+        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
+
+        nbt.setString(TOOL_TYPE, toolType.getID());
+    }
+
+    public static ToolType getToolType(ItemStack stack) {
+
+        if (stack.isEmpty()) {
+            return ToolType.PICKAXE;
+        }
+
+        NBTTagCompound nbt = stack.getSubCompound("ToolData");
+
+        if (nbt == null) {
+
+            return ToolType.PICKAXE;
+        }
+
+        String toolTypeID = nbt.getString(TOOL_TYPE);
+
+        return ToolType.fromID(toolTypeID);
+    }
 
     // Main Material
 
@@ -23,7 +53,13 @@ public class ToolNBT {
             return "unknown";
         }
 
-        return nbt.getString("MainMaterial");
+        String value = nbt.getString("MainMaterial");
+
+        if (value.isEmpty()) {
+            return "unknown";
+        }
+
+        return value;
     }
 
     // Main Part
@@ -34,16 +70,21 @@ public class ToolNBT {
     }
 
     public static String getMainPart(ItemStack stack) {
+
         NBTTagCompound nbt = stack.getSubCompound("ToolData");
+
         if (nbt == null) {
             return "unknown";
         }
-        return nbt.getString("MainPart");
-    }
 
-    //
-    //
-    //
+        String value = nbt.getString("MainPart");
+
+        if (value.isEmpty()) {
+            return "unknown";
+        }
+
+        return value;
+    }
 
     // Handle Material
 
@@ -60,7 +101,13 @@ public class ToolNBT {
             return "unknown";
         }
 
-        return nbt.getString("HandleMaterial");
+        String value = nbt.getString("HandleMaterial");
+
+        if (value.isEmpty()) {
+            return "unknown";
+        }
+
+        return value;
     }
 
     // Handle Part
@@ -71,11 +118,20 @@ public class ToolNBT {
     }
 
     public static String getHandlePart(ItemStack stack) {
+
         NBTTagCompound nbt = stack.getSubCompound("ToolData");
+
         if (nbt == null) {
             return "unknown";
         }
-        return nbt.getString("HandlePart");
+
+        String value = nbt.getString("HandlePart");
+
+        if (value.isEmpty()) {
+            return "unknown";
+        }
+
+        return value;
     }
 
     //
@@ -97,7 +153,13 @@ public class ToolNBT {
             return "unknown";
         }
 
-        return nbt.getString("ExtraMaterial");
+        String value = nbt.getString("ExtraMaterial");
+
+        if (value.isEmpty()) {
+            return "unknown";
+        }
+
+        return value;
     }
 
     // Extra Part
@@ -108,10 +170,19 @@ public class ToolNBT {
     }
 
     public static String getExtraPart(ItemStack stack) {
+
         NBTTagCompound nbt = stack.getSubCompound("ToolData");
+
         if (nbt == null) {
             return "unknown";
         }
-        return nbt.getString("ExtraPart");
+
+        String value = nbt.getString("ExtraPart");
+
+        if (value.isEmpty()) {
+            return "unknown";
+        }
+
+        return value;
     }
 }

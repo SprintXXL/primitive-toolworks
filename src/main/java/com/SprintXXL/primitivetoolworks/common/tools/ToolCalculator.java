@@ -5,13 +5,12 @@ import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.materials.stats.ExtraMaterialStats;
 import com.SprintXXL.primitivetoolworks.common.materials.stats.HandleMaterialStats;
 import com.SprintXXL.primitivetoolworks.common.materials.stats.MainMaterialStats;
-import com.SprintXXL.primitivetoolworks.common.parts.defaults.PartDefaults;
 import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.ExtraPartStats;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.HandlePartStats;
 import com.SprintXXL.primitivetoolworks.common.parts.stats.MainPartStats;
-import com.SprintXXL.primitivetoolworks.common.tools.defaults.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 import net.minecraft.item.ItemStack;
 
 public class ToolCalculator {
@@ -44,14 +43,15 @@ public class ToolCalculator {
         MainMaterialStats mainMaterialStats = getMainMaterialStats(stack);
         HandleMaterialStats handleMaterialStats = getHandleMaterialStats(stack);
 
+        MainPartStats mainPartStats = getMainPartStats(stack);
         HandlePartStats handlePartStats = getHandlePartStats(stack);
 
         return (int)(
                 (mainMaterialStats.getDurability()
                 + handleMaterialStats.getDurabilityBonus())
+                * mainPartStats.getDurabilityMultiplier()
                 * handlePartStats.getDurabilityMultiplier()
         );
-
     }
 
     public static float getAttackDamage(ItemStack stack) {
@@ -78,80 +78,92 @@ public class ToolCalculator {
     // MATERIAL HELPER METHODS \\
     private static MainMaterialStats getMainMaterialStats(ItemStack stack) {
 
+        ToolType toolType = ToolNBT.getToolType(stack);
+
         String materialID = ToolNBT.getMainMaterial(stack);
 
         MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
 
         if (material == null) {
-            material = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_MAIN_MATERIAL);
+            material = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
         }
 
-        return (MainMaterialStats) material.getStats();
+        return (MainMaterialStats) material.getMaterialStats();
     }
 
     private static ExtraMaterialStats getExtraMaterialStats(ItemStack stack) {
+
+        ToolType toolType = ToolNBT.getToolType(stack);
 
         String materialID = ToolNBT.getExtraMaterial(stack);
 
         MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
 
         if (material == null) {
-            material = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_EXTRA_MATERIAL);
+            material = MaterialRegistry.getMaterial(ToolDefaults.getDefaultExtraMaterial(toolType));
         }
 
-        return (ExtraMaterialStats) material.getStats();
+        return (ExtraMaterialStats) material.getMaterialStats();
     }
 
     private static HandleMaterialStats getHandleMaterialStats(ItemStack stack) {
+
+        ToolType toolType = ToolNBT.getToolType(stack);
 
         String materialID = ToolNBT.getHandleMaterial(stack);
 
         MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
 
         if (material == null) {
-            material = MaterialRegistry.getMaterial(ToolDefaults.DEFAULT_HANDLE_MATERIAL);
+            material = MaterialRegistry.getMaterial(ToolDefaults.getDefaultHandleMaterial(toolType));
         }
 
-        return (HandleMaterialStats) material.getStats();
+        return (HandleMaterialStats) material.getMaterialStats();
     }
 
     // PART HELPER METHODS \\
     private static MainPartStats getMainPartStats(ItemStack stack) {
+
+        ToolType toolType = ToolNBT.getToolType(stack);
 
         String partID = ToolNBT.getMainPart(stack);
 
         PartDefinition part = PartRegistry.getPart(partID);
 
         if (part == null) {
-            part = PartRegistry.getPart(PartDefaults.DEFAULT_MAIN_PART);
+            part = PartRegistry.getPart(ToolDefaults.getDefaultMainPart(toolType));
         }
 
-        return (MainPartStats) part.getStats();
+        return (MainPartStats) part.getPartStats();
     }
 
     private static ExtraPartStats getExtraPartStats(ItemStack stack) {
+
+        ToolType toolType = ToolNBT.getToolType(stack);
 
         String partID = ToolNBT.getExtraPart(stack);
 
         PartDefinition part = PartRegistry.getPart(partID);
 
         if (part == null) {
-            part = PartRegistry.getPart(PartDefaults.DEFAULT_EXTRA_PART);
+            part = PartRegistry.getPart(ToolDefaults.getDefaultExtraPart(toolType));
         }
 
-        return (ExtraPartStats) part.getStats();
+        return (ExtraPartStats) part.getPartStats();
     }
 
     private static HandlePartStats getHandlePartStats(ItemStack stack) {
+
+        ToolType toolType = ToolNBT.getToolType(stack);
 
         String partID = ToolNBT.getHandlePart(stack);
 
         PartDefinition part = PartRegistry.getPart(partID);
 
         if (part == null) {
-            part = PartRegistry.getPart(PartDefaults.DEFAULT_HANDLE_PART);
+            part = PartRegistry.getPart(ToolDefaults.getDefaultHandlePart(toolType));
         }
 
-        return (HandlePartStats) part.getStats();
+        return (HandlePartStats) part.getPartStats();
     }
 }

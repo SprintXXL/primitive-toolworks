@@ -25,8 +25,21 @@ public class PartRegistry {
 
     public static void init() {
 
+        // Main Parts \\
+        register(ModParts.SWORD_BLADE);
         register(ModParts.PICKAXE_HEAD);
+        register(ModParts.AXE_HEAD);
+        register(ModParts.SHOVEL_HEAD);
+        register(ModParts.HOE_HEAD);
+        register(ModParts.HAMMER_HEAD);
+
+        // Extra Parts \\
         register(ModParts.BINDING);
+        register(ModParts.TOUGH_BINDING);
+        register(ModParts.WIDE_GUARD);
+
+        // Handle Parts \\
         register(ModParts.HANDLE);
+        register(ModParts.TOUGH_HANDLE);
     }
 }

@@ -24,6 +24,34 @@ public class ModMaterials {
                     )
             );
 
+    public static final MaterialDefinition IRON =
+            new MaterialDefinition(
+                    MaterialGroup.MAIN,
+                    MaterialIDs.IRON,
+                    "IRON",
+                    TextFormatting.WHITE,
+                    new MainMaterialStats(
+                            256,
+                            2.0F,
+                            2,
+                            6.0F
+                    )
+            );
+
+    public static final MaterialDefinition BRONZE =
+            new MaterialDefinition(
+                    MaterialGroup.MAIN,
+                    MaterialIDs.BRONZE,
+                    "BRONZE",
+                    TextFormatting.GOLD,
+                    new MainMaterialStats(
+                            512,
+                            4.0F,
+                            2,
+                            12.0F
+                    )
+            );
+
     // EXTRA MATERIALS \\
     public static final MaterialDefinition BONE =
             new MaterialDefinition(

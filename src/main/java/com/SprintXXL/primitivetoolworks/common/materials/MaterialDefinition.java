@@ -6,34 +6,34 @@ import net.minecraft.util.text.TextFormatting;
 public class MaterialDefinition {
 
     private final MaterialGroup group;
-    private final String materialid;
+    private final String ID;
     private final String displayName;
     private final TextFormatting displayColor;
     private final MaterialStats stats;
 
-    public MaterialDefinition(MaterialGroup group, String materialid, String displayName, TextFormatting displayColor, MaterialStats stats) {
+    public MaterialDefinition(MaterialGroup group, String ID, String displayName, TextFormatting displayColor, MaterialStats stats) {
 
         this.group = group;
-        this.materialid = materialid;
+        this.ID = ID;
         this.displayName = displayName;
         this.displayColor = displayColor;
         this.stats = stats;
 
     }
 
-    public MaterialGroup getGroup() {
+    public MaterialGroup getMaterialGroup() {
         return group;
     }
     public String getMaterialID() {
-        return materialid;
+        return ID;
     }
-    public String getDisplayName() {
+    public String getMaterialDisplayName() {
         return displayName;
     }
-    public TextFormatting getDisplayColor() {
+    public TextFormatting getMaterialDisplayColor() {
         return displayColor;
     }
-    public MaterialStats getStats() {
+    public MaterialStats getMaterialStats() {
         return stats;
     }
     public String getFormattedDisplayName() {

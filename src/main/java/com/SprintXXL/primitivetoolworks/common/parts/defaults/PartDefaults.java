@@ -21,30 +21,13 @@ public class PartDefaults {
     public static final PartGroup DEFAULT_EXTRA_GROUP = PartGroup.EXTRA;
     public static final PartGroup DEFAULT_HANDLE_GROUP = PartGroup.HANDLE;
 
-    public static ItemStack createDefaultPickaxeHead() {
-        ItemStack stack = new ItemStack(ModItems.TOOL_PART);
+    public static ItemStack createDefaultPart(String materialID, String partID, PartGroup group) {
 
-        PartNBT.setMaterial(stack, DEFAULT_MAIN_MATERIAL);
-        PartNBT.setPartType(stack, DEFAULT_MAIN_PART);
-        PartNBT.setPartGroup(stack, DEFAULT_MAIN_GROUP);
+        ItemStack stack = new ItemStack(ModItems.PART);
 
-        return stack;
-    }
-    public static ItemStack createDefaultBinding() {
-        ItemStack stack = new ItemStack(ModItems.TOOL_PART);
-
-        PartNBT.setMaterial(stack, DEFAULT_EXTRA_MATERIAL);
-        PartNBT.setPartType(stack, DEFAULT_EXTRA_PART);
-        PartNBT.setPartGroup(stack, DEFAULT_EXTRA_GROUP);
-
-        return stack;
-    }
-    public static ItemStack createDefaultHandle() {
-        ItemStack stack = new ItemStack(ModItems.TOOL_PART);
-
-        PartNBT.setMaterial(stack, DEFAULT_HANDLE_MATERIAL);
-        PartNBT.setPartType(stack, DEFAULT_HANDLE_PART);
-        PartNBT.setPartGroup(stack, DEFAULT_HANDLE_GROUP);
+        PartNBT.setMaterial(stack, materialID);
+        PartNBT.setPartType(stack, partID);
+        PartNBT.setPartGroup(stack, group);
 
         return stack;
     }

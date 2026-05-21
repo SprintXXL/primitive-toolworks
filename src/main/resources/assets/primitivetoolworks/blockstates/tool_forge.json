@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": {
+      "model": "primitivetoolworks:stations/tool_forge"
+    }
+  }
+}
