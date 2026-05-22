@@ -1,12 +1,8 @@
 {
-  "parent": "block/cube",
+  "parent": "primitivetoolworks:block/stations/station",
   "textures": {
-    "particle": "primitivetoolworks:blocks/tool_station_side",
-    "down": "primitivetoolworks:blocks/tool_station_bottom",
-    "up": "primitivetoolworks:blocks/tool_station_top",
-    "north": "primitivetoolworks:blocks/tool_station_side",
-    "south": "primitivetoolworks:blocks/tool_station_side",
-    "west": "primitivetoolworks:blocks/tool_station_side",
-    "east": "primitivetoolworks:blocks/tool_station_side"
+    "top": "primitivetoolworks:blocks/tool_station_top",
+    "side": "primitivetoolworks:blocks/tool_station_side",
+    "legs": "minecraft:blocks/planks_oak"
   }
 }

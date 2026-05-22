@@ -75,4 +75,14 @@ public class ModMaterials {
                             10 // Durability Bonus
                     )
             );
+    public static final MaterialDefinition OBSIDIAN =
+            new MaterialDefinition(
+                    MaterialGroup.HANDLE,
+                    MaterialIDs.OBSIDIAN,
+                    "OBISDIAN",
+                    TextFormatting.DARK_PURPLE,
+                    new HandleMaterialStats(
+                            100
+                    )
+            );
 }

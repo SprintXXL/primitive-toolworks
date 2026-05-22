@@ -35,5 +35,6 @@ public class MaterialRegistry {
 
         // Handle Materials \\
         register(ModMaterials.WOOD);
+        register(ModMaterials.OBSIDIAN);
     }
 }

@@ -88,6 +88,69 @@ public class ItemPart extends Item {
                 PartGroup.MAIN
         ));
 
+        subItems.add(createDefaultPart(
+                MaterialIDs.IRON,
+                PartIDs.SWORD_BLADE,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.IRON,
+                PartIDs.PICKAXE_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.IRON,
+                PartIDs.AXE_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.IRON,
+                PartIDs.SHOVEL_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.IRON,
+                PartIDs.HOE_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.IRON,
+                PartIDs.HAMMER_HEAD,
+                PartGroup.MAIN
+        ));
+
+        subItems.add(createDefaultPart(
+                MaterialIDs.BRONZE,
+                PartIDs.SWORD_BLADE,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.BRONZE,
+                PartIDs.PICKAXE_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.BRONZE,
+                PartIDs.AXE_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.BRONZE,
+                PartIDs.SHOVEL_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.BRONZE,
+                PartIDs.HOE_HEAD,
+                PartGroup.MAIN
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.BRONZE,
+                PartIDs.HAMMER_HEAD,
+                PartGroup.MAIN
+        ));
+
+
         // Extra Parts \\
         subItems.add(createDefaultPart(
                 MaterialIDs.BONE,
@@ -112,7 +175,17 @@ public class ItemPart extends Item {
                 PartGroup.HANDLE
         ));
         subItems.add(createDefaultPart(
+                MaterialIDs.OBSIDIAN,
+                PartIDs.HANDLE,
+                PartGroup.HANDLE
+        ));
+        subItems.add(createDefaultPart(
                 MaterialIDs.WOOD,
+                PartIDs.TOUGH_HANDLE,
+                PartGroup.HANDLE
+        ));
+        subItems.add(createDefaultPart(
+                MaterialIDs.OBSIDIAN,
                 PartIDs.TOUGH_HANDLE,
                 PartGroup.HANDLE
         ));

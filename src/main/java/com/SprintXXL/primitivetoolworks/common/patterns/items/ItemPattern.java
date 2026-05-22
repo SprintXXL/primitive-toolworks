@@ -1,5 +1,7 @@
 package com.SprintXXL.primitivetoolworks.common.patterns.items;
 
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternDefinition;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.common.patterns.defaults.PatternDefaults;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternIDs;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
@@ -22,46 +24,22 @@ public class ItemPattern extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        String patternType = PatternNBT.getPatternType(stack);
 
-        if (patternType.equals(PatternIDs.SWORD_BLADE)) {
-            return "Sword Blade Pattern";
-        }
-        if (patternType.equals(PatternIDs.PICKAXE_HEAD)) {
-            return "Pickaxe Head Pattern";
-        }
-        if (patternType.equals(PatternIDs.AXE_HEAD)) {
-            return "Axe Head Pattern";
-        }
-        if (patternType.equals(PatternIDs.SHOVEL_HEAD)) {
-            return "Shovel Head Pattern";
-        }
-        if (patternType.equals(PatternIDs.HOE_HEAD)) {
-            return "Hoe Head Pattern";
-        }
-        if (patternType.equals(PatternIDs.HAMMER_HEAD)) {
-            return "Hammer Head Pattern";
+        String patternID = PatternNBT.getPatternType(stack);
+
+        PatternDefinition pattern = PatternRegistry.getPattern(patternID);
+
+        if (pattern == null) {
+            return "Part Pattern";
         }
 
-        if (patternType.equals(PatternIDs.BINDING)) {
-            return "Binding Pattern";
-        }
-        if (patternType.equals(PatternIDs.TOUGH_BINDING)) {
-            return "Tough Binding Pattern";
-        }
-        if (patternType.equals(PatternIDs.WIDE_GUARD)) {
-            return "Wide Guard Pattern";
+        String title = pattern.getPatternTitle();
+
+        if (title == null) {
+            return "Part Pattern";
         }
 
-        // Handle Patterns \\
-        if (patternType.equals(PatternIDs.HANDLE)) {
-            return "Handle Pattern";
-        }
-        if (patternType.equals(PatternIDs.TOUGH_HANDLE)) {
-            return "Tough Handle Pattern";
-        }
-
-        return "Part Pattern";
+        return title + " Pattern";
     }
 
     @Override

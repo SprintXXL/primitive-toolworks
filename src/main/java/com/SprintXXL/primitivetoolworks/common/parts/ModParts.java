@@ -91,7 +91,7 @@ public class ModParts {
                     9,
                     new MainPartStats(
                             ToolType.HAMMER,
-                            3.0F,
+                            0.1F,
                             9.0F,
                             0.3F,
                             -3.5F

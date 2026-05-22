@@ -56,8 +56,10 @@ public class PartValidation {
 
         // Handle Parts \\
         register(MaterialIDs.WOOD, PartIDs.HANDLE);
+        register(MaterialIDs.OBSIDIAN, PartIDs.HANDLE);
 
         register(MaterialIDs.WOOD, PartIDs.TOUGH_HANDLE);
+        register(MaterialIDs.OBSIDIAN, PartIDs.TOUGH_HANDLE);
 
     }
 

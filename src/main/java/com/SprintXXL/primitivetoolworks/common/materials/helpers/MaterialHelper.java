@@ -4,7 +4,9 @@ import com.SprintXXL.primitiveores.init.ModItems;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialDefinition;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import static com.SprintXXL.primitivetoolworks.common.recipes.helpers.RecipeHelper.isPlankWood;
@@ -30,6 +32,9 @@ public class MaterialHelper {
         }
         if (stack.getItem() == ModItems.BRONZE_INGOT) {
             return MaterialIDs.BRONZE;
+        }
+        if (stack.getItem() == Item.getItemFromBlock(Blocks.OBSIDIAN)) {
+            return MaterialIDs.OBSIDIAN;
         }
 
         return "unknown";

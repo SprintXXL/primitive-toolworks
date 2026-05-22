@@ -37,7 +37,7 @@ public class ContainerToolWorkbench extends Container implements IIngredientCons
     ) {
 
         this.stationTier = stationTier;
-        this.modularToolRecipe = new RecipeModularTool(ToolStationTier.TOOL_STATION);
+        this.modularToolRecipe = new RecipeModularTool(stationTier);
 
         // 3x3 Crafting Grid \\
         for (int row = 0; row < 3; row++) {
@@ -181,13 +181,13 @@ public class ContainerToolWorkbench extends Container implements IIngredientCons
         if (patternRecipe.matches(craftMatrix)) {
             patternRecipe.consumeIngredients(craftMatrix);
         }
-        if (partRecipe.matches(craftMatrix)) {
+        else if (partRecipe.matches(craftMatrix)) {
             partRecipe.consumeIngredients(craftMatrix);
         }
-        if (modularToolRecipe.matches(craftMatrix)) {
+        else if (modularToolRecipe.matches(craftMatrix)) {
             modularToolRecipe.consumeIngredients(craftMatrix);
         }
-        if (repairRecipe.matches(craftMatrix)) {
+        else if (repairRecipe.matches(craftMatrix)) {
             repairRecipe.consumeIngredients(craftMatrix);
         }
 

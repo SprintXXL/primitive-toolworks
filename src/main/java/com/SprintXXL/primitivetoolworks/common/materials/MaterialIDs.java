@@ -12,4 +12,5 @@ public class MaterialIDs {
 
     // Handle Materials \\
     public static final String WOOD = "wood";
+    public static final String OBSIDIAN = "obsidian";
 }
