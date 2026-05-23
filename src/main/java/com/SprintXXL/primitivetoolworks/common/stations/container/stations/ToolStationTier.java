@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.common.stations;
+package com.SprintXXL.primitivetoolworks.common.stations.container.stations;
 
 public enum ToolStationTier {
 

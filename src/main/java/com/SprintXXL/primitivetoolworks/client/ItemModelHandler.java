@@ -93,6 +93,8 @@ public class ItemModelHandler {
         );
 
         registerBlock(ModBlocks.TOOL_STATION, "stations/tool_station");
+        registerBlock(ModBlocks.PART_BUILDER, "stations/part_builder");
+        registerBlock(ModBlocks.STENCIL_TABLE, "stations/stencil_table");
         registerBlock(ModBlocks.TOOL_FORGE, "stations/tool_forge");
     }
 

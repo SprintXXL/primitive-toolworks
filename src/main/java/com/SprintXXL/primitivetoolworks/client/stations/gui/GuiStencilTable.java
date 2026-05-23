@@ -6,17 +6,13 @@ import net.minecraft.util.ResourceLocation;
 
 import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
-public class GuiToolWorkbench extends GuiContainer {
+public class GuiStencilTable extends GuiContainer {
 
-    private final String title;
-
-    public GuiToolWorkbench(Container container, String title) {
+    public GuiStencilTable(Container container) {
         super(container);
 
         this.xSize = 176;
         this.ySize = 166;
-
-        this.title = title;
     }
 
     @Override
@@ -38,6 +34,7 @@ public class GuiToolWorkbench extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 
+        String title = "Stencil Table";
         int gridLeft = 30;
         int gridWidth = 54;
 
@@ -51,6 +48,6 @@ public class GuiToolWorkbench extends GuiContainer {
     private static final ResourceLocation GUI =
             new ResourceLocation(
                     MODID,
-                    "textures/gui/stations.png"
+                    "textures/gui/part_builder.stencil_table.png"
             );
 }

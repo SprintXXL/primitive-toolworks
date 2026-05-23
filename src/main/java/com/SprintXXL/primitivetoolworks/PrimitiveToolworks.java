@@ -5,15 +5,20 @@ import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
+import com.SprintXXL.primitivetoolworks.common.stations.tileentity.TileEntityStencilTable;
 import com.SprintXXL.primitivetoolworks.common.tools.types.ToolTypeRegistry;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:primitivetools")
+import static com.SprintXXL.primitivetoolworks.Reference.MODID;
+
+@Mod(modid = MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:primitivetools")
 public class PrimitiveToolworks {
 
     @Mod.Instance
@@ -34,6 +39,9 @@ public class PrimitiveToolworks {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
+
+        GameRegistry.registerTileEntity(TileEntityStencilTable.class, new ResourceLocation(MODID, "stencil_table"));
     }
 }

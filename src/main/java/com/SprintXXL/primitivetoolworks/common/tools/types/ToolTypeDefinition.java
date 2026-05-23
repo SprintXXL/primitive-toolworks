@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.common.tools.types;
 
-import com.SprintXXL.primitivetoolworks.common.stations.ToolStationTier;
+import com.SprintXXL.primitivetoolworks.common.stations.container.stations.ToolStationTier;
 
 public class ToolTypeDefinition {
 

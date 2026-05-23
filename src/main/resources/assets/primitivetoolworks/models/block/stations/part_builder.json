@@ -1,8 +1,8 @@
 {
   "parent": "primitivetoolworks:block/stations/station",
   "textures": {
-    "top": "primitivetoolworks:blocks/tool_station_top",
+    "top": "primitivetoolworks:blocks/part_builder_top",
     "side": "primitivetoolworks:blocks/station_side",
-    "legs": "minecraft:blocks/planks_oak"
+    "legs": "minecraft:blocks/log_oak"
   }
 }

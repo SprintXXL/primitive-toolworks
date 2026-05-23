@@ -1,10 +1,9 @@
-package com.SprintXXL.primitivetoolworks.common.stations.container;
+package com.SprintXXL.primitivetoolworks.common.stations.container.stations;
 
 import com.SprintXXL.primitivetoolworks.common.recipes.RecipeModularTool;
 import com.SprintXXL.primitivetoolworks.common.recipes.RecipePart;
 import com.SprintXXL.primitivetoolworks.common.recipes.RecipePattern;
 import com.SprintXXL.primitivetoolworks.common.recipes.RecipeToolRepair;
-import com.SprintXXL.primitivetoolworks.common.stations.ToolStationTier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;

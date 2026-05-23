@@ -47,6 +47,14 @@ public class ModItems {
                         .setRegistryName(ModBlocks.TOOL_STATION.getRegistryName())
         );
         event.getRegistry().register(
+                new ItemBlock(ModBlocks.PART_BUILDER)
+                        .setRegistryName(ModBlocks.PART_BUILDER.getRegistryName())
+        );
+        event.getRegistry().register(
+                new ItemBlock(ModBlocks.STENCIL_TABLE)
+                        .setRegistryName(ModBlocks.STENCIL_TABLE.getRegistryName())
+        );
+        event.getRegistry().register(
                 new ItemBlock(ModBlocks.TOOL_FORGE)
                         .setRegistryName(ModBlocks.TOOL_FORGE.getRegistryName())
         );

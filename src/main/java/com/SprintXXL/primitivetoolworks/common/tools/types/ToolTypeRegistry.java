@@ -2,7 +2,7 @@ package com.SprintXXL.primitivetoolworks.common.tools.types;
 
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.common.parts.PartIDs;
-import com.SprintXXL.primitivetoolworks.common.stations.ToolStationTier;
+import com.SprintXXL.primitivetoolworks.common.stations.container.stations.ToolStationTier;
 
 import java.util.HashMap;
 import java.util.Map;

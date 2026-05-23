@@ -8,7 +8,7 @@ import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RecipeHelper;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
-import com.SprintXXL.primitivetoolworks.common.stations.ToolStationTier;
+import com.SprintXXL.primitivetoolworks.common.stations.container.stations.ToolStationTier;
 import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
 import com.SprintXXL.primitivetoolworks.common.tools.types.ToolTypeRegistry;
 import net.minecraft.inventory.InventoryCrafting;
