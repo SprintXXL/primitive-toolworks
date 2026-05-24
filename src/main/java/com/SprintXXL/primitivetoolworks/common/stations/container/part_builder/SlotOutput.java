@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.common.stations.container.stencil_table;
+package com.SprintXXL.primitivetoolworks.common.stations.container.part_builder;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 
 public class SlotOutput extends Slot {
 
-    private final ContainerStencilTable container;
+    private final ContainerPartBuilder container;
 
-    public SlotOutput(IInventory inventory, int index, int x, int y, ContainerStencilTable container) {
+    public SlotOutput(IInventory inventory, int index, int x, int y, ContainerPartBuilder container) {
         super(inventory, index, x ,y);
         this.container = container;
     }

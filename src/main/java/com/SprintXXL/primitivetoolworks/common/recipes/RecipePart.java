@@ -8,6 +8,7 @@ import com.SprintXXL.primitivetoolworks.common.parts.data.PartData;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
 import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RecipeHelper;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
@@ -16,16 +17,16 @@ import static com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidati
 
 public class RecipePart {
 
-    private static final int MATERIAL_SLOT = 1;
-    private static final int PATTERN_SLOT = 4;
+    private static final int MATERIAL_SLOT = 0;
+    private static final int PATTERN_SLOT = 1;
 
-    public boolean matches(InventoryCrafting craftMatrix) {
-        return getResultPartData(craftMatrix) != null;
+    public boolean matches(IInventory inventory) {
+        return getResultPartData(inventory) != null;
     }
 
-    public ItemStack getOutput(InventoryCrafting craftMatrix) {
+    public ItemStack getOutput(IInventory inventory) {
 
-        PartData partData = getResultPartData(craftMatrix);
+        PartData partData = getResultPartData(inventory);
 
         if (partData == null) {
             return ItemStack.EMPTY;
@@ -39,44 +40,30 @@ public class RecipePart {
         return result;
     }
 
-    public void consumeIngredients(InventoryCrafting craftMatrix) {
+    public void consumeIngredients(IInventory inventory) {
 
-        consumeSlot(craftMatrix, MATERIAL_SLOT);
+        consumeSlot(inventory, MATERIAL_SLOT);
     }
 
-    private void consumeSlot(InventoryCrafting craftMatrix, int slot) {
+    private void consumeSlot(IInventory inventory, int slot) {
 
-        ItemStack stack = craftMatrix.getStackInSlot(slot);
+        ItemStack stack = inventory.getStackInSlot(slot);
 
         if (!stack.isEmpty()) {
             stack.shrink(1);
         }
     }
 
-    private PartData getResultPartData(InventoryCrafting craftMatrix) {
+    private PartData getResultPartData(IInventory inventory) {
 
-        if (!RecipeHelper.matchesCraftMatrix(craftMatrix)) {
-            return null;
-        }
-
-        ItemStack materialStack = getMaterialStack(craftMatrix);
-        ItemStack patternStack = getPatternStack(craftMatrix);
+        ItemStack materialStack = getMaterialStack(inventory);
+        ItemStack patternStack = getPatternStack(inventory);
 
         if (materialStack.isEmpty() || patternStack.isEmpty()) {
             return null;
         }
         if (patternStack.getItem() != ModItems.PATTERN) {
             return null;
-        }
-
-        for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
-            if (i == MATERIAL_SLOT || i == PATTERN_SLOT) {
-                continue;
-            }
-
-            if (!craftMatrix.getStackInSlot(i).isEmpty()) {
-                return null;
-            }
         }
 
         String materialID = getMaterialID(materialStack);
@@ -105,10 +92,10 @@ public class RecipePart {
         return new PartData(materialID, partType, group);
     }
 
-    private ItemStack getMaterialStack(InventoryCrafting craftMatrix) {
-        return craftMatrix.getStackInSlot(MATERIAL_SLOT);
+    private ItemStack getMaterialStack(IInventory inventory) {
+        return inventory.getStackInSlot(MATERIAL_SLOT);
     }
-    private ItemStack getPatternStack(InventoryCrafting craftMatrix) {
-        return craftMatrix.getStackInSlot(PATTERN_SLOT);
+    private ItemStack getPatternStack(IInventory inventory) {
+        return inventory.getStackInSlot(PATTERN_SLOT);
     }
 }

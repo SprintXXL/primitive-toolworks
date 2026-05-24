@@ -2,9 +2,11 @@ package com.SprintXXL.primitivetoolworks;
 
 import com.SprintXXL.primitivetoolworks.common.gui.GuiHandler;
 import com.SprintXXL.primitivetoolworks.common.materials.MaterialRegistry;
+import com.SprintXXL.primitivetoolworks.common.network.PacketSelectStencilPattern;
 import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
 import com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation;
 import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
+import com.SprintXXL.primitivetoolworks.common.stations.tileentity.TileEntityPartBuilder;
 import com.SprintXXL.primitivetoolworks.common.stations.tileentity.TileEntityStencilTable;
 import com.SprintXXL.primitivetoolworks.common.tools.types.ToolTypeRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +15,9 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
 import static com.SprintXXL.primitivetoolworks.Reference.MODID;
@@ -35,6 +39,13 @@ public class PrimitiveToolworks {
         PatternRegistry.init();
         ToolTypeRegistry.init();
         PartValidation.init();
+
+        NETWORK.registerMessage(
+                PacketSelectStencilPattern.Handler.class,
+                PacketSelectStencilPattern.class,
+                0,
+                Side.SERVER
+        );
     }
 
     @EventHandler
@@ -43,5 +54,10 @@ public class PrimitiveToolworks {
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
 
         GameRegistry.registerTileEntity(TileEntityStencilTable.class, new ResourceLocation(MODID, "stencil_table"));
+
+        GameRegistry.registerTileEntity(TileEntityPartBuilder.class, new ResourceLocation(MODID, "part_builder"));
     }
+
+    public static final SimpleNetworkWrapper NETWORK =
+            NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
 }

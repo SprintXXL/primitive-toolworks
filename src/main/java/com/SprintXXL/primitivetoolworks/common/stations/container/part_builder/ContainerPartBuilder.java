@@ -1,7 +1,6 @@
-package com.SprintXXL.primitivetoolworks.common.stations.container.stencil_table;
+package com.SprintXXL.primitivetoolworks.common.stations.container.part_builder;
 
-import com.SprintXXL.primitivetoolworks.common.patterns.PatternDefinition;
-import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
+import com.SprintXXL.primitivetoolworks.common.recipes.RecipePart;
 import com.SprintXXL.primitivetoolworks.common.stations.container.stations.IIngredientConsumer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -10,18 +9,18 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerStencilTable extends Container implements IIngredientConsumer {
+public class ContainerPartBuilder extends Container implements IIngredientConsumer {
 
     private final IInventory inventory;
 
-    public ContainerStencilTable(
+    public ContainerPartBuilder(
             InventoryPlayer playerInventory,
             IInventory inventory
     ) {
         this.inventory = inventory;
 
-        this.addSlotToContainer(new SlotKnife(inventory, 0, 50, 25));
-        this.addSlotToContainer(new SlotBlankPattern(inventory, 1, 50, 44));
+        this.addSlotToContainer(new SlotMaterial(inventory, 0, 50, 25, this));
+        this.addSlotToContainer(new SlotPattern(inventory, 1, 50, 44, this));
         this.addSlotToContainer(new SlotOutput(inventory, 2, 108, 35, this));
 
         addPlayerInventory(playerInventory);
@@ -30,6 +29,18 @@ public class ContainerStencilTable extends Container implements IIngredientConsu
     @Override
     public boolean canInteractWith(EntityPlayer player) {
         return inventory.isUsableByPlayer(player);
+    }
+
+    @Override
+    public void consumeIngredients() {
+        inventory.getStackInSlot(0).shrink(1);
+        updateOutput();
+        detectAndSendChanges();
+    }
+
+    @Override
+    public void onCraftMatrixChanged(IInventory inventoryIn) {
+        updateOutput();
     }
 
     private void addPlayerInventory(InventoryPlayer playerInventory) {
@@ -56,62 +67,19 @@ public class ContainerStencilTable extends Container implements IIngredientConsu
         }
     }
 
-    @Override
-    public void consumeIngredients() {
+    private final RecipePart partRecipe = new RecipePart();
 
-        ItemStack knifeSlot = inventory.getStackInSlot(0);
-        ItemStack patternSlot = inventory.getStackInSlot(1);
+    public void updateOutput() {
 
-        if (!patternSlot.isEmpty()) {
-            patternSlot.shrink(1);
+        if (partRecipe.matches(inventory)) {
+            inventory.setInventorySlotContents(2, partRecipe.getOutput(inventory));
         }
-
-        if (!knifeSlot.isEmpty()) {
-
-            int newDamage = knifeSlot.getItemDamage() + 1;
-
-            if (newDamage >= knifeSlot.getMaxDamage()) {
-                inventory.setInventorySlotContents(0, ItemStack.EMPTY);
-            }
-            else {
-                knifeSlot.setItemDamage(newDamage);
-            }
-        }
-
-        inventory.setInventorySlotContents(2, ItemStack.EMPTY);
-        inventory.markDirty();
-
-        updateOutput();
-        detectAndSendChanges();
-    }
-
-    private PatternDefinition selectedPattern;
-
-    public void setSelectedPatternID(String patternID) {
-        this.selectedPattern = PatternRegistry.getPattern(patternID);
-        updateOutput();
-        detectAndSendChanges();
-    }
-
-    private void updateOutput() {
-
-        ItemStack knifeSlot = inventory.getStackInSlot(0);
-        ItemStack patternSlot = inventory.getStackInSlot(1);
-
-        if (selectedPattern == null || knifeSlot.isEmpty() || patternSlot.isEmpty()) {
+        else {
             inventory.setInventorySlotContents(2, ItemStack.EMPTY);
-            return;
         }
 
-        inventory.setInventorySlotContents(2, selectedPattern.getPatternIconStack().copy());
-    }
-
-    @Override
-    public void onContainerClosed(EntityPlayer playerIn) {
-        super.onContainerClosed(playerIn);
-
-        inventory.setInventorySlotContents(2, ItemStack.EMPTY);
         inventory.markDirty();
+        detectAndSendChanges();
     }
 
     @Override

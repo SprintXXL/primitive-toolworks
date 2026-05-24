@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.common.patterns;
 
+import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -25,5 +26,14 @@ public class PatternNBT {
         }
 
         return nbt.getString("PatternType");
+    }
+
+    public static ItemStack createPatternStack(String patternType) {
+
+        ItemStack stack = new ItemStack(ModItems.PATTERN);
+
+        setPatternType(stack, patternType);
+
+        return stack;
     }
 }

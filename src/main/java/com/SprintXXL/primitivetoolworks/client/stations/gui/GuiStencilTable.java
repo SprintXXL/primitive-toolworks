@@ -1,15 +1,28 @@
 package com.SprintXXL.primitivetoolworks.client.stations.gui;
 
+import com.SprintXXL.primitivetoolworks.PrimitiveToolworks;
+import com.SprintXXL.primitivetoolworks.client.stations.gui.button.GuiPatternButton;
+import com.SprintXXL.primitivetoolworks.common.network.PacketSelectStencilPattern;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternDefinition;
+import com.SprintXXL.primitivetoolworks.common.patterns.PatternRegistry;
+import com.SprintXXL.primitivetoolworks.common.stations.container.stencil_table.ContainerStencilTable;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
+
+import java.io.IOException;
+import java.util.List;
 
 import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class GuiStencilTable extends GuiContainer {
 
-    public GuiStencilTable(Container container) {
+    private final ContainerStencilTable container;
+
+    public GuiStencilTable(ContainerStencilTable container) {
         super(container);
+
+        this.container = container;
 
         this.xSize = 176;
         this.ySize = 166;
@@ -50,4 +63,43 @@ public class GuiStencilTable extends GuiContainer {
                     MODID,
                     "textures/gui/part_builder.stencil_table.png"
             );
+
+    @Override
+    public void initGui() {
+        super.initGui();
+
+        this.buttonList.clear();
+
+        List<PatternDefinition> patterns = PatternRegistry.getAllPatterns();
+
+        int columns = 4;
+
+        for (int i = 0; i < patterns.size(); i++) {
+
+            PatternDefinition pattern = patterns.get(i);
+
+            int column = i % columns;
+            int row = i / columns;
+
+            int x = guiLeft - 96 + (column * 22);
+            int y = guiTop + 20 + (row * 22);
+
+            this.buttonList.add(new GuiPatternButton(
+                    i,
+                    x,
+                    y,
+                    pattern.getPatternIconStack()
+            ));
+        }
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) throws IOException {
+
+        PatternDefinition selected = PatternRegistry.getAllPatterns().get(button.id);
+
+        PrimitiveToolworks.NETWORK.sendToServer(
+                new PacketSelectStencilPattern(selected.getPatternID())
+        );
+    }
 }
