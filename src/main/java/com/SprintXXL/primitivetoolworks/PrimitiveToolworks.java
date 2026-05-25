@@ -1,14 +1,14 @@
 package com.SprintXXL.primitivetoolworks;
 
-import com.SprintXXL.primitivetoolworks.client.gui.GuiHandler;
-import com.SprintXXL.primitivetoolworks.core.materials.MaterialRegistry;
+import com.SprintXXL.primitivetoolworks.client.handler.GuiHandler;
+import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.network.PacketSelectStencilPattern;
-import com.SprintXXL.primitivetoolworks.core.parts.PartRegistry;
-import com.SprintXXL.primitivetoolworks.core.parts.helpers.PartValidation;
-import com.SprintXXL.primitivetoolworks.core.patterns.PatternRegistry;
-import com.SprintXXL.primitivetoolworks.common.tileentity.TileEntityPartBuilder;
-import com.SprintXXL.primitivetoolworks.common.tileentity.TileEntityStencilTable;
-import com.SprintXXL.primitivetoolworks.core.tools.types.ToolTypeRegistry;
+import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
+import com.SprintXXL.primitivetoolworks.library.parts.logic.PartValidation;
+import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistry;
+import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.tileentities.TileEntityPartBuilder;
+import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.tileentities.TileEntityStencilTable;
+import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolTypeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

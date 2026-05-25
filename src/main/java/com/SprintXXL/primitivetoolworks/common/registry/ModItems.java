@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.common.registry;
 
-import com.SprintXXL.primitivetoolworks.core.parts.items.ItemPart;
-import com.SprintXXL.primitivetoolworks.core.patterns.items.ItemBlankPattern;
-import com.SprintXXL.primitivetoolworks.core.patterns.items.ItemPattern;
-import com.SprintXXL.primitivetoolworks.core.tools.items.*;
+import com.SprintXXL.primitivetoolworks.feature.tools.items.parts.ItemPart;
+import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.items.ItemBlankPattern;
+import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.items.ItemPattern;
+import com.SprintXXL.primitivetoolworks.feature.tools.items.tools.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
