@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.common.network;
 
-import com.SprintXXL.primitivetoolworks.common.stations.container.stencil_table.ContainerStencilTable;
+import com.SprintXXL.primitivetoolworks.common.container.stencil_table.ContainerStencilTable;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.ByteBufUtils;

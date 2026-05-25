@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.stations.gui;
 
-import com.SprintXXL.primitivetoolworks.common.stations.container.part_builder.ContainerPartBuilder;
+import com.SprintXXL.primitivetoolworks.common.container.part_builder.ContainerPartBuilder;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 

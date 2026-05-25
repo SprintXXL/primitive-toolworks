@@ -1,19 +1,17 @@
 package com.SprintXXL.primitivetoolworks.common.recipes;
 
-import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
-import com.SprintXXL.primitivetoolworks.common.parts.PartGroup;
-import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
-import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
-import com.SprintXXL.primitivetoolworks.common.parts.data.PartData;
-import com.SprintXXL.primitivetoolworks.common.patterns.PatternNBT;
-import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RecipeHelper;
+import com.SprintXXL.primitivetoolworks.core.parts.PartDefinition;
+import com.SprintXXL.primitivetoolworks.core.parts.PartGroup;
+import com.SprintXXL.primitivetoolworks.core.parts.PartNBT;
+import com.SprintXXL.primitivetoolworks.core.parts.PartRegistry;
+import com.SprintXXL.primitivetoolworks.core.parts.data.PartData;
+import com.SprintXXL.primitivetoolworks.core.patterns.PatternNBT;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
-import static com.SprintXXL.primitivetoolworks.common.materials.helpers.MaterialHelper.getMaterialID;
-import static com.SprintXXL.primitivetoolworks.common.parts.helpers.PartValidation.isValidMaterialPartCombo;
+import static com.SprintXXL.primitivetoolworks.core.materials.helpers.MaterialHelper.getMaterialID;
+import static com.SprintXXL.primitivetoolworks.core.parts.helpers.PartValidation.isValidMaterialPartCombo;
 
 public class RecipePart {
 

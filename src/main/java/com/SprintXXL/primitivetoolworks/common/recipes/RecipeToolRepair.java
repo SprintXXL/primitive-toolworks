@@ -1,12 +1,12 @@
 package com.SprintXXL.primitivetoolworks.common.recipes;
 
 import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RecipeHelper;
-import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
+import com.SprintXXL.primitivetoolworks.core.tools.ToolNBT;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
-import static com.SprintXXL.primitivetoolworks.common.materials.helpers.MaterialHelper.getMaterialID;
-import static com.SprintXXL.primitivetoolworks.common.tools.helpers.ToolItemHelper.isModularTool;
+import static com.SprintXXL.primitivetoolworks.core.materials.helpers.MaterialHelper.getMaterialID;
+import static com.SprintXXL.primitivetoolworks.core.tools.helpers.ToolItemHelper.isModularTool;
 
 public class RecipeToolRepair {
 

@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.common.registry;
 
-import com.SprintXXL.primitivetoolworks.common.stations.blocks.BlockPartBuilder;
-import com.SprintXXL.primitivetoolworks.common.stations.blocks.BlockStencilTable;
-import com.SprintXXL.primitivetoolworks.common.stations.blocks.BlockToolForge;
-import com.SprintXXL.primitivetoolworks.common.stations.blocks.BlockToolStation;
+import com.SprintXXL.primitivetoolworks.common.blocks.BlockPartBuilder;
+import com.SprintXXL.primitivetoolworks.common.blocks.BlockStencilTable;
+import com.SprintXXL.primitivetoolworks.common.blocks.BlockToolForge;
+import com.SprintXXL.primitivetoolworks.common.blocks.BlockToolStation;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.common.registry;
 
-import com.SprintXXL.primitivetoolworks.common.parts.items.ItemPart;
-import com.SprintXXL.primitivetoolworks.common.patterns.items.ItemBlankPattern;
-import com.SprintXXL.primitivetoolworks.common.patterns.items.ItemPattern;
-import com.SprintXXL.primitivetoolworks.common.tools.items.*;
+import com.SprintXXL.primitivetoolworks.core.parts.items.ItemPart;
+import com.SprintXXL.primitivetoolworks.core.patterns.items.ItemBlankPattern;
+import com.SprintXXL.primitivetoolworks.core.patterns.items.ItemPattern;
+import com.SprintXXL.primitivetoolworks.core.tools.items.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;

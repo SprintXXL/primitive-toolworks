@@ -1,16 +1,16 @@
 package com.SprintXXL.primitivetoolworks.common.recipes;
 
-import com.SprintXXL.primitivetoolworks.common.parts.PartDefinition;
-import com.SprintXXL.primitivetoolworks.common.parts.PartNBT;
-import com.SprintXXL.primitivetoolworks.common.parts.PartRegistry;
-import com.SprintXXL.primitivetoolworks.common.parts.stats.MainPartStats;
+import com.SprintXXL.primitivetoolworks.core.parts.PartDefinition;
+import com.SprintXXL.primitivetoolworks.core.parts.PartNBT;
+import com.SprintXXL.primitivetoolworks.core.parts.PartRegistry;
+import com.SprintXXL.primitivetoolworks.core.parts.stats.MainPartStats;
 import com.SprintXXL.primitivetoolworks.common.recipes.helpers.RecipeHelper;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
-import com.SprintXXL.primitivetoolworks.common.tools.ToolDefaults;
-import com.SprintXXL.primitivetoolworks.common.tools.ToolNBT;
-import com.SprintXXL.primitivetoolworks.common.stations.container.stations.ToolStationTier;
-import com.SprintXXL.primitivetoolworks.common.tools.types.ToolType;
-import com.SprintXXL.primitivetoolworks.common.tools.types.ToolTypeRegistry;
+import com.SprintXXL.primitivetoolworks.core.tools.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.core.tools.ToolNBT;
+import com.SprintXXL.primitivetoolworks.common.container.stations.ToolStationTier;
+import com.SprintXXL.primitivetoolworks.core.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.core.tools.types.ToolTypeRegistry;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 

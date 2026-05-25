@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.stations.gui.wrappers;
 
 import com.SprintXXL.primitivetoolworks.client.stations.gui.GuiToolWorkbench;
-import com.SprintXXL.primitivetoolworks.common.stations.container.stations.wrappers.ContainerToolStation;
+import com.SprintXXL.primitivetoolworks.common.container.stations.wrappers.ContainerToolStation;
 
 public class GuiToolStation extends GuiToolWorkbench {
 
