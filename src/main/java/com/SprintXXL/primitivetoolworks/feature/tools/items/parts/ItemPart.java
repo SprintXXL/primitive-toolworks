@@ -1,13 +1,11 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.items.parts;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.util.parts.PartStackFactory;
 import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
-import com.SprintXXL.primitivetoolworks.common.parts.*;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartIDs;
 import com.SprintXXL.primitivetoolworks.library.parts.logic.PartCalculator;
+import com.SprintXXL.primitivetoolworks.library.parts.logic.PartValidation;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
 import net.minecraft.client.util.ITooltipFlag;
@@ -19,7 +17,6 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static com.SprintXXL.primitivetoolworks.library.parts.defaults.PartDefaults.createDefaultPart;
 import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemPart extends Item {
@@ -61,141 +58,17 @@ public class ItemPart extends Item {
             return;
         }
 
-        // Main Parts \\
-        subItems.add(createDefaultPart(
-                MaterialIDs.FLINT,
-                PartIDs.SWORD_BLADE,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.FLINT,
-                PartIDs.PICKAXE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.FLINT,
-                PartIDs.AXE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.FLINT,
-                PartIDs.SHOVEL_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.FLINT,
-                PartIDs.HOE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.FLINT,
-                PartIDs.HAMMER_HEAD,
-                PartGroup.MAIN
-        ));
-
-        subItems.add(createDefaultPart(
-                MaterialIDs.IRON,
-                PartIDs.SWORD_BLADE,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.IRON,
-                PartIDs.PICKAXE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.IRON,
-                PartIDs.AXE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.IRON,
-                PartIDs.SHOVEL_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.IRON,
-                PartIDs.HOE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.IRON,
-                PartIDs.HAMMER_HEAD,
-                PartGroup.MAIN
-        ));
-
-        subItems.add(createDefaultPart(
-                MaterialIDs.BRONZE,
-                PartIDs.SWORD_BLADE,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BRONZE,
-                PartIDs.PICKAXE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BRONZE,
-                PartIDs.AXE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BRONZE,
-                PartIDs.SHOVEL_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BRONZE,
-                PartIDs.HOE_HEAD,
-                PartGroup.MAIN
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BRONZE,
-                PartIDs.HAMMER_HEAD,
-                PartGroup.MAIN
-        ));
-
-
-        // Extra Parts \\
-        subItems.add(createDefaultPart(
-                MaterialIDs.BONE,
-                PartIDs.BINDING,
-                PartGroup.EXTRA
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BONE,
-                PartIDs.TOUGH_BINDING,
-                PartGroup.EXTRA
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.BONE,
-                PartIDs.WIDE_GUARD,
-                PartGroup.EXTRA
-        ));
-
-        // Handle Parts \\
-        subItems.add(createDefaultPart(
-                MaterialIDs.WOOD,
-                PartIDs.HANDLE,
-                PartGroup.HANDLE
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.OBSIDIAN,
-                PartIDs.HANDLE,
-                PartGroup.HANDLE
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.WOOD,
-                PartIDs.TOUGH_HANDLE,
-                PartGroup.HANDLE
-        ));
-        subItems.add(createDefaultPart(
-                MaterialIDs.OBSIDIAN,
-                PartIDs.TOUGH_HANDLE,
-                PartGroup.HANDLE
-        ));
-
-
+        for (MaterialDefinition material : MaterialRegistry.getAllMaterials()) {
+            for (PartDefinition part : PartRegistry.getAllParts()) {
+                if (PartValidation.isValidMaterialPartCombo(material.getMaterialID(), part.getPartID())) {
+                    subItems.add(PartStackFactory.createDefaultPart(
+                            material.getMaterialID(),
+                            part.getPartID(),
+                            part.getPartGroup()
+                    ));
+                }
+            }
+        }
     }
 
     @Override

@@ -46,4 +46,15 @@ public class MaterialUtil {
 
         return MaterialRegistry.getMaterial(materialID);
     }
+
+    public static MaterialDefinition getMaterialOrDefault(String materialID, String defaultMaterialID) {
+
+        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
+
+        if (material != null) {
+            return material;
+        }
+
+        return MaterialRegistry.getMaterial(defaultMaterialID);
+    }
 }

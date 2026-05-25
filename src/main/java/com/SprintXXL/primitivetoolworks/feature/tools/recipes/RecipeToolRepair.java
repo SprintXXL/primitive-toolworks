@@ -6,7 +6,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
 import static com.SprintXXL.primitivetoolworks.library.materials.util.MaterialUtil.getMaterialID;
-import static com.SprintXXL.primitivetoolworks.feature.tools.util.ToolItemHelper.isModularTool;
+import static com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolItemHelper.isModularTool;
 
 public class RecipeToolRepair {
 

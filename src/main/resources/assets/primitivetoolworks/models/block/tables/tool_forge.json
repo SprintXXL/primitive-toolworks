@@ -1,5 +1,5 @@
 {
-  "parent": "primitivetoolworks:block/stations/station",
+  "parent": "primitivetoolworks:block/tables/table",
   "textures": {
     "top": "primitivetoolworks:blocks/tool_forge_top",
     "side": "primitivetoolworks:blocks/tool_forge_side",

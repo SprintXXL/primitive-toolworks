@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "primitivetoolworks:stations/stencil_table"
+      "model": "primitivetoolworks:tables/stencil_table"
     }
   }
 }

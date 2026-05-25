@@ -1,27 +1,26 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.items.tools;
 
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
-import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
+import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipBuilder;
+import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolAttributeHelper;
+import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDisplayNameHelper;
+import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolStackFactory;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
-import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-import static com.SprintXXL.primitivetoolworks.feature.tools.util.DummyMaterial.DUMMY_MATERIAL;
+import static com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDamageHelper.isBroken;
+import static com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDummyMaterial.DUMMY_MATERIAL;
 import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemModularHoe extends ItemHoe {
@@ -37,122 +36,13 @@ public class ItemModularHoe extends ItemHoe {
     }
 
     @Override
-    public float getDestroySpeed(ItemStack stack, IBlockState state) {
-        float vanillaSpeed = super.getDestroySpeed(stack, state);
-
-        if (vanillaSpeed <= 1) {
-            return 1;
-        }
-        return ToolCalculator.getMiningSpeed(stack);
-    }
-
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        return ToolCalculator.getDurability(stack);
-    }
-
-    @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
-        Multimap<String, AttributeModifier> modifiers =
-                super.getItemAttributeModifiers(slot);
-
-        if (slot == EntityEquipmentSlot.MAINHAND) {
-
-            modifiers.removeAll(
-                    SharedMonsterAttributes.ATTACK_DAMAGE.getName()
-            );
-
-            modifiers.removeAll(
-                    SharedMonsterAttributes.ATTACK_SPEED.getName()
-            );
-
-            modifiers.put(
-                    SharedMonsterAttributes.ATTACK_DAMAGE.getName(),
-                    new AttributeModifier(
-                            ATTACK_DAMAGE_MODIFIER,
-                            "Tool Modifier",
-                            ToolCalculator.getAttackDamage(stack),
-                            0
-                    )
-            );
-
-            modifiers.put(
-                    SharedMonsterAttributes.ATTACK_SPEED.getName(),
-                    new AttributeModifier(
-                            ATTACK_SPEED_MODIFIER,
-                            "Tool Modifier",
-                            ToolCalculator.getAttackSpeed(stack),
-                            0
-                    )
-            );
-        }
-
-        return modifiers;
-    }
-
-    // Item Display Name
-    @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
-
-        ToolType toolType = ToolNBT.getToolType(stack);
-
-        if (mainMaterial == null) {
-            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
-        }
-
-        if (mainMaterial == null) {
-            return "Modular Hoe";
-        }
-
-        return mainMaterial.getTitleDisplayName() + " Hoe";
+        return ToolDisplayNameHelper.getDisplayName(stack, toolType, "Hoe");
     }
 
-    // Tooltip
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-        MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
-        MaterialDefinition extraMaterial = MaterialRegistry.getMaterial(ToolNBT.getExtraMaterial(stack));
-        MaterialDefinition handleMaterial = MaterialRegistry.getMaterial(ToolNBT.getHandleMaterial(stack));
-        int maxDurability = ToolCalculator.getDurability(stack);
-        int usedDurability = stack.getItemDamage();
-        int remainingDurability = maxDurability - usedDurability;
-        int harvestLevel = ToolCalculator.getHarvestLevel(stack);
-        float miningSpeed = ToolCalculator.getMiningSpeed(stack);
-
-        if (mainMaterial == null) {
-            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
-        }
-
-        if (mainMaterial == null) {
-            tooltip.add("Unknown");
-        }
-
-        if (extraMaterial == null) {
-            extraMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultExtraMaterial(toolType));
-        }
-
-        if (extraMaterial == null) {
-            tooltip.add("Unknown");
-        }
-
-        if (handleMaterial == null) {
-            handleMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultHandleMaterial(toolType));
-        }
-
-        if (handleMaterial == null) {
-            tooltip.add("Unknown");
-        }
-
-        tooltip.add("");
-        tooltip.add("Main Material: " + mainMaterial.getFormattedDisplayName());
-        tooltip.add("Extra Material: " + extraMaterial.getFormattedDisplayName());
-        tooltip.add("Handle Material: " + handleMaterial.getFormattedDisplayName());
-        tooltip.add("");
-        tooltip.add("Mining Speed: " + TextFormatting.WHITE + miningSpeed);
-        tooltip.add("Harvest Level: " + TextFormatting.WHITE + harvestLevel);
-        tooltip.add("Durability: " + TextFormatting.WHITE + remainingDurability + " / " + maxDurability);
+        TooltipBuilder.forType(toolType).addToTooltip(stack, tooltip);
     }
 
     @Override
@@ -162,19 +52,37 @@ public class ItemModularHoe extends ItemHoe {
             return;
         }
 
-        ItemStack stack = new ItemStack(this);
+        items.add(ToolStackFactory.createDefaultTool(this, ToolType.HOE));
+    }
 
-        ToolNBT.setToolType(stack, toolType);
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+        return ToolAttributeHelper.getToolAttributeModifiers(
+                super.getItemAttributeModifiers(slot),
+                slot,
+                stack,
+                ATTACK_DAMAGE_MODIFIER,
+                ATTACK_SPEED_MODIFIER
+        );
+    }
 
-        ToolNBT.setMainMaterial(stack, ToolDefaults.getDefaultMainMaterial(toolType));
-        ToolNBT.setMainPart(stack, ToolDefaults.getDefaultMainPart(toolType));
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return ToolCalculator.getDurability(stack);
+    }
 
-        ToolNBT.setExtraMaterial(stack, ToolDefaults.getDefaultExtraMaterial(toolType));
-        ToolNBT.setExtraPart(stack, ToolDefaults.getDefaultExtraPart(toolType));
+    @Override
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
+        float vanillaSpeed = super.getDestroySpeed(stack, state);
 
-        ToolNBT.setHandleMaterial(stack, ToolDefaults.getDefaultHandleMaterial(toolType));
-        ToolNBT.setHandlePart(stack, ToolDefaults.getDefaultHandlePart(toolType));
+        if (vanillaSpeed <= 1) {
+            return 1;
+        }
 
-        items.add(stack);
+        if (isBroken(stack)) {
+            return 0.01F;
+        }
+
+        return ToolCalculator.getMiningSpeed(stack);
     }
 }

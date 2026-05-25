@@ -2,76 +2,50 @@ package com.SprintXXL.primitivetoolworks.library.parts.nbt;
 
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-public class PartNBT {
+import static com.SprintXXL.primitivetoolworks.common.util.NBTHelper.*;
 
-    public static void setMaterial(ItemStack stack, String material) {
+public final class PartNBT {
 
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("PartData");
+    private static final String PART_DATA = "PartData";
 
-        nbt.setString("Material", material);
+    private static final String PART_GROUP = "PartGroup";
+
+    private static final String MATERIAL = "Material";
+    private static final String PART_TYPE = "PartType";
+
+    private PartNBT() {}
+
+    public static void setPartGroup(ItemStack stack, PartGroup group) {
+        setString(stack, PART_DATA, PART_GROUP, group.name());
+    }
+    public static PartGroup getPartGroup(ItemStack stack) {
+
+        String value = getString(stack, PART_DATA, PART_GROUP);
+
+        if (value.equals(UNKNOWN)) {
+            return PartGroup.UNKNOWN;
+        }
+
+        try {
+            return PartGroup.valueOf(value);
+        }
+        catch (IllegalArgumentException e) {
+            return PartGroup.UNKNOWN;
+        }
     }
 
+    public static void setMaterial(ItemStack stack, String material) {
+        setString(stack, PART_DATA, MATERIAL, material);
+    }
     public static String getMaterial(ItemStack stack) {
-
-        if (stack.isEmpty()) {
-            return "unknown";
-        }
-
-        NBTTagCompound nbt = stack.getSubCompound("PartData");
-
-        if (nbt == null) {
-
-            return "unknown";
-        }
-
-        return nbt.getString("Material");
+        return getString(stack, PART_DATA, MATERIAL);
     }
 
     public static void setPartType(ItemStack stack, String partType) {
-
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("PartData");
-
-        nbt.setString("PartType", partType);
+        setString(stack, PART_DATA, PART_TYPE, partType);
     }
-
     public static String getPartType(ItemStack stack) {
-
-        if (stack.isEmpty()) {
-            return "unknown";
-        }
-
-        NBTTagCompound nbt = stack.getSubCompound("PartData");
-
-        if (nbt == null) {
-            return "unknown";
-        }
-
-        return nbt.getString("PartType");
-    }
-
-    public static void setPartGroup(ItemStack stack, PartGroup group) {
-
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("PartData");
-
-        nbt.setString("PartGroup", group.name());
-    }
-
-    public static PartGroup getPartGroup(ItemStack stack) {
-
-        if (stack.isEmpty()) {
-            return null;
-        }
-
-        NBTTagCompound nbt = stack.getSubCompound("PartData");
-
-        if (nbt == null) {
-            return null;
-        }
-
-        String group = nbt.getString("PartGroup");
-
-        return PartGroup.valueOf(group);
+        return getString(stack, PART_DATA, PART_TYPE);
     }
 }

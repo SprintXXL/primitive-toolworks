@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "primitivetoolworks:stations/tool_forge"
+      "model": "primitivetoolworks:tables/tool_forge"
     }
   }
 }

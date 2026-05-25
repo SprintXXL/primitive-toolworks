@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "primitivetoolworks:stations/part_builder"
+      "model": "primitivetoolworks:tables/part_builder"
     }
   }
 }

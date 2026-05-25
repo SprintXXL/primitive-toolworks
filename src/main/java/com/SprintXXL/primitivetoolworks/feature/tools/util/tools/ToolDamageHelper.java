@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.feature.tools.util;
+package com.SprintXXL.primitivetoolworks.feature.tools.util.tools;
 
 import net.minecraft.item.ItemStack;
 

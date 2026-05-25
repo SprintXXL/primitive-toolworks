@@ -1,9 +1,9 @@
-package com.SprintXXL.primitivetoolworks.feature.tools.util;
+package com.SprintXXL.primitivetoolworks.feature.tools.util.tools;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class DummyMaterial {
+public class ToolDummyMaterial {
 
     public static final Item.ToolMaterial DUMMY_MATERIAL =
             EnumHelper.addToolMaterial(

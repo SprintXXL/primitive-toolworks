@@ -2,187 +2,80 @@ package com.SprintXXL.primitivetoolworks.feature.tools.nbt;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-public class ToolNBT {
+import static com.SprintXXL.primitivetoolworks.common.util.NBTHelper.*;
 
-    public static String TOOL_TYPE = "ToolType";
+public final class ToolNBT {
 
-    // Tool Type
+    private static final String TOOL_DATA = "ToolData";
+
+    private static final String TOOL_TYPE = "ToolType";
+
+    private static final String MAIN_PART = "MainPart";
+    private static final String MAIN_MATERIAL = "MainMaterial";
+
+    private static final String EXTRA_PART = "ExtraPart";
+    private static final String EXTRA_MATERIAL = "ExtraMaterial";
+
+    private static final String HANDLE_PART = "HandlePart";
+    private static final String HANDLE_MATERIAL = "HandleMaterial";
+
+    private ToolNBT() {}
 
     public static void setToolType(ItemStack stack, ToolType toolType) {
-
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-
-        nbt.setString(TOOL_TYPE, toolType.getID());
+        setString(stack, TOOL_DATA, TOOL_TYPE, toolType.getID());
     }
 
     public static ToolType getToolType(ItemStack stack) {
 
-        if (stack.isEmpty()) {
+        String toolTypeID = getString(stack, TOOL_DATA, TOOL_TYPE);
+
+        if (toolTypeID.equals(UNKNOWN)) {
             return ToolType.PICKAXE;
         }
-
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
-
-        if (nbt == null) {
-
-            return ToolType.PICKAXE;
-        }
-
-        String toolTypeID = nbt.getString(TOOL_TYPE);
 
         return ToolType.fromID(toolTypeID);
     }
 
-    // Main Material
+    public static void setMainPart(ItemStack stack, String part) {
+        setString(stack, TOOL_DATA, MAIN_PART, part);
+    }
+    public static String getMainPart(ItemStack stack) {
+        return getString(stack, TOOL_DATA, MAIN_PART);
+    }
 
     public static void setMainMaterial(ItemStack stack, String material) {
-
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-
-        nbt.setString("MainMaterial", material);
+        setString(stack, TOOL_DATA, MAIN_MATERIAL, material);
     }
-
     public static String getMainMaterial(ItemStack stack) {
-
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
-
-        if (nbt == null) {
-
-            return "unknown";
-        }
-
-        String value = nbt.getString("MainMaterial");
-
-        if (value.isEmpty()) {
-            return "unknown";
-        }
-
-        return value;
+        return getString(stack, TOOL_DATA, MAIN_MATERIAL);
     }
-
-    // Main Part
-
-    public static void setMainPart(ItemStack stack, String part) {
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-        nbt.setString("MainPart", part);
-    }
-
-    public static String getMainPart(ItemStack stack) {
-
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
-
-        if (nbt == null) {
-            return "unknown";
-        }
-
-        String value = nbt.getString("MainPart");
-
-        if (value.isEmpty()) {
-            return "unknown";
-        }
-
-        return value;
-    }
-
-    // Handle Material
-
-    public static void setHandleMaterial(ItemStack stack, String material) {
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-        nbt.setString("HandleMaterial", material);
-    }
-
-    public static String getHandleMaterial(ItemStack stack) {
-
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
-
-        if (nbt == null) {
-            return "unknown";
-        }
-
-        String value = nbt.getString("HandleMaterial");
-
-        if (value.isEmpty()) {
-            return "unknown";
-        }
-
-        return value;
-    }
-
-    // Handle Part
-
-    public static void setHandlePart(ItemStack stack, String part) {
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-        nbt.setString("HandlePart", part);
-    }
-
-    public static String getHandlePart(ItemStack stack) {
-
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
-
-        if (nbt == null) {
-            return "unknown";
-        }
-
-        String value = nbt.getString("HandlePart");
-
-        if (value.isEmpty()) {
-            return "unknown";
-        }
-
-        return value;
-    }
-
-    //
-    //
-    //
-
-    // Extra Material
-
-    public static void setExtraMaterial(ItemStack stack, String material) {
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-        nbt.setString("ExtraMaterial", material);
-    }
-
-    public static String getExtraMaterial(ItemStack stack) {
-
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
-
-        if (nbt == null) {
-            return "unknown";
-        }
-
-        String value = nbt.getString("ExtraMaterial");
-
-        if (value.isEmpty()) {
-            return "unknown";
-        }
-
-        return value;
-    }
-
-    // Extra Part
 
     public static void setExtraPart(ItemStack stack, String part) {
-        NBTTagCompound nbt = stack.getOrCreateSubCompound("ToolData");
-        nbt.setString("ExtraPart", part);
+        setString(stack, TOOL_DATA, EXTRA_PART, part);
+    }
+    public static String getExtraPart(ItemStack stack) {
+        return getString(stack, TOOL_DATA, EXTRA_PART);
     }
 
-    public static String getExtraPart(ItemStack stack) {
+    public static void setExtraMaterial(ItemStack stack, String material) {
+        setString(stack, TOOL_DATA, EXTRA_MATERIAL, material);
+    }
+    public static String getExtraMaterial(ItemStack stack) {
+        return getString(stack, TOOL_DATA, EXTRA_MATERIAL);
+    }
 
-        NBTTagCompound nbt = stack.getSubCompound("ToolData");
+    public static void setHandlePart(ItemStack stack, String part) {
+        setString(stack, TOOL_DATA, HANDLE_PART, part);
+    }
+    public static String getHandlePart(ItemStack stack) {
+        return getString(stack, TOOL_DATA, HANDLE_PART);
+    }
 
-        if (nbt == null) {
-            return "unknown";
-        }
-
-        String value = nbt.getString("ExtraPart");
-
-        if (value.isEmpty()) {
-            return "unknown";
-        }
-
-        return value;
+    public static void setHandleMaterial(ItemStack stack, String material) {
+        setString(stack, TOOL_DATA, HANDLE_MATERIAL, material);
+    }
+    public static String getHandleMaterial(ItemStack stack) {
+        return getString(stack, TOOL_DATA, HANDLE_MATERIAL);
     }
 }

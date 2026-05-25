@@ -36,7 +36,7 @@ import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
 @SideOnly(Side.CLIENT)
-public class ItemModelHandler {
+public class ModelHandler {
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
@@ -92,10 +92,10 @@ public class ItemModelHandler {
                 new ModelResourceLocation(MODID + ":tools/modular_hammer", "inventory")
         );
 
-        registerBlock(ModBlocks.TOOL_STATION, "toolworkbench/tool_station");
-        registerBlock(ModBlocks.PART_BUILDER, "toolworkbench/part_builder");
-        registerBlock(ModBlocks.STENCIL_TABLE, "toolworkbench/stencil_table");
-        registerBlock(ModBlocks.TOOL_FORGE, "toolworkbench/tool_forge");
+        registerBlock(ModBlocks.TOOL_STATION, "tables/tool_station");
+        registerBlock(ModBlocks.PART_BUILDER, "tables/part_builder");
+        registerBlock(ModBlocks.STENCIL_TABLE, "tables/stencil_table");
+        registerBlock(ModBlocks.TOOL_FORGE, "tables/tool_forge");
     }
 
     public static void registerBlock(Block block, String modelPath) {
