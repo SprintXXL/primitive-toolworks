@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.logic;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.ToolModifierCalculator;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
@@ -27,7 +28,8 @@ public class ToolCalculator {
 
         return (
                 (mainMaterialStats.getMiningSpeed()
-                + extraMaterialStats.getMiningSpeedBonus())
+                + extraMaterialStats.getMiningSpeedBonus()
+                + ToolModifierCalculator.getMiningSpeedBonus(stack))
                 * mainPartStats.getMiningSpeedMultiplier()
                 * extraPartStats.getMiningSpeedMultiplier()
         );

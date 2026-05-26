@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.containers;
 
+import com.SprintXXL.primitivetoolworks.common.util.container.ContainerBase;
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.recipes.RecipePart;
 import com.SprintXXL.primitivetoolworks.feature.tables.common.IIngredientConsumer;
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.slots.SlotMaterial;
@@ -7,12 +8,10 @@ import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.slots.SlotOut
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.slots.SlotPattern;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerPartBuilder extends Container implements IIngredientConsumer {
+public class ContainerPartBuilder extends ContainerBase implements IIngredientConsumer {
 
     private final IInventory inventory;
 
@@ -27,6 +26,21 @@ public class ContainerPartBuilder extends Container implements IIngredientConsum
         this.addSlotToContainer(new SlotOutput(inventory, 2, 108, 35, this));
 
         addPlayerInventory(playerInventory);
+    }
+
+    @Override
+    protected int getTableSlotCount() {
+        return 3;
+    }
+
+    @Override
+    protected int getInputSlotStart() {
+        return 0;
+    }
+
+    @Override
+    protected int getInputSlotEnd() {
+        return 2;
     }
 
     @Override
@@ -46,30 +60,6 @@ public class ContainerPartBuilder extends Container implements IIngredientConsum
         updateOutput();
     }
 
-    private void addPlayerInventory(InventoryPlayer playerInventory) {
-
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 9; col++) {
-                this.addSlotToContainer(new Slot(
-                        playerInventory,
-                        col + row * 9 + 9,
-                        8 + col * 18,
-                        84 + row * 18
-                ));
-            }
-        }
-
-        // Player Hotbar \\
-        for (int col = 0; col < 9; col++) {
-            this.addSlotToContainer(new Slot(
-                    playerInventory,
-                    col,
-                    8 + col * 18,
-                    142
-            ));
-        }
-    }
-
     private final RecipePart partRecipe = new RecipePart();
 
     public void updateOutput() {
@@ -83,46 +73,5 @@ public class ContainerPartBuilder extends Container implements IIngredientConsum
 
         inventory.markDirty();
         detectAndSendChanges();
-    }
-
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-
-        ItemStack originalStack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-
-        if (slot != null && slot.getHasStack()) {
-            ItemStack stackInSlot = slot.getStack();
-            originalStack = stackInSlot.copy();
-
-            if (index >= 3 && index < 39) {
-                if (!this.mergeItemStack(stackInSlot, 0, 2, false)) {
-                    return ItemStack.EMPTY;
-                }
-            }
-            else if (index >= 0 && index < 2) {
-                if (!this.mergeItemStack(stackInSlot, 3, 39, false)) {
-                    return ItemStack.EMPTY;
-                }
-            }
-            else if (index == 2) {
-                if (!this.mergeItemStack(stackInSlot, 3, 39, true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onSlotChange(stackInSlot, originalStack);
-            }
-            if (stackInSlot.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
-            }
-            else {
-                slot.onSlotChanged();
-            }
-            if (stackInSlot.getCount() == originalStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTake(playerIn, stackInSlot);
-        }
-
-        return originalStack;
     }
 }

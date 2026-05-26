@@ -1,8 +1,10 @@
 package com.SprintXXL.primitivetoolworks;
 
 import com.SprintXXL.primitivetoolworks.client.handler.GuiHandler;
+import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRegistry;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.network.PacketSelectStencilPattern;
+import com.SprintXXL.primitivetoolworks.library.modifiers.registry.ModifierRegistry;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
 import com.SprintXXL.primitivetoolworks.library.parts.logic.PartValidation;
 import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistry;
@@ -37,8 +39,10 @@ public class PrimitiveToolworks {
         PartRegistry.init();
         MaterialRegistry.init();
         PatternRegistry.init();
+        ModifierRegistry.init();
         ToolTypeRegistry.init();
         PartValidation.init();
+        ModifierApplicationRegistry.init();
 
         NETWORK.registerMessage(
                 PacketSelectStencilPattern.Handler.class,

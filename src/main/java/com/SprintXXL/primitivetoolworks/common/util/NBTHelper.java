@@ -43,5 +43,20 @@ public final class NBTHelper {
         return value;
     }
 
+    public static void setInteger(ItemStack stack, String compoundKey, String key, int value) {
+        getOrCreateSubCompound(stack, compoundKey).setInteger(key, value);
+    }
+
+    public static int getInteger(ItemStack stack, String compoundKey, String key) {
+
+        NBTTagCompound nbt = getSubCompound(stack, compoundKey);
+
+        if (nbt == null) {
+            return 0;
+        }
+
+        return nbt.getInteger(key);
+    }
+
 
 }

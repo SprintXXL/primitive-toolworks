@@ -1,9 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.tooltip;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components.DurabilityTooltipComponent;
-import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components.HarvestLevelTooltipComponent;
-import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components.MaterialTooltipComponent;
-import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components.MiningSpeedTooltipComponent;
+import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components.*;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import net.minecraft.item.ItemStack;
 
@@ -24,6 +21,8 @@ public class TooltipBuilder {
         TooltipBuilder builder = new TooltipBuilder(toolType);
 
         builder.add(new MaterialTooltipComponent());
+
+        builder.add(new ModifierTooltipComponent());
 
         if (showsMiningSpeed(toolType)) {
             builder.add(new MiningSpeedTooltipComponent());
