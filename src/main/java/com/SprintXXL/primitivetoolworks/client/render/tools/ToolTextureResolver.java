@@ -8,6 +8,10 @@ public class ToolTextureResolver {
 
     public static ResourceLocation getToolLayerTexture(ToolLayerRenderData data) {
 
+        if (data.customTexture != null) {
+            return data.customTexture;
+        }
+
         return new ResourceLocation(
                 "primitivetoolworks",
                 "tool_layers/" + getToolFolder(data.toolType) + "/" + getLayerFolder(data.partGroup) + "/" + data.materialID

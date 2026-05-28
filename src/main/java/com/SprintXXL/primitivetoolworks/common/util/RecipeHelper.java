@@ -4,7 +4,9 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class RecipeHelper {
+public final class RecipeHelper {
+
+    private RecipeHelper() {}
 
     public static boolean matchesCraftMatrix(InventoryCrafting craftMatrix) {
 

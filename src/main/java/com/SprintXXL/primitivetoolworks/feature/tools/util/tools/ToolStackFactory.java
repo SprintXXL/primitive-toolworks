@@ -2,6 +2,7 @@ package com.SprintXXL.primitivetoolworks.feature.tools.util.tools;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaultData;
 import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import net.minecraft.item.Item;
@@ -27,6 +28,8 @@ public class ToolStackFactory {
 
         ToolNBT.setHandlePart(stack, defaults.getHandlePart());
         ToolNBT.setHandleMaterial(stack, defaults.getHandleMaterial());
+
+        ToolModifierSlotNBT.setModifierSlots(stack, 0);
 
         return stack;
     }

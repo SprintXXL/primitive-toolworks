@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.render.tools;
 
+import com.SprintXXL.primitivetoolworks.client.render.tools.modifiers.ModifierRenderResolver;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
@@ -70,6 +71,8 @@ public class ToolRenderResolver {
                     extraMaterial
             ));
         }
+
+        layers.addAll(ModifierRenderResolver.resolveModifiers(stack));
 
         return new ToolRenderData(toolType, layers);
     }

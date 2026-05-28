@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.recipes;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
@@ -82,6 +83,8 @@ public class RecipeModularTool {
 
         ToolNBT.setHandleMaterial(result, PartNBT.getMaterial(handleStack));
         ToolNBT.setHandlePart(result, PartNBT.getPartType(handleStack));
+
+        ToolModifierSlotNBT.setModifierSlots(result, 0);
 
         return result;
     }

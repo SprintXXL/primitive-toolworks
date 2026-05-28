@@ -1,6 +1,7 @@
 package com.SprintXXL.primitivetoolworks;
 
 import com.SprintXXL.primitivetoolworks.client.handler.GuiHandler;
+import com.SprintXXL.primitivetoolworks.common.util.DevCommands;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRegistry;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.network.PacketSelectStencilPattern;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -60,6 +62,11 @@ public class PrimitiveToolworks {
         GameRegistry.registerTileEntity(TileEntityStencilTable.class, new ResourceLocation(MODID, "stencil_table"));
 
         GameRegistry.registerTileEntity(TileEntityPartBuilder.class, new ResourceLocation(MODID, "part_builder"));
+    }
+
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new DevCommands());
     }
 
     public static final SimpleNetworkWrapper NETWORK =
