@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.common.util.container;
+package com.SprintXXL.primitivetoolworks.common.util;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

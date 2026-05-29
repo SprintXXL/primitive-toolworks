@@ -9,11 +9,13 @@ import com.SprintXXL.primitivetoolworks.client.render.patterns.PatternTextureRes
 import com.SprintXXL.primitivetoolworks.client.render.tools.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.client.render.tools.ToolLayerRenderData;
 import com.SprintXXL.primitivetoolworks.client.render.tools.ToolTextureResolver;
+import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierDefinition;
 import com.SprintXXL.primitivetoolworks.library.modifiers.registry.ModifierRegistry;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
 import com.SprintXXL.primitivetoolworks.library.patterns.data.PatternDefinition;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
@@ -120,6 +122,14 @@ public class ModelHandler {
 
             for (PartDefinition part : PartRegistry.getAllParts()) {
 
+                if (!part.getAllowedToolTypes().contains(toolType)) {
+                    continue;
+                }
+
+                if (part.getPartGroup() == PartGroup.EXTRA && !ToolDefaults.shouldRenderExtraLayer(toolType)) {
+                    continue;
+                }
+
                 for (MaterialDefinition material : MaterialRegistry.getAllMaterials()) {
 
                     String materialID = material.getMaterialID();
@@ -151,7 +161,7 @@ public class ModelHandler {
 
             String modifierID = modifier.getModifierID();
 
-            for (ToolType toolType : ToolType.values()) {
+            for (ToolType toolType : modifier.getAllowedToolTypes()) {
 
                 event.getMap().registerSprite(
                         new ResourceLocation(

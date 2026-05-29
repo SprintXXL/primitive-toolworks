@@ -2,6 +2,7 @@ package com.SprintXXL.primitivetoolworks.feature.tools.items.tools;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipBuilder;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolAttributeHelper;
+import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDamageHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDisplayNameHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolStackFactory;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
@@ -67,5 +68,10 @@ public class ItemModularSword extends ItemSword {
     @Override
     public int getMaxDamage(ItemStack stack) {
         return ToolCalculator.getDurability(stack);
+    }
+
+    @Override
+    public void setDamage(ItemStack stack, int damage) {
+        super.setDamage(stack, ToolDamageHelper.clampDamage(stack, damage));
     }
 }

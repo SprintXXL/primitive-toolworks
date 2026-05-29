@@ -1,7 +1,6 @@
 package com.SprintXXL.primitivetoolworks;
 
 import com.SprintXXL.primitivetoolworks.client.handler.GuiHandler;
-import com.SprintXXL.primitivetoolworks.common.util.DevCommands;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.LuckDropEventHandler;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRegistry;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
@@ -13,6 +12,7 @@ import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistr
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.tileentities.TileEntityPartBuilder;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.tileentities.TileEntityStencilTable;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolTypeRegistry;
+import com.SprintXXL.primitivetoolworks.common.util.dev.DevCommands;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -28,7 +28,7 @@ import org.apache.logging.log4j.Logger;
 
 import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
-@Mod(modid = MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:primitivetools")
+@Mod(modid = MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:primitivetools;required-after:primitiveores")
 public class PrimitiveToolworks {
 
     @Mod.Instance

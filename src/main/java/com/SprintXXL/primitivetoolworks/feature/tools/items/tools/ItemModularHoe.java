@@ -2,6 +2,7 @@ package com.SprintXXL.primitivetoolworks.feature.tools.items.tools;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipBuilder;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolAttributeHelper;
+import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDamageHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDisplayNameHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolStackFactory;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
@@ -11,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -69,6 +71,11 @@ public class ItemModularHoe extends ItemHoe {
     @Override
     public int getMaxDamage(ItemStack stack) {
         return ToolCalculator.getDurability(stack);
+    }
+
+    @Override
+    public void setDamage(ItemStack stack, int damage) {
+        super.setDamage(stack, ToolDamageHelper.clampDamage(stack, damage));
     }
 
     @Override

@@ -21,6 +21,7 @@ public class RecipeToolModifier {
         if (!areAllOtherSlotsEmpty(craftMatrix)) {
             return false;
         }
+
         return getMatchingRecipe(craftMatrix) != null;
     }
 

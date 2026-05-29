@@ -14,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
@@ -97,5 +98,10 @@ public class ItemModularHammer extends ItemPickaxe implements IAoeTool {
         }
 
         return ToolCalculator.getMiningSpeed(stack);
+    }
+
+    @Override
+    public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState blockState) {
+        return ToolCalculator.getHarvestLevel(stack);
     }
 }

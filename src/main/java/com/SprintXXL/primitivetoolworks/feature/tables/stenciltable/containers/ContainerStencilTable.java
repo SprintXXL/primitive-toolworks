@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.containers;
 
-import com.SprintXXL.primitivetoolworks.common.util.container.ContainerBase;
+import com.SprintXXL.primitivetoolworks.common.util.ContainerBase;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots.SlotBlankPattern;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots.SlotKnife;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots.SlotOutput;

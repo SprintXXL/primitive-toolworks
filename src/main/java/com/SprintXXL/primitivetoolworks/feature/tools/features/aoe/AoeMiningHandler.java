@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.features.aoe;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.features.levels.logic.ToolExperienceHandler;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.LuckCalculator;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
 import net.minecraft.block.Block;
@@ -78,7 +79,9 @@ public class AoeMiningHandler {
 
             if (blocksMined > 0) {
                 tool.damageItem(blocksMined, player);
+                ToolExperienceHandler.addToolXP(tool, blocksMined);
             }
+
         } finally {
             isMiningAoe = false;
         }

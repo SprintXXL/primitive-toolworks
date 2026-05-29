@@ -22,6 +22,8 @@ public class TooltipBuilder {
 
         builder.add(new MaterialTooltipComponent());
 
+        builder.add(new LevelTooltipComponent());
+
         builder.add(new ModifierTooltipComponent());
 
         if (showsMiningSpeed(toolType)) {

@@ -8,6 +8,8 @@ import com.SprintXXL.primitivetoolworks.library.parts.stats.HandlePartStats;
 import com.SprintXXL.primitivetoolworks.library.parts.stats.MainPartStats;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 
+import java.util.EnumSet;
+
 public class ModParts {
 
     // MAIN PARTS \\
@@ -17,6 +19,9 @@ public class ModParts {
                     PartIDs.SWORD_BLADE,
                     "Sword Blade",
                     3,
+                    EnumSet.of(
+                            ToolType.SWORD
+                    ),
                     new MainPartStats(
                             ToolType.SWORD,
                             0.0F,
@@ -32,6 +37,9 @@ public class ModParts {
                     PartIDs.PICKAXE_HEAD,
                     "Pickaxe Head",
                     3,
+                    EnumSet.of(
+                            ToolType.PICKAXE
+                    ),
                     new MainPartStats(
                             ToolType.PICKAXE,
                             1.0F, // Mining Speed Multiplier
@@ -47,6 +55,9 @@ public class ModParts {
                     PartIDs.AXE_HEAD,
                     "Axe Head",
                     3,
+                    EnumSet.of(
+                            ToolType.AXE
+                    ),
                     new MainPartStats(
                             ToolType.AXE,
                             1.0F,
@@ -62,6 +73,9 @@ public class ModParts {
                     PartIDs.SHOVEL_HEAD,
                     "Shovel Head",
                     3,
+                    EnumSet.of(
+                            ToolType.SHOVEL
+                    ),
                     new MainPartStats(
                             ToolType.SHOVEL,
                             1.0F,
@@ -77,6 +91,9 @@ public class ModParts {
                     PartIDs.HOE_HEAD,
                     "Hoe Head",
                     3,
+                    EnumSet.of(
+                            ToolType.HOE
+                    ),
                     new MainPartStats(
                             ToolType.HOE,
                             0.3F,
@@ -92,6 +109,9 @@ public class ModParts {
                     PartIDs.HAMMER_HEAD,
                     "Hammer Head",
                     9,
+                    EnumSet.of(
+                            ToolType.HAMMER
+                    ),
                     new MainPartStats(
                             ToolType.HAMMER,
                             0.1F,
@@ -108,6 +128,12 @@ public class ModParts {
                     PartIDs.BINDING,
                     "Binding",
                     1,
+                    EnumSet.of(
+                            ToolType.PICKAXE,
+                            ToolType.AXE,
+                            ToolType.SHOVEL,
+                            ToolType.HOE
+                    ),
                     new ExtraPartStats(
                             1.0F // Mining Speed Multiplier
                     )
@@ -119,6 +145,9 @@ public class ModParts {
                     PartIDs.TOUGH_BINDING,
                     "Tough Binding",
                     3,
+                    EnumSet.of(
+                            ToolType.HAMMER
+                    ),
                     new ExtraPartStats(
                             3.0F
                     )
@@ -130,6 +159,9 @@ public class ModParts {
                     PartIDs.WIDE_GUARD,
                     "Wide Guard",
                     1,
+                    EnumSet.of(
+                            ToolType.SWORD
+                    ),
                     new ExtraPartStats(
                             0.0F
                     )
@@ -142,6 +174,13 @@ public class ModParts {
                     PartIDs.HANDLE,
                     "Handle",
                     2,
+                    EnumSet.of(
+                            ToolType.SWORD,
+                            ToolType.PICKAXE,
+                            ToolType.AXE,
+                            ToolType.SHOVEL,
+                            ToolType.HOE
+                    ),
                     new HandlePartStats(
                             1.0F // Durability Multiplier
                     )
@@ -153,6 +192,9 @@ public class ModParts {
                     PartIDs.TOUGH_HANDLE,
                     "Tough Handle",
                     6,
+                    EnumSet.of(
+                            ToolType.HAMMER
+                    ),
                     new HandlePartStats(
                             1.0F
                     )

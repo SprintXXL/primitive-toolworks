@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.common.util;
+package com.SprintXXL.primitivetoolworks.common.util.dev;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolItemHelper;

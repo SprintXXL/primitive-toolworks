@@ -1,11 +1,9 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.toolworkbench.containers;
 
-import com.SprintXXL.primitivetoolworks.common.util.container.ContainerBase;
+import com.SprintXXL.primitivetoolworks.common.util.ContainerBase;
 import com.SprintXXL.primitivetoolworks.feature.tables.common.IIngredientConsumer;
-import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.ToolModifierApplier;
-import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRecipe;
-import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRegistry;
 import com.SprintXXL.primitivetoolworks.feature.tools.recipes.RecipeModularTool;
+import com.SprintXXL.primitivetoolworks.feature.tools.recipes.RecipePartReplacement;
 import com.SprintXXL.primitivetoolworks.feature.tools.recipes.RecipeToolModifier;
 import com.SprintXXL.primitivetoolworks.feature.tools.recipes.RecipeToolRepair;
 import com.SprintXXL.primitivetoolworks.feature.tables.toolworkbench.ToolStationTier;
@@ -32,6 +30,9 @@ public class ContainerToolWorkbench extends ContainerBase implements IIngredient
 
     private final RecipeToolModifier modifierRecipe =
             new RecipeToolModifier();
+
+    private final RecipePartReplacement partReplacementRecipe =
+            new RecipePartReplacement();
 
     public ContainerToolWorkbench(
             InventoryPlayer playerInventory,
@@ -112,6 +113,9 @@ public class ContainerToolWorkbench extends ContainerBase implements IIngredient
         if (modifierRecipe.matches(craftMatrix)) {
             return modifierRecipe.getOutput(craftMatrix);
         }
+        if (partReplacementRecipe.matches(craftMatrix)) {
+            return partReplacementRecipe.getOutput(craftMatrix);
+        }
 
         return ItemStack.EMPTY;
     }
@@ -126,6 +130,9 @@ public class ContainerToolWorkbench extends ContainerBase implements IIngredient
         }
         else if(modifierRecipe.matches(craftMatrix)) {
             modifierRecipe.consumeIngredients(craftMatrix);
+        }
+        else if (partReplacementRecipe.matches(craftMatrix)) {
+            partReplacementRecipe.consumeIngredients(craftMatrix);
         }
 
         onCraftMatrixChanged(craftMatrix);

@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.recipes;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.features.levels.nbt.ToolLevelNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
@@ -85,6 +86,10 @@ public class RecipeModularTool {
         ToolNBT.setHandlePart(result, PartNBT.getPartType(handleStack));
 
         ToolModifierSlotNBT.setModifierSlots(result, 0);
+
+        ToolLevelNBT.setLevel(result, 1);
+        ToolLevelNBT.setXP(result, 0);
+        ToolLevelNBT.setTotalXP(result, 0);
 
         return result;
     }

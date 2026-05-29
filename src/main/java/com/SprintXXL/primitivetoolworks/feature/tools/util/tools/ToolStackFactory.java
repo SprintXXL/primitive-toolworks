@@ -2,6 +2,7 @@ package com.SprintXXL.primitivetoolworks.feature.tools.util.tools;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaultData;
 import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
+import com.SprintXXL.primitivetoolworks.feature.tools.features.levels.nbt.ToolLevelNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
@@ -30,6 +31,10 @@ public class ToolStackFactory {
         ToolNBT.setHandleMaterial(stack, defaults.getHandleMaterial());
 
         ToolModifierSlotNBT.setModifierSlots(stack, 0);
+
+        ToolLevelNBT.setLevel(stack, 1);
+        ToolLevelNBT.setXP(stack, 0);
+        ToolLevelNBT.setTotalXP(stack, 0);
 
         return stack;
     }

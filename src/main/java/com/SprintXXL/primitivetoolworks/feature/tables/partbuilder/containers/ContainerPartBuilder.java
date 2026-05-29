@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.containers;
 
-import com.SprintXXL.primitivetoolworks.common.util.container.ContainerBase;
+import com.SprintXXL.primitivetoolworks.common.util.ContainerBase;
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.recipes.RecipePart;
 import com.SprintXXL.primitivetoolworks.feature.tables.common.IIngredientConsumer;
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.slots.SlotMaterial;
