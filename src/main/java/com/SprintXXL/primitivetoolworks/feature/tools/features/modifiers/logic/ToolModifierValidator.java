@@ -3,6 +3,8 @@ package com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRecipe;
+import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
+import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierDefinition;
 import com.SprintXXL.primitivetoolworks.library.modifiers.registry.ModifierRegistry;
 import net.minecraft.item.ItemStack;
@@ -20,6 +22,12 @@ public class ToolModifierValidator {
         ModifierDefinition modifier = ModifierRegistry.getModifier(modifierID);
 
         if (modifier == null) {
+            return false;
+        }
+
+        ToolType toolType = ToolNBT.getToolType(toolStack);
+
+        if (!modifier.getAllowedToolTypes().contains(toolType)) {
             return false;
         }
 

@@ -29,5 +29,6 @@ public final class ModifierRegistry {
     public static void init() {
 
         register(ModModifiers.HASTE);
+        register(ModModifiers.LUCK);
     }
 }

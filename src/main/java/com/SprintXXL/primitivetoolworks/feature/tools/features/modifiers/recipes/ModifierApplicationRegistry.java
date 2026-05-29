@@ -35,5 +35,10 @@ public class ModifierApplicationRegistry {
                 new ItemStack(Blocks.REDSTONE_BLOCK),
                 1
         ));
+        register(new ModifierApplicationRecipe(
+                ModifierIDs.LUCK,
+                new ItemStack(Blocks.GOLD_BLOCK),
+                1
+        ));
     }
 }

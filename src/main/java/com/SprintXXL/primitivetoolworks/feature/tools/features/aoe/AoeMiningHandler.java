@@ -1,5 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.features.aoe;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.LuckCalculator;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -45,6 +46,8 @@ public class AoeMiningHandler {
 
             List<BlockPos> positions = AoeBlockFinder.findBlocks(center, side, profile);
 
+            int fortuneLevel = LuckCalculator.getFortuneLevel(tool);
+
             int blocksMined = 0;
 
             int remainingDurability = tool.getMaxDamage() - tool.getItemDamage();
@@ -67,7 +70,7 @@ public class AoeMiningHandler {
                 }
 
                 Block block = state.getBlock();
-                block.dropBlockAsItem(world, pos, state, 0);
+                block.dropBlockAsItem(world, pos, state, fortuneLevel);
                 world.setBlockToAir(pos);
 
                 blocksMined++;

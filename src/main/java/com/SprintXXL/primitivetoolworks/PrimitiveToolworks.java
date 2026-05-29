@@ -2,6 +2,7 @@ package com.SprintXXL.primitivetoolworks;
 
 import com.SprintXXL.primitivetoolworks.client.handler.GuiHandler;
 import com.SprintXXL.primitivetoolworks.common.util.DevCommands;
+import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.LuckDropEventHandler;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes.ModifierApplicationRegistry;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.common.network.PacketSelectStencilPattern;
@@ -13,6 +14,7 @@ import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.tileentities.
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.tileentities.TileEntityStencilTable;
 import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolTypeRegistry;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -45,6 +47,8 @@ public class PrimitiveToolworks {
         ToolTypeRegistry.init();
         PartValidation.init();
         ModifierApplicationRegistry.init();
+
+        MinecraftForge.EVENT_BUS.register(new LuckDropEventHandler());
 
         NETWORK.registerMessage(
                 PacketSelectStencilPattern.Handler.class,

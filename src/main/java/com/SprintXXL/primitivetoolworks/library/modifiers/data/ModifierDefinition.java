@@ -1,6 +1,9 @@
 package com.SprintXXL.primitivetoolworks.library.modifiers.data;
 
+import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import com.SprintXXL.primitivetoolworks.library.modifiers.stats.ModifierStats;
+
+import java.util.Set;
 
 public class ModifierDefinition {
 
@@ -9,19 +12,22 @@ public class ModifierDefinition {
     private final ModifierType type;
     private final ModifierStats stats;
     private final int maxLevel;
+    private final Set<ToolType> allowedToolTypes;
 
     public ModifierDefinition(
             String modifierID,
             String displayName,
             ModifierType type,
             ModifierStats stats,
-            int maxLevel
+            int maxLevel,
+            Set<ToolType> allowedToolTypes
     ) {
         this.modifierID = modifierID;
         this.displayName = displayName;
         this.type = type;
         this.stats = stats;
         this.maxLevel = maxLevel;
+        this.allowedToolTypes = allowedToolTypes;
     }
 
     public String getModifierID() {
@@ -42,5 +48,9 @@ public class ModifierDefinition {
 
     public int getMaxLevel() {
         return maxLevel;
+    }
+
+    public Set<ToolType> getAllowedToolTypes() {
+        return allowedToolTypes;
     }
 }
