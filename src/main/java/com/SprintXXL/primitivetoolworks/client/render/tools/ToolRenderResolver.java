@@ -23,6 +23,8 @@ public class ToolRenderResolver {
         String handleMaterial = ToolNBT.getHandleMaterial(stack);
 
         String mainPart = ToolNBT.getMainPart(stack);
+        String extraPart = ToolNBT.getExtraPart(stack);
+        String handlePart = ToolNBT.getHandlePart(stack);
 
 
         if ("unknown".equals(mainMaterial)) {
@@ -38,25 +40,39 @@ public class ToolRenderResolver {
         if ("unknown".equals(mainPart)) {
             mainPart = ToolDefaults.getDefaultMainPart(toolType);
         }
+        if ("unknown".equals(extraPart)) {
+            extraPart = ToolDefaults.getDefaultExtraPart(toolType);
+        }
+        if ("unknown".equals(handlePart)) {
+            handlePart = ToolDefaults.getDefaultHandlePart(toolType);
+        }
 
-        PartDefinition partDefinition = PartRegistry.getPart(mainPart);
+        PartDefinition mainPartID = PartRegistry.getPart(mainPart);
+        PartDefinition extraPartID = PartRegistry.getPart(extraPart);
+        PartDefinition handlePartID = PartRegistry.getPart(handlePart);
 
-        if (partDefinition == null) {
+        if (mainPartID == null || extraPartID == null || handlePartID == null) {
             return null;
         }
+
+        String mainID = mainPartID.getPartID();
+        String extraID = extraPartID.getPartID();
+        String handleID = handlePartID.getPartID();
 
         List<ToolLayerRenderData> layers = new ArrayList<>();
 
         layers.add(new ToolLayerRenderData(
                 toolType,
                 PartGroup.HANDLE,
-                handleMaterial
+                handleMaterial,
+                handleID
         ));
 
         layers.add(new ToolLayerRenderData(
                 toolType,
                 PartGroup.MAIN,
-                mainMaterial
+                mainMaterial,
+                mainID
         ));
 
         if (ToolDefaults.shouldRenderExtraLayer(toolType)) {
@@ -68,7 +84,8 @@ public class ToolRenderResolver {
             layers.add(new ToolLayerRenderData(
                     toolType,
                     PartGroup.EXTRA,
-                    extraMaterial
+                    extraMaterial,
+                    extraID
             ));
         }
 

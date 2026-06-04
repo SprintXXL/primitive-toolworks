@@ -62,7 +62,7 @@ public class ModelHandler {
         ModelLoader.setCustomModelResourceLocation(
                 ModItems.PART,
                 0,
-                new ModelResourceLocation(MODID + ":parts/parts", "inventory")
+                new ModelResourceLocation(MODID + ":icons/icons", "inventory")
         );
 
         // Tools \\
@@ -146,7 +146,8 @@ public class ModelHandler {
                     ToolLayerRenderData toolData = new ToolLayerRenderData(
                             toolType,
                             part.getPartGroup(),
-                            materialID
+                            materialID,
+                            partID
                     );
 
                     event.getMap().registerSprite(
@@ -220,7 +221,7 @@ public class ModelHandler {
         replaceToolModel(event, "tools/modular_hoe");
         replaceToolModel(event, "tools/modular_hammer");
 
-        replacePartModel(event, "parts/parts");
+        replacePartModel(event, "icons/icons");
         replacePatternModel(event, "patterns/patterns");
     }
     private static void replaceToolModel(ModelBakeEvent event, String modelName) {

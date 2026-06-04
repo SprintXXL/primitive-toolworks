@@ -10,7 +10,7 @@ public class PartTextureResolver {
         String folder = getFolder(data.group);
 
         return new ResourceLocation("primitivetoolworks",
-                "parts/" + folder + "/" + data.partType + "/" + data.materialID
+                "generated/" + data.materialID + "_" + data.partType + "_icon"
         );
     }
 

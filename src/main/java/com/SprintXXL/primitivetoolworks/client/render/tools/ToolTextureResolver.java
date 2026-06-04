@@ -14,7 +14,7 @@ public class ToolTextureResolver {
 
         return new ResourceLocation(
                 "primitivetoolworks",
-                "tool_layers/" + getToolFolder(data.toolType) + "/" + getLayerFolder(data.partGroup) + "/" + data.materialID
+                "generated/" + data.materialID + "_" + data.partID + "_layer"
         );
     }
 
