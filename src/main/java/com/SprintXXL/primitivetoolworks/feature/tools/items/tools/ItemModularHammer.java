@@ -35,7 +35,7 @@ public class ItemModularHammer extends ItemPickaxe implements IAoeTool {
         super(DUMMY_MATERIAL);
 
         setRegistryName(MODID, name);
-        setUnlocalizedName(MODID + "." + name);
+        setTranslationKey(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
     }
 

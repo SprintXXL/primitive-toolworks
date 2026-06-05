@@ -33,7 +33,7 @@ public class ItemModularAxe extends ItemAxe {
         super(DUMMY_MATERIAL, 0.0F, 0.0F);
 
         setRegistryName(MODID, name);
-        setUnlocalizedName(MODID + "." + name);
+        setTranslationKey(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
     }
 

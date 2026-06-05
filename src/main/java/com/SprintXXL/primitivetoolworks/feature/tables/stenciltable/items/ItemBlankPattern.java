@@ -10,7 +10,7 @@ public class ItemBlankPattern extends Item {
     public ItemBlankPattern() {
 
         setRegistryName(MODID, "blank_pattern");
-        setUnlocalizedName(MODID + ".blank_pattern");
+        setTranslationKey(MODID + ".blank_pattern");
         setCreativeTab(CreativeTabs.TOOLS);
     }
 }

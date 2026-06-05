@@ -23,7 +23,7 @@ public class BlockToolForge extends Block {
         super(Material.IRON);
 
         setRegistryName(MODID, "tool_forge");
-        setUnlocalizedName(MODID + ".tool_forge");
+        setTranslationKey(MODID + ".tool_forge");
 
         setHardness(2.5F);
         setResistance(5.0F);
@@ -47,12 +47,6 @@ public class BlockToolForge extends Block {
         }
 
         return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

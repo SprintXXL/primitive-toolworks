@@ -33,7 +33,7 @@ public class ItemModularHoe extends ItemHoe {
         super(DUMMY_MATERIAL);
 
         setRegistryName(MODID, name);
-        setUnlocalizedName(MODID + "." + name);
+        setTranslationKey(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
     }
 

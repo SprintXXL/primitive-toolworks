@@ -23,7 +23,7 @@ public class BlockToolStation extends Block {
         super(Material.WOOD);
 
         setRegistryName(MODID, "tool_station");
-        setUnlocalizedName(MODID + ".tool_station");
+        setTranslationKey(MODID + ".tool_station");
 
         setHardness(2.5F);
         setResistance(5.0F);
@@ -47,12 +47,6 @@ public class BlockToolStation extends Block {
         }
 
         return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

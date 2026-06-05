@@ -24,7 +24,7 @@ public class ItemPart extends Item {
     public ItemPart(String name) {
 
         setRegistryName(MODID, name);
-        setUnlocalizedName(MODID + "." + name);
+        setTranslationKey(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
         setMaxStackSize(1);
     }

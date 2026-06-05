@@ -25,7 +25,7 @@ public class BlockStencilTable extends Block {
         super(Material.WOOD);
 
         setRegistryName(MODID, "stencil_table");
-        setUnlocalizedName(MODID + ".stencil_table");
+        setTranslationKey(MODID + ".stencil_table");
 
         setHardness(2.5F);
         setResistance(5.0F);
@@ -49,12 +49,6 @@ public class BlockStencilTable extends Block {
         }
 
         return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

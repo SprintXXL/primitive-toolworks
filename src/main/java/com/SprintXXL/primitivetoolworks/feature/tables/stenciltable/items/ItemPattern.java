@@ -17,7 +17,7 @@ public class ItemPattern extends Item {
     public ItemPattern(String name) {
 
         setRegistryName(MODID, name);
-        setUnlocalizedName(MODID + "." + name);
+        setTranslationKey(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
         setMaxStackSize(1);
     }

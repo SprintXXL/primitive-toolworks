@@ -25,7 +25,7 @@ public class BlockPartBuilder extends Block {
         super(Material.WOOD);
 
         setRegistryName(MODID, "part_builder");
-        setUnlocalizedName(MODID + ".part_builder");
+        setTranslationKey(MODID + ".part_builder");
 
         setHardness(2.5F);
         setResistance(5.0F);
@@ -49,12 +49,6 @@ public class BlockPartBuilder extends Block {
         }
 
         return true;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

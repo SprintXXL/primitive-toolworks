@@ -26,9 +26,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
-import static com.SprintXXL.primitivetoolworks.Reference.MODID;
+import static com.SprintXXL.primitivetoolworks.Reference.*;
 
-@Mod(modid = MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = "required-after:primitivetools;required-after:primitiveores")
+@Mod(
+        modid = MODID,
+        name = NAME,
+        version = VERSION,
+        dependencies = "required-after:primitivetools;required-after:primitivematerials")
 public class PrimitiveToolworks {
 
     @Mod.Instance

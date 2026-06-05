@@ -1,6 +1,7 @@
 package com.SprintXXL.primitivetoolworks.library.materials.util;
 
-import com.SprintXXL.primitiveores.init.ModItems;
+import com.SprintXXL.primitivematerials.library.ModMaterials;
+import com.SprintXXL.primitivematerials.library.util.MaterialForm;
 import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
 import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
@@ -27,10 +28,10 @@ public class MaterialUtil {
         if (stack.getItem() == Items.BONE) {
             return MaterialIDs.BONE;
         }
-        if (stack.getItem() == ModItems.IRON_INGOT) {
+        if (stack.getItem() == com.SprintXXL.primitivematerials.library.MaterialRegistry.getItem(MaterialForm.INGOT, ModMaterials.IRON)) {
             return MaterialIDs.IRON;
         }
-        if (stack.getItem() == ModItems.BRONZE_INGOT) {
+        if (stack.getItem() == com.SprintXXL.primitivematerials.library.MaterialRegistry.getItem(MaterialForm.INGOT, ModMaterials.BRONZE)) {
             return MaterialIDs.BRONZE;
         }
         if (stack.getItem() == Item.getItemFromBlock(Blocks.OBSIDIAN)) {

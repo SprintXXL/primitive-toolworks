@@ -30,7 +30,7 @@ public class ItemModularSword extends ItemSword {
         super(DUMMY_MATERIAL);
 
         setRegistryName(MODID, name);
-        setUnlocalizedName(MODID + "." + name);
+        setTranslationKey(MODID + "." + name);
         setCreativeTab(CreativeTabs.TOOLS);
     }
 
