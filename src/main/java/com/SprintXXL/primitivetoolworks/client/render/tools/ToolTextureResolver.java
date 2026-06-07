@@ -1,7 +1,5 @@
 package com.SprintXXL.primitivetoolworks.client.render.tools;
 
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import net.minecraft.util.ResourceLocation;
 
 public class ToolTextureResolver {
@@ -16,26 +14,5 @@ public class ToolTextureResolver {
                 "primitivetoolworks",
                 "generated/" + data.materialID + "_" + data.partID + "_layer"
         );
-    }
-
-    private static String getLayerFolder(PartGroup group) {
-
-        if (group == PartGroup.HANDLE) {
-            return "0_handle";
-        }
-
-        if (group == PartGroup.MAIN) {
-            return "1_main";
-        }
-
-        if (group == PartGroup.EXTRA) {
-            return "2_extra";
-        }
-
-        return "unknown";
-    }
-
-    private static String getToolFolder(ToolType toolType) {
-        return toolType.getID();
     }
 }
