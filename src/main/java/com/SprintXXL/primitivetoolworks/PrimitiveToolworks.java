@@ -24,26 +24,17 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.Logger;
 
 import static com.SprintXXL.primitivetoolworks.Reference.*;
 
-@Mod(
-        modid = MODID,
-        name = NAME,
-        version = VERSION,
-        dependencies = "required-after:primitivetools;required-after:primitivematerials")
+@Mod(modid = MODID, name = NAME, version = VERSION)
 public class PrimitiveToolworks {
 
     @Mod.Instance
     public static PrimitiveToolworks INSTANCE;
 
-    private static Logger logger;
-
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
-        logger = event.getModLog();
+    public void preInit(FMLPreInitializationEvent event) {
         PartRegistry.init();
         MaterialRegistry.init();
         PatternRegistry.init();

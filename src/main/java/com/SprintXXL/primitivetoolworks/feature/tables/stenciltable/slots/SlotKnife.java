@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots;
 
-import com.SprintXXL.primitivetools.init.ModItems;
+import com.sprintxxl.ascentresourcerecipeindex.resources.definitions.ModResources;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -13,6 +13,6 @@ public class SlotKnife extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return stack.getItem() == ModItems.FLINT_KNIFE;
+        return stack.getItem() == ModResources.KNIFE.getItem();
     }
 }

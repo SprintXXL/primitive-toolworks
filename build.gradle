@@ -101,10 +101,6 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
-    modCompileOnly files("libs/primitivetools-0.5.0.jar")
-    modRuntimeOnly files("libs/primitivetools-0.5.0.jar")
-    modCompileOnly files("libs/primitivematerials-0.5.0.jar")
-    modRuntimeOnly files("libs/primitivematerials-0.5.0.jar")
 }
 
 apply from: 'gradle/scripts/dependencies.gradle'
