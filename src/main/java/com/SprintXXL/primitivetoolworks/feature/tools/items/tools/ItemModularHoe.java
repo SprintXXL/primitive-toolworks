@@ -6,13 +6,13 @@ import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDamageHelpe
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDisplayNameHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolStackFactory;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ModToolTypes;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -27,7 +27,7 @@ import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemModularHoe extends ItemHoe {
 
-    private static final ToolType toolType = ToolType.HOE;
+    private static final ToolType toolType = ModToolTypes.HOE;
 
     public ItemModularHoe(String name) {
         super(DUMMY_MATERIAL);
@@ -54,7 +54,7 @@ public class ItemModularHoe extends ItemHoe {
             return;
         }
 
-        items.add(ToolStackFactory.createDefaultTool(this, ToolType.HOE));
+        items.add(ToolStackFactory.createDefaultTool(this, ModToolTypes.HOE));
     }
 
     @Override

@@ -1,11 +1,11 @@
 package com.SprintXXL.primitivetoolworks.library.parts.logic;
 
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.ExtraMaterialStats;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.HandleMaterialStats;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.MainMaterialStats;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
@@ -22,8 +22,8 @@ public class PartCalculator {
         String partID = PartNBT.getPartType(stack);
         PartGroup group = PartNBT.getPartGroup(stack);
 
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
-        PartDefinition part = PartRegistry.getPart(partID);
+        Material material = MaterialRegistry.getMaterial(materialID);
+        Part part = PartRegistry.getPart(partID);
 
         if (material == null || part == null || group == null) {
             return 0;
@@ -61,8 +61,8 @@ public class PartCalculator {
         String partID = PartNBT.getPartType(stack);
         PartGroup group = PartNBT.getPartGroup(stack);
 
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
-        PartDefinition part = PartRegistry.getPart(partID);
+        Material material = MaterialRegistry.getMaterial(materialID);
+        Part part = PartRegistry.getPart(partID);
 
         if (material == null || part == null || group == null) {
             return 0;

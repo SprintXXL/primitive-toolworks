@@ -6,7 +6,8 @@ import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDamageHelpe
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDisplayNameHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolStackFactory;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ModToolTypes;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -27,7 +28,7 @@ import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemModularShovel extends ItemSpade {
 
-    private static final ToolType toolType = ToolType.SHOVEL;
+    private static final ToolType toolType = ModToolTypes.SHOVEL;
 
     public ItemModularShovel(String name) {
         super(DUMMY_MATERIAL);
@@ -54,7 +55,7 @@ public class ItemModularShovel extends ItemSpade {
             return;
         }
 
-        items.add(ToolStackFactory.createDefaultTool(this, ToolType.SHOVEL));
+        items.add(ToolStackFactory.createDefaultTool(this, ModToolTypes.SHOVEL));
     }
 
     @Override

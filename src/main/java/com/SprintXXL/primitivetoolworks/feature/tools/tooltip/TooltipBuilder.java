@@ -1,7 +1,8 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.tooltip;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components.*;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ModToolTypes;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -54,10 +55,10 @@ public class TooltipBuilder {
     }
 
     private static boolean showsMiningSpeed(ToolType toolType) {
-        return toolType != ToolType.SWORD;
+        return toolType != ModToolTypes.SWORD;
     }
 
     private static boolean showsHarvestLevel(ToolType toolType) {
-        return toolType == ToolType.PICKAXE || toolType == ToolType.HAMMER;
+        return toolType == ModToolTypes.PICKAXE || toolType == ModToolTypes.HAMMER;
     }
 }

@@ -4,7 +4,7 @@ import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.Too
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipComponent;
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipContext;
-import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierDefinition;
+import com.SprintXXL.primitivetoolworks.library.modifiers.Modifier;
 import com.SprintXXL.primitivetoolworks.library.modifiers.registry.ModifierRegistry;
 import net.minecraft.util.text.TextFormatting;
 
@@ -21,9 +21,9 @@ public class ModifierTooltipComponent implements TooltipComponent {
         tooltip.add("Slots Remaining:" + " " + TextFormatting.WHITE + remainingSlots);
         tooltip.add("");
 
-        for (ModifierDefinition modifier : ModifierRegistry.getAllModifiers()) {
+        for (Modifier modifier : ModifierRegistry.getAllModifiers()) {
 
-            int level = ToolModifierNBT.getModifierLevel(context.getStack(), modifier.getModifierID());
+            int level = ToolModifierNBT.getModifierLevel(context.getStack(), modifier.getID());
 
             if (level > 0) {
                 tooltip.add(modifier.getDisplayName() + " " + TextFormatting.WHITE + toRoman(level));

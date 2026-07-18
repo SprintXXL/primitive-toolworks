@@ -11,7 +11,7 @@ import com.SprintXXL.primitivetoolworks.library.parts.logic.PartValidation;
 import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.tileentities.TileEntityPartBuilder;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.tileentities.TileEntityStencilTable;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolTypeRegistry;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.registry.ToolTypeRegistry;
 import com.SprintXXL.primitivetoolworks.common.util.dev.DevCommands;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +26,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 import static com.SprintXXL.primitivetoolworks.Reference.*;
+import static com.SprintXXL.primitivetoolworks.ascent.ToolworksDefinitionProvider.initToolworksDefinitionProvider;
+import static com.SprintXXL.primitivetoolworks.ascent.ToolworksRecipes.initToolworksRecipes;
 
 @Mod(modid = MODID, name = NAME, version = VERSION)
 public class PrimitiveToolworks {
@@ -35,11 +37,11 @@ public class PrimitiveToolworks {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        PartRegistry.init();
-        MaterialRegistry.init();
-        PatternRegistry.init();
-        ModifierRegistry.init();
-        ToolTypeRegistry.init();
+        PartRegistry.initPartRegistry();
+        MaterialRegistry.initMaterialRegistry();
+        PatternRegistry.initPatternRegistry();
+        ModifierRegistry.initModifierRegistry();
+        ToolTypeRegistry.initToolTypeRegistry();
         PartValidation.init();
         ModifierApplicationRegistry.init();
 
@@ -51,6 +53,12 @@ public class PrimitiveToolworks {
                 0,
                 Side.SERVER
         );
+
+        // ARRI \\
+        initToolworksRecipes();
+
+        // HUB \\
+        initToolworksDefinitionProvider();
     }
 
     @EventHandler

@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.library.materials.data;
+package com.SprintXXL.primitivetoolworks.library.materials.definitions;
 
 public class MaterialIDs {
 

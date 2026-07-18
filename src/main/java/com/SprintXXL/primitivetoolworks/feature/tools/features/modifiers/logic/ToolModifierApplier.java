@@ -20,9 +20,9 @@ public class ToolModifierApplier {
 
         ItemStack output = toolStack.copy();
 
-        int currentLevel = ToolModifierNBT.getModifierLevel(output, recipe.getModifierID());
+        int currentLevel = ToolModifierNBT.getModifierLevel(output, recipe.getID());
 
-        ToolModifierNBT.setModifierLevel(output, recipe.getModifierID(), currentLevel + recipe.getLevelIncrease());
+        ToolModifierNBT.setModifierLevel(output, recipe.getID(), currentLevel + recipe.getLevelIncrease());
 
         return output;
     }

@@ -1,48 +1,34 @@
 package com.SprintXXL.primitivetoolworks.library.parts.registry;
 
-import com.SprintXXL.primitivetoolworks.library.parts.defaults.ModParts;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 
 import java.util.*;
 
+import static com.SprintXXL.primitivetoolworks.library.parts.definitions.ModParts.initPartDefinitions;
+
 public class PartRegistry {
 
-    private static final Map<String, PartDefinition> PARTS =
+    private static final Map<String, Part> PARTS =
             new HashMap<>();
 
-    private static final List<PartDefinition> ALL_PARTS =
+    private static final List<Part> ALL_PARTS =
             new ArrayList<>();
 
-    public static List<PartDefinition> getAllParts() {
+    public static List<Part> getAllParts() {
         return Collections.unmodifiableList(ALL_PARTS);
     }
 
-    public static PartDefinition getPart(String id) {
+    public static Part getPart(String id) {
         return PARTS.get(id);
     }
 
-    public static void register(PartDefinition part) {
-        PARTS.put(part.getPartID(), part);
+    public static void register(Part part) {
+        PARTS.put(part.getID(), part);
         ALL_PARTS.add(part);
     }
 
-    public static void init() {
+    public static void initPartRegistry() {
 
-        // Main Parts \\
-        register(ModParts.SWORD_BLADE);
-        register(ModParts.PICKAXE_HEAD);
-        register(ModParts.AXE_HEAD);
-        register(ModParts.SHOVEL_HEAD);
-        register(ModParts.HOE_HEAD);
-        register(ModParts.HAMMER_HEAD);
-
-        // Extra Parts \\
-        register(ModParts.BINDING);
-        register(ModParts.TOUGH_BINDING);
-        register(ModParts.WIDE_GUARD);
-
-        // Handle Parts \\
-        register(ModParts.HANDLE);
-        register(ModParts.TOUGH_HANDLE);
+        initPartDefinitions(PartRegistry::register);
     }
 }

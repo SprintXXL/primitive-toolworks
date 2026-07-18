@@ -3,12 +3,12 @@ package com.SprintXXL.primitivetoolworks.feature.tools.recipes;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
 import com.SprintXXL.primitivetoolworks.common.util.RecipeHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolItemHelper;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 
@@ -118,12 +118,12 @@ public class RecipePartReplacement {
         ToolType toolType = ToolNBT.getToolType(toolStack);
         String partType = PartNBT.getPartType(partStack);
 
-        PartDefinition part = PartRegistry.getPart(partType);
+        Part part = PartRegistry.getPart(partType);
 
         if (part == null) {
             return false;
         }
 
-        return part.getAllowedToolTypes().contains(toolType);
+        return part.getAllowedToolType().contains(toolType);
     }
 }

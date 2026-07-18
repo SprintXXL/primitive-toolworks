@@ -6,7 +6,8 @@ import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDamageHelpe
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolDisplayNameHelper;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolStackFactory;
 import com.SprintXXL.primitivetoolworks.feature.tools.logic.ToolCalculator;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ModToolTypes;
 import com.google.common.collect.Multimap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,7 +25,7 @@ import static com.SprintXXL.primitivetoolworks.Reference.MODID;
 
 public class ItemModularSword extends ItemSword {
 
-    private static final ToolType toolType = ToolType.SWORD;
+    private static final ToolType toolType = ModToolTypes.SWORD;
 
     public ItemModularSword(String name) {
         super(DUMMY_MATERIAL);
@@ -51,7 +52,7 @@ public class ItemModularSword extends ItemSword {
             return;
         }
 
-        items.add(ToolStackFactory.createDefaultTool(this, ToolType.SWORD));
+        items.add(ToolStackFactory.createDefaultTool(this, ModToolTypes.SWORD));
     }
 
     @Override

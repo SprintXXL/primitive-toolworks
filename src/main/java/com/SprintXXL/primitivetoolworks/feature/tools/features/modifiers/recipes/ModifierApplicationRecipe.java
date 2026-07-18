@@ -16,7 +16,7 @@ public class ModifierApplicationRecipe {
         this.levelIncrease = levelIncrease;
     }
 
-    public String getModifierID() {
+    public String getID() {
         return modifierID;
     }
 

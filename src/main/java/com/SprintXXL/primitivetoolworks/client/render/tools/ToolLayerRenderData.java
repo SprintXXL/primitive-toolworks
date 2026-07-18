@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.client.render.tools;
 
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.util.ResourceLocation;
 
 public class ToolLayerRenderData {

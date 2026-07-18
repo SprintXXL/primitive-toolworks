@@ -1,20 +1,30 @@
-package com.SprintXXL.primitivetoolworks.library.materials.defaults;
+package com.SprintXXL.primitivetoolworks.library.materials.definitions;
 
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialGroup;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.ExtraMaterialStats;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.HandleMaterialStats;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.MainMaterialStats;
+import com.sprintxxl.ascenthub.definitions.DefinitionRegistrar;
 import net.minecraft.util.text.TextFormatting;
 
 public class ModMaterials {
 
     private ModMaterials() {}
 
+    public static void initMaterialDefinitions(DefinitionRegistrar<Material> registrar) {
+
+        registrar.register(FLINT);
+        registrar.register(IRON);
+        registrar.register(BRONZE);
+        registrar.register(BONE);
+        registrar.register(WOOD);
+        registrar.register(OBSIDIAN);
+    }
+
     // MAIN MATERIALS \\
-    public static final MaterialDefinition FLINT =
-            new MaterialDefinition(
+    public static final Material FLINT =
+            new Material(
                     MaterialGroup.MAIN,
                     MaterialIDs.FLINT,
                     "FLINT",
@@ -27,8 +37,8 @@ public class ModMaterials {
                     )
             );
 
-    public static final MaterialDefinition IRON =
-            new MaterialDefinition(
+    public static final Material IRON =
+            new Material(
                     MaterialGroup.MAIN,
                     MaterialIDs.IRON,
                     "IRON",
@@ -41,8 +51,8 @@ public class ModMaterials {
                     )
             );
 
-    public static final MaterialDefinition BRONZE =
-            new MaterialDefinition(
+    public static final Material BRONZE =
+            new Material(
                     MaterialGroup.MAIN,
                     MaterialIDs.BRONZE,
                     "BRONZE",
@@ -56,8 +66,8 @@ public class ModMaterials {
             );
 
     // EXTRA MATERIALS \\
-    public static final MaterialDefinition BONE =
-            new MaterialDefinition(
+    public static final Material BONE =
+            new Material(
                     MaterialGroup.EXTRA,
                     MaterialIDs.BONE,
                     "BONE",
@@ -68,8 +78,8 @@ public class ModMaterials {
             );
 
     // HANDLE MATERIALS \\
-    public static final MaterialDefinition WOOD =
-            new MaterialDefinition(
+    public static final Material WOOD =
+            new Material(
                     MaterialGroup.HANDLE,
                     MaterialIDs.WOOD,
                     "WOOD",
@@ -78,8 +88,8 @@ public class ModMaterials {
                             10 // Durability Bonus
                     )
             );
-    public static final MaterialDefinition OBSIDIAN =
-            new MaterialDefinition(
+    public static final Material OBSIDIAN =
+            new Material(
                     MaterialGroup.HANDLE,
                     MaterialIDs.OBSIDIAN,
                     "OBISDIAN",

@@ -1,8 +1,9 @@
-package com.SprintXXL.primitivetoolworks.library.patterns.data;
+package com.SprintXXL.primitivetoolworks.library.parts.definitions;
 
-public class PatternIDs {
+public class PartIDs {
 
-    // Main Patterns \\
+
+    // Main Parts \\
     public static final String SWORD_BLADE = "sword_blade";
     public static final String PICKAXE_HEAD = "pickaxe_head";
     public static final String AXE_HEAD = "axe_head";
@@ -10,12 +11,12 @@ public class PatternIDs {
     public static final String HOE_HEAD = "hoe_head";
     public static final String HAMMER_HEAD = "hammer_head";
 
-    // Extra Patterns \\
+    // Extra Parts \\
     public static final String BINDING = "binding";
     public static final String TOUGH_BINDING = "tough_binding";
     public static final String WIDE_GUARD = "wide_guard";
 
-    // Handle Patterns \\
+    // Handle Parts \\
     public static final String HANDLE = "handle";
     public static final String TOUGH_HANDLE = "tough_handle";
 }

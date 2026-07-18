@@ -2,19 +2,20 @@ package com.SprintXXL.primitivetoolworks.feature.tools.recipes;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.features.levels.nbt.ToolLevelNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
 import com.SprintXXL.primitivetoolworks.library.parts.stats.MainPartStats;
 import com.SprintXXL.primitivetoolworks.common.util.RecipeHelper;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
 import com.SprintXXL.primitivetoolworks.feature.tables.toolworkbench.ToolStationTier;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolTypeRegistry;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ToolTypeIDs.*;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+
+import static com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ToolTypeIDs.*;
 
 public class RecipeModularTool {
 
@@ -66,7 +67,7 @@ public class RecipeModularTool {
             return ItemStack.EMPTY;
         }
 
-        ToolStationTier requiredTier = ToolTypeRegistry.getRequiredStationTier(toolType);
+        ToolStationTier requiredTier = toolType.getRequiredStationTier();
 
         if (!stationTier.canCraft(requiredTier)) {
             return ItemStack.EMPTY;
@@ -106,11 +107,11 @@ public class RecipeModularTool {
         }
     }
 
-    private ToolType getToolType(ItemStack mainStack) {
+    private static ToolType getToolType(ItemStack mainStack) {
 
         String mainPartID = PartNBT.getPartType(mainStack);
 
-        PartDefinition mainPart = PartRegistry.getPart(mainPartID);
+        Part mainPart = PartRegistry.getPart(mainPartID);
 
         if (mainPart == null) {
             return null;
@@ -121,7 +122,7 @@ public class RecipeModularTool {
         return mainStats.getToolType();
     }
 
-    private boolean areStacksToolParts(ItemStack mainStack, ItemStack extraStack, ItemStack handleStack) {
+    private static boolean areStacksToolParts(ItemStack mainStack, ItemStack extraStack, ItemStack handleStack) {
 
         if (mainStack.getItem() != ModItems.PART || extraStack.getItem() != ModItems.PART || handleStack.getItem() != ModItems.PART) {
             return false;
@@ -130,14 +131,14 @@ public class RecipeModularTool {
         return true;
     }
 
-    private boolean areRequiredSlotsFilled(ItemStack mainStack, ItemStack extraStack, ItemStack handleStack) {
+    private static boolean areRequiredSlotsFilled(ItemStack mainStack, ItemStack extraStack, ItemStack handleStack) {
 
         return !mainStack.isEmpty()
         && !extraStack.isEmpty()
         && !handleStack.isEmpty();
     }
 
-    private boolean areAllOtherSlotsEmpty(InventoryCrafting craftMatrix) {
+    private static boolean areAllOtherSlotsEmpty(InventoryCrafting craftMatrix) {
 
         for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
             if (i != MAIN_SLOT && i != EXTRA_SLOT && i != HANDLE_SLOT) {
@@ -150,9 +151,10 @@ public class RecipeModularTool {
         return true;
     }
 
-    private ItemStack createOutputStack(ToolType toolType) {
+    private static ItemStack createOutputStack(ToolType toolType) {
 
-        switch (toolType) {
+        switch (toolType.getID()) {
+
             case SWORD:
                 return new ItemStack(ModItems.MODULAR_SWORD);
             case PICKAXE:
@@ -170,7 +172,7 @@ public class RecipeModularTool {
         }
     }
 
-    private boolean doPartsFormValidTool(ItemStack mainStack, ItemStack extraStack, ItemStack handleStack) {
+    private static boolean doPartsFormValidTool(ItemStack mainStack, ItemStack extraStack, ItemStack handleStack) {
 
         ToolType toolType = getToolType(mainStack);
 
@@ -178,22 +180,22 @@ public class RecipeModularTool {
             return false;
         }
 
-        String expectedMainPart = ToolDefaults.getDefaultMainPart(toolType);
-        String expectedExtraPart = ToolDefaults.getDefaultExtraPart(toolType);
-        String expectedHandlePart = ToolDefaults.getDefaultHandlePart(toolType);
+        String expectedMainPart = toolType.getDefaultMainPart();
+        String expectedExtraPart = toolType.getDefaultExtraPart();
+        String expectedHandlePart = toolType.getDefaultHandlePart();
 
         return expectedMainPart.equals(PartNBT.getPartType(mainStack))
                 && expectedExtraPart.equals(PartNBT.getPartType(extraStack))
                 && expectedHandlePart.equals(PartNBT.getPartType(handleStack));
     }
 
-    private ItemStack getMainStack(InventoryCrafting craftMatrix) {
+    private static ItemStack getMainStack(InventoryCrafting craftMatrix) {
         return craftMatrix.getStackInSlot(MAIN_SLOT);
     }
-    private ItemStack getExtraStack(InventoryCrafting craftMatrix) {
+    private static ItemStack getExtraStack(InventoryCrafting craftMatrix) {
         return craftMatrix.getStackInSlot(EXTRA_SLOT);
     }
-    private ItemStack getHandleStack(InventoryCrafting craftMatrix) {
+    private static ItemStack getHandleStack(InventoryCrafting craftMatrix) {
         return craftMatrix.getStackInSlot(HANDLE_SLOT);
     }
 }

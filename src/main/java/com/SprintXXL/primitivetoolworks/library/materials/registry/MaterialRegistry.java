@@ -1,43 +1,32 @@
 package com.SprintXXL.primitivetoolworks.library.materials.registry;
 
-import com.SprintXXL.primitivetoolworks.library.materials.defaults.ModMaterials;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 
 import java.util.*;
 
+import static com.SprintXXL.primitivetoolworks.library.materials.definitions.ModMaterials.initMaterialDefinitions;
+
 public class MaterialRegistry {
 
-    private static final Map<String, MaterialDefinition> MATERIALS =
-            new HashMap<>();
+    private static final Map<String, Material> MATERIALS = new HashMap<>();
 
-    private static final List<MaterialDefinition> ALL_MATERIALS =
-            new ArrayList<>();
+    private static final List<Material> ALL_MATERIALS = new ArrayList<>();
 
-    public static List<MaterialDefinition> getAllMaterials() {
+    public static List<Material> getAllMaterials() {
         return Collections.unmodifiableList(ALL_MATERIALS);
     }
 
-    public static MaterialDefinition getMaterial(String id) {
+    public static Material getMaterial(String id) {
         return MATERIALS.get(id);
     }
 
-    public static void register(MaterialDefinition material) {
-        MATERIALS.put(material.getMaterialID(), material);
+    public static void register(Material material) {
+        MATERIALS.put(material.getID(), material);
         ALL_MATERIALS.add(material);
     }
 
-    public static void init() {
+    public static void initMaterialRegistry() {
 
-        // Main Materials \\
-        register(ModMaterials.FLINT);
-        register(ModMaterials.IRON);
-        register(ModMaterials.BRONZE);
-
-        // Extra Materials \\
-        register(ModMaterials.BONE);
-
-        // Handle Materials \\
-        register(ModMaterials.WOOD);
-        register(ModMaterials.OBSIDIAN);
+        initMaterialDefinitions(MaterialRegistry::register);
     }
 }

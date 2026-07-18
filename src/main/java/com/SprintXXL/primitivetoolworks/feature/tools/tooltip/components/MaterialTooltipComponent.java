@@ -1,10 +1,9 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.tooltip.components;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipComponent;
 import com.SprintXXL.primitivetoolworks.feature.tools.tooltip.TooltipContext;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.util.MaterialUtil;
 
 import java.util.List;
@@ -14,17 +13,17 @@ public class MaterialTooltipComponent implements TooltipComponent {
     @Override
     public void addLines(TooltipContext context, List<String> tooltip) {
 
-        MaterialDefinition mainMaterial = MaterialUtil.getMaterialOrDefault(
+        Material mainMaterial = MaterialUtil.getMaterialOrDefault(
                 ToolNBT.getMainMaterial(context.getStack()),
-                ToolDefaults.getDefaultMainMaterial(context.getToolType()));
+                context.getToolType().getDefaultMainMaterial());
 
-        MaterialDefinition extraMaterial = MaterialUtil.getMaterialOrDefault(
+        Material extraMaterial = MaterialUtil.getMaterialOrDefault(
                 ToolNBT.getExtraMaterial(context.getStack()),
-                ToolDefaults.getDefaultExtraMaterial(context.getToolType()));
+                context.getToolType().getDefaultExtraMaterial());
 
-        MaterialDefinition handleMaterial = MaterialUtil.getMaterialOrDefault(
+        Material handleMaterial = MaterialUtil.getMaterialOrDefault(
                 ToolNBT.getHandleMaterial(context.getStack()),
-                ToolDefaults.getDefaultHandleMaterial(context.getToolType()));
+                context.getToolType().getDefaultHandleMaterial());
 
         if (mainMaterial == null || extraMaterial == null || handleMaterial == null) {
             tooltip.add("Unknown");

@@ -1,37 +1,40 @@
-package com.SprintXXL.primitivetoolworks.library.modifiers.data;
+package com.SprintXXL.primitivetoolworks.library.modifiers;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierType;
 import com.SprintXXL.primitivetoolworks.library.modifiers.stats.ModifierStats;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.sprintxxl.ascenthub.definitions.AscentDefinition;
 
 import java.util.Set;
 
-public class ModifierDefinition {
+public class Modifier implements AscentDefinition {
 
-    private final String modifierID;
+    private final String id;
     private final String displayName;
     private final ModifierType type;
     private final ModifierStats stats;
     private final int maxLevel;
-    private final Set<ToolType> allowedToolTypes;
+    private final Set<ToolType> allowedToolType;
 
-    public ModifierDefinition(
+    public Modifier(
             String modifierID,
             String displayName,
             ModifierType type,
             ModifierStats stats,
             int maxLevel,
-            Set<ToolType> allowedToolTypes
+            Set<ToolType> allowedToolType
     ) {
-        this.modifierID = modifierID;
+        this.id = modifierID;
         this.displayName = displayName;
         this.type = type;
         this.stats = stats;
         this.maxLevel = maxLevel;
-        this.allowedToolTypes = allowedToolTypes;
+        this.allowedToolType = allowedToolType;
     }
 
-    public String getModifierID() {
-        return modifierID;
+    @Override
+    public String getID() {
+        return id;
     }
 
     public String getDisplayName() {
@@ -50,7 +53,7 @@ public class ModifierDefinition {
         return maxLevel;
     }
 
-    public Set<ToolType> getAllowedToolTypes() {
-        return allowedToolTypes;
+    public Set<ToolType> getAllowedToolType() {
+        return allowedToolType;
     }
 }

@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.items;
 
-import com.SprintXXL.primitivetoolworks.library.patterns.data.PatternDefinition;
+import com.SprintXXL.primitivetoolworks.library.patterns.Pattern;
 import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistry;
-import com.SprintXXL.primitivetoolworks.library.patterns.defaults.PatternDefaults;
-import com.SprintXXL.primitivetoolworks.library.patterns.data.PatternIDs;
+import com.SprintXXL.primitivetoolworks.library.patterns.util.PatternDefaults;
+import com.SprintXXL.primitivetoolworks.library.patterns.definitions.PatternIDs;
 import com.SprintXXL.primitivetoolworks.library.patterns.nbt.PatternNBT;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -27,7 +27,7 @@ public class ItemPattern extends Item {
 
         String patternID = PatternNBT.getPatternType(stack);
 
-        PatternDefinition pattern = PatternRegistry.getPattern(patternID);
+        Pattern pattern = PatternRegistry.getPattern(patternID);
 
         if (pattern == null) {
             return "Part Pattern";

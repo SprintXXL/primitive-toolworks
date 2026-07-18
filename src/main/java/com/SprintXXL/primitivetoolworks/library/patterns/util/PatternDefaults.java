@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.library.patterns.defaults;
+package com.SprintXXL.primitivetoolworks.library.patterns.util;
 
 import com.SprintXXL.primitivetoolworks.library.patterns.nbt.PatternNBT;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;

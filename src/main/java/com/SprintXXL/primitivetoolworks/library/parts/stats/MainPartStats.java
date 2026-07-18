@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.library.parts.stats;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 
 public class MainPartStats implements PartStats {
 

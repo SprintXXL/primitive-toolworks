@@ -4,7 +4,7 @@ import com.SprintXXL.primitivetoolworks.common.util.ContainerBase;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots.SlotBlankPattern;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots.SlotKnife;
 import com.SprintXXL.primitivetoolworks.feature.tables.stenciltable.slots.SlotOutput;
-import com.SprintXXL.primitivetoolworks.library.patterns.data.PatternDefinition;
+import com.SprintXXL.primitivetoolworks.library.patterns.Pattern;
 import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.feature.tables.common.IIngredientConsumer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -78,7 +78,7 @@ public class ContainerStencilTable extends ContainerBase implements IIngredientC
         detectAndSendChanges();
     }
 
-    private PatternDefinition selectedPattern;
+    private Pattern selectedPattern;
 
     public void setSelectedPatternID(String patternID) {
         this.selectedPattern = PatternRegistry.getPattern(patternID);

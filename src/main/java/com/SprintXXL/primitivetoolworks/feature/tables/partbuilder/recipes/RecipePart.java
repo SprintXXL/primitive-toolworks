@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tables.partbuilder.recipes;
 
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
@@ -67,7 +67,7 @@ public class RecipePart {
         String materialID = getMaterialID(materialStack);
         String partType = PatternNBT.getPatternType(patternStack);
 
-        PartDefinition partDefinition = PartRegistry.getPart(partType);
+        Part partDefinition = PartRegistry.getPart(partType);
 
         if (partDefinition == null) {
             return null;

@@ -1,10 +1,11 @@
-package com.SprintXXL.primitivetoolworks.feature.tools.types;
+package com.SprintXXL.primitivetoolworks.library.tooltypes;
 
 import com.SprintXXL.primitivetoolworks.feature.tables.toolworkbench.ToolStationTier;
+import com.sprintxxl.ascenthub.definitions.AscentDefinition;
 
-public class ToolTypeDefinition {
+public class ToolType implements AscentDefinition {
 
-    private final ToolType toolType;
+    private final String id;
 
     private final ToolStationTier requiredStationTier;
 
@@ -19,8 +20,8 @@ public class ToolTypeDefinition {
 
     private final boolean renderExtraLayer;
 
-    public ToolTypeDefinition(
-            ToolType toolType,
+    public ToolType(
+            String id,
             ToolStationTier requiredStationTier,
             String defaultMainPart,
             String defaultMainMaterial,
@@ -30,7 +31,7 @@ public class ToolTypeDefinition {
             String defaultExtraMaterial,
             boolean renderExtraLayer) {
 
-        this.toolType = toolType;
+        this.id = id;
 
         this.requiredStationTier = requiredStationTier;
 
@@ -46,8 +47,9 @@ public class ToolTypeDefinition {
         this.renderExtraLayer = renderExtraLayer;
     }
 
-    public ToolType getToolType() {
-        return toolType;
+    @Override
+    public String getID() {
+        return id;
     }
 
     public ToolStationTier getRequiredStationTier() {

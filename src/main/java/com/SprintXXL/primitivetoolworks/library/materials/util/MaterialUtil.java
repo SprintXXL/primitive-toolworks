@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.library.materials.util;
 
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialIDs;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
+import com.SprintXXL.primitivetoolworks.library.materials.definitions.MaterialIDs;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import static com.SprintXXL.primitivetoolworks.common.util.RecipeHelper.isPlankWood;
-import static com.sprintxxl.ascentresourcerecipeindex.resources.definitions.ModResources.*;
+import static com.sprintxxl.ascentresourcerecipeindex.resources.definitions.ResourceCatalog.*;
 
 public class MaterialUtil {
 
@@ -27,7 +27,7 @@ public class MaterialUtil {
         if (stack.getItem() == Items.BONE) {
             return MaterialIDs.BONE;
         }
-        if (stack.getItem() == IRON_ORE.getItem()) {
+        if (stack.getItem() == IRON_INGOT.getItem()) {
             return MaterialIDs.IRON;
         }
         if (stack.getItem() == BRONZE_INGOT.getItem()) {
@@ -40,16 +40,16 @@ public class MaterialUtil {
         return "unknown";
     }
 
-    public static MaterialDefinition getMaterial(ItemStack stack) {
+    public static Material getMaterial(ItemStack stack) {
 
         String materialID = getMaterialID(stack);
 
         return MaterialRegistry.getMaterial(materialID);
     }
 
-    public static MaterialDefinition getMaterialOrDefault(String materialID, String defaultMaterialID) {
+    public static Material getMaterialOrDefault(String materialID, String defaultMaterialID) {
 
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
+        Material material = MaterialRegistry.getMaterial(materialID);
 
         if (material != null) {
             return material;

@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt;
 
 import com.SprintXXL.primitivetoolworks.common.util.NBTHelper;
-import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierDefinition;
+import com.SprintXXL.primitivetoolworks.library.modifiers.Modifier;
 import com.SprintXXL.primitivetoolworks.library.modifiers.registry.ModifierRegistry;
 import net.minecraft.item.ItemStack;
 
@@ -32,9 +32,9 @@ public final class ToolModifierSlotNBT {
 
         int usedSlots = 0;
 
-        for (ModifierDefinition modifier : ModifierRegistry.getAllModifiers()) {
+        for (Modifier modifier : ModifierRegistry.getAllModifiers()) {
 
-            int level = ToolModifierNBT.getModifierLevel(stack, modifier.getModifierID());
+            int level = ToolModifierNBT.getModifierLevel(stack, modifier.getID());
             usedSlots += level;
         }
 

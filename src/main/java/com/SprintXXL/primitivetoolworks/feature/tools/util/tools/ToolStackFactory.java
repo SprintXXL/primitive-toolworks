@@ -1,11 +1,9 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.util.tools;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaultData;
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.levels.nbt.ToolLevelNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -17,18 +15,16 @@ public class ToolStackFactory {
 
         ItemStack stack = new ItemStack(item);
 
-        ToolDefaultData defaults = ToolDefaults.getDefaultsFor(toolType);
-
         ToolNBT.setToolType(stack, toolType);
 
-        ToolNBT.setMainPart(stack, defaults.getMainPart());
-        ToolNBT.setMainMaterial(stack, defaults.getMainMaterial());
+        ToolNBT.setMainPart(stack, toolType.getDefaultMainPart());
+        ToolNBT.setMainMaterial(stack, toolType.getDefaultMainMaterial());
 
-        ToolNBT.setExtraPart(stack, defaults.getExtraPart());
-        ToolNBT.setExtraMaterial(stack, defaults.getExtraMaterial());
+        ToolNBT.setExtraPart(stack, toolType.getDefaultExtraPart());
+        ToolNBT.setExtraMaterial(stack, toolType.getDefaultExtraMaterial());
 
-        ToolNBT.setHandlePart(stack, defaults.getHandlePart());
-        ToolNBT.setHandleMaterial(stack, defaults.getHandleMaterial());
+        ToolNBT.setHandlePart(stack, toolType.getDefaultHandlePart());
+        ToolNBT.setHandleMaterial(stack, toolType.getDefaultHandleMaterial());
 
         ToolModifierSlotNBT.setModifierSlots(stack, 0);
 

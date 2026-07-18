@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierNBT;
-import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierIDs;
+import com.SprintXXL.primitivetoolworks.library.modifiers.definitions.ModifierIDs;
 import net.minecraft.item.ItemStack;
 
 public final class LuckCalculator {

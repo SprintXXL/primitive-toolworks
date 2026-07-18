@@ -1,26 +1,28 @@
-package com.SprintXXL.primitivetoolworks.library.patterns.data;
+package com.SprintXXL.primitivetoolworks.library.patterns;
 
+import com.sprintxxl.ascenthub.definitions.AscentDefinition;
 import net.minecraft.item.ItemStack;
 
-public class PatternDefinition {
+public class Pattern implements AscentDefinition {
 
-    private final String ID;
+    private final String id;
     private final String title;
     private final ItemStack iconStack;
 
-    public PatternDefinition(
+    public Pattern(
             String ID,
             String title,
             ItemStack iconStack
     ) {
 
-        this.ID = ID;
+        this.id = ID;
         this.title = title;
         this.iconStack = iconStack;
     }
 
-    public String getPatternID() {
-        return ID;
+    @Override
+    public String getID() {
+        return id;
     }
 
     public String getPatternTitle() {

@@ -1,6 +1,7 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.nbt;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.registry.ToolTypeRegistry;
 import net.minecraft.item.ItemStack;
 
 import static com.SprintXXL.primitivetoolworks.common.util.NBTHelper.*;
@@ -30,11 +31,17 @@ public final class ToolNBT {
 
         String toolTypeID = getString(stack, TOOL_DATA, TOOL_TYPE);
 
-        if (toolTypeID.equals(UNKNOWN)) {
-            return ToolType.PICKAXE;
+        if (UNKNOWN.equals(toolTypeID)) {
+            return null;
         }
 
-        return ToolType.fromID(toolTypeID);
+        ToolType toolType = ToolTypeRegistry.getToolType(toolTypeID);
+
+        if (toolType == null) {
+            return null;
+        }
+
+        return toolType;
     }
 
     public static void setMainPart(ItemStack stack, String part) {

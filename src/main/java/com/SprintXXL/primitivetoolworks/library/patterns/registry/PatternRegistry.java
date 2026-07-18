@@ -1,48 +1,34 @@
 package com.SprintXXL.primitivetoolworks.library.patterns.registry;
 
-import com.SprintXXL.primitivetoolworks.library.patterns.defaults.ModPatterns;
-import com.SprintXXL.primitivetoolworks.library.patterns.data.PatternDefinition;
+import com.SprintXXL.primitivetoolworks.library.patterns.Pattern;
 
 import java.util.*;
 
+import static com.SprintXXL.primitivetoolworks.library.patterns.definitions.ModPatterns.initPatternDefinitions;
+
 public class PatternRegistry {
 
-    private static final Map<String, PatternDefinition> PATTERNS =
+    private static final Map<String, Pattern> PATTERNS =
             new HashMap<>();
 
-    private static final List<PatternDefinition> ALL_PATTERNS =
+    private static final List<Pattern> ALL_PATTERNS =
             new ArrayList<>();
 
-    public static List<PatternDefinition> getAllPatterns() {
+    public static List<Pattern> getAllPatterns() {
         return Collections.unmodifiableList(ALL_PATTERNS);
     }
 
-    public static PatternDefinition getPattern(String ID) {
+    public static Pattern getPattern(String ID) {
         return PATTERNS.get(ID);
     }
 
-    public static void register(PatternDefinition pattern) {
-        PATTERNS.put(pattern.getPatternID(), pattern);
+    public static void register(Pattern pattern) {
+        PATTERNS.put(pattern.getID(), pattern);
         ALL_PATTERNS.add(pattern);
     }
 
-    public static void init() {
+    public static void initPatternRegistry() {
 
-        // Main Patterns \\
-        register(ModPatterns.SWORD_BLADE);
-        register(ModPatterns.PICKAXE_HEAD);
-        register(ModPatterns.AXE_HEAD);
-        register(ModPatterns.SHOVEL_HEAD);
-        register(ModPatterns.HOE_HEAD);
-        register(ModPatterns.HAMMER_HEAD);
-
-        // Extra Patterns \\
-        register(ModPatterns.BINDING);
-        register(ModPatterns.TOUGH_BINDING);
-        register(ModPatterns.WIDE_GUARD);
-
-        // Handle Patterns \\
-        register(ModPatterns.HANDLE);
-        register(ModPatterns.TOUGH_HANDLE);
+        initPatternDefinitions(PatternRegistry::register);
     }
 }

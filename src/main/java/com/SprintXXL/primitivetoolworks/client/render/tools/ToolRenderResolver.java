@@ -1,12 +1,11 @@
 package com.SprintXXL.primitivetoolworks.client.render.tools;
 
 import com.SprintXXL.primitivetoolworks.client.render.tools.modifiers.ModifierRenderResolver;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -28,36 +27,36 @@ public class ToolRenderResolver {
 
 
         if ("unknown".equals(mainMaterial)) {
-            mainMaterial = ToolDefaults.getDefaultMainMaterial(toolType);
+            mainMaterial = toolType.getDefaultMainMaterial();
         }
         if ("unknown".equals(extraMaterial)) {
-            extraMaterial = ToolDefaults.getDefaultExtraMaterial(toolType);
+            extraMaterial = toolType.getDefaultExtraMaterial();
         }
         if ("unknown".equals(handleMaterial)) {
-            handleMaterial = ToolDefaults.getDefaultHandleMaterial(toolType);
+            handleMaterial = toolType.getDefaultHandleMaterial();
         }
 
         if ("unknown".equals(mainPart)) {
-            mainPart = ToolDefaults.getDefaultMainPart(toolType);
+            mainPart = toolType.getDefaultMainPart();
         }
         if ("unknown".equals(extraPart)) {
-            extraPart = ToolDefaults.getDefaultExtraPart(toolType);
+            extraPart = toolType.getDefaultExtraPart();
         }
         if ("unknown".equals(handlePart)) {
-            handlePart = ToolDefaults.getDefaultHandlePart(toolType);
+            handlePart = toolType.getDefaultHandlePart();
         }
 
-        PartDefinition mainPartID = PartRegistry.getPart(mainPart);
-        PartDefinition extraPartID = PartRegistry.getPart(extraPart);
-        PartDefinition handlePartID = PartRegistry.getPart(handlePart);
+        Part mainPartID = PartRegistry.getPart(mainPart);
+        Part extraPartID = PartRegistry.getPart(extraPart);
+        Part handlePartID = PartRegistry.getPart(handlePart);
 
         if (mainPartID == null || extraPartID == null || handlePartID == null) {
             return null;
         }
 
-        String mainID = mainPartID.getPartID();
-        String extraID = extraPartID.getPartID();
-        String handleID = handlePartID.getPartID();
+        String mainID = mainPartID.getID();
+        String extraID = extraPartID.getID();
+        String handleID = handlePartID.getID();
 
         List<ToolLayerRenderData> layers = new ArrayList<>();
 
@@ -75,10 +74,10 @@ public class ToolRenderResolver {
                 mainID
         ));
 
-        if (ToolDefaults.shouldRenderExtraLayer(toolType)) {
+        if (toolType.shouldRenderExtraLayer()) {
 
             if("unknown".equals(extraMaterial)) {
-                extraMaterial = ToolDefaults.getDefaultExtraMaterial(toolType);
+                extraMaterial = toolType.getDefaultExtraMaterial();
         }
 
             layers.add(new ToolLayerRenderData(

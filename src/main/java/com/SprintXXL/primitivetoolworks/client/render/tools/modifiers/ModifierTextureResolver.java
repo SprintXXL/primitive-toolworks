@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.render.tools.modifiers;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.util.ResourceLocation;
 
 public class ModifierTextureResolver {

@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.tooltip;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.item.ItemStack;
 
 public class TooltipContext {

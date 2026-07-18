@@ -1,4 +1,4 @@
-package com.SprintXXL.primitivetoolworks.library.modifiers.data;
+package com.SprintXXL.primitivetoolworks.library.modifiers.definitions;
 
 public final class ModifierIDs {
 

@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.recipes;
 
-import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierIDs;
+import com.SprintXXL.primitivetoolworks.library.modifiers.definitions.ModifierIDs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 

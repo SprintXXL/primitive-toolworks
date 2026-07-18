@@ -1,7 +1,7 @@
 package com.SprintXXL.primitivetoolworks.library.parts.logic;
 
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialIDs;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartIDs;
+import com.SprintXXL.primitivetoolworks.library.materials.definitions.MaterialIDs;
+import com.SprintXXL.primitivetoolworks.library.parts.definitions.PartIDs;
 
 import java.util.HashMap;
 import java.util.HashSet;

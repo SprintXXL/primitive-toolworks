@@ -2,18 +2,17 @@ package com.SprintXXL.primitivetoolworks.feature.tools.logic;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.logic.ToolModifierCalculator;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.ExtraMaterialStats;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.HandleMaterialStats;
 import com.SprintXXL.primitivetoolworks.library.materials.stats.MainMaterialStats;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
 import com.SprintXXL.primitivetoolworks.library.parts.stats.ExtraPartStats;
 import com.SprintXXL.primitivetoolworks.library.parts.stats.HandlePartStats;
 import com.SprintXXL.primitivetoolworks.library.parts.stats.MainPartStats;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.item.ItemStack;
 
 public class ToolCalculator {
@@ -86,10 +85,10 @@ public class ToolCalculator {
 
         String materialID = ToolNBT.getMainMaterial(stack);
 
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
+        Material material = MaterialRegistry.getMaterial(materialID);
 
         if (material == null) {
-            material = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
+            material = MaterialRegistry.getMaterial(toolType.getDefaultMainMaterial());
         }
 
         return (MainMaterialStats) material.getMaterialStats();
@@ -101,10 +100,10 @@ public class ToolCalculator {
 
         String materialID = ToolNBT.getExtraMaterial(stack);
 
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
+        Material material = MaterialRegistry.getMaterial(materialID);
 
         if (material == null) {
-            material = MaterialRegistry.getMaterial(ToolDefaults.getDefaultExtraMaterial(toolType));
+            material = MaterialRegistry.getMaterial(toolType.getDefaultExtraMaterial());
         }
 
         return (ExtraMaterialStats) material.getMaterialStats();
@@ -116,10 +115,10 @@ public class ToolCalculator {
 
         String materialID = ToolNBT.getHandleMaterial(stack);
 
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
+        Material material = MaterialRegistry.getMaterial(materialID);
 
         if (material == null) {
-            material = MaterialRegistry.getMaterial(ToolDefaults.getDefaultHandleMaterial(toolType));
+            material = MaterialRegistry.getMaterial(toolType.getDefaultHandleMaterial());
         }
 
         return (HandleMaterialStats) material.getMaterialStats();
@@ -132,10 +131,10 @@ public class ToolCalculator {
 
         String partID = ToolNBT.getMainPart(stack);
 
-        PartDefinition part = PartRegistry.getPart(partID);
+        Part part = PartRegistry.getPart(partID);
 
         if (part == null) {
-            part = PartRegistry.getPart(ToolDefaults.getDefaultMainPart(toolType));
+            part = PartRegistry.getPart(toolType.getDefaultMainPart());
         }
 
         return (MainPartStats) part.getPartStats();
@@ -147,10 +146,10 @@ public class ToolCalculator {
 
         String partID = ToolNBT.getExtraPart(stack);
 
-        PartDefinition part = PartRegistry.getPart(partID);
+        Part part = PartRegistry.getPart(partID);
 
         if (part == null) {
-            part = PartRegistry.getPart(ToolDefaults.getDefaultExtraPart(toolType));
+            part = PartRegistry.getPart(toolType.getDefaultExtraPart());
         }
 
         return (ExtraPartStats) part.getPartStats();
@@ -162,10 +161,10 @@ public class ToolCalculator {
 
         String partID = ToolNBT.getHandlePart(stack);
 
-        PartDefinition part = PartRegistry.getPart(partID);
+        Part part = PartRegistry.getPart(partID);
 
         if (part == null) {
-            part = PartRegistry.getPart(ToolDefaults.getDefaultHandlePart(toolType));
+            part = PartRegistry.getPart(toolType.getDefaultHandlePart());
         }
 
         return (HandlePartStats) part.getPartStats();

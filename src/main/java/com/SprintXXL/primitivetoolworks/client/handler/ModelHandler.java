@@ -9,20 +9,20 @@ import com.SprintXXL.primitivetoolworks.client.render.patterns.PatternTextureRes
 import com.SprintXXL.primitivetoolworks.client.render.tools.ModelModularTool;
 import com.SprintXXL.primitivetoolworks.client.render.tools.ToolLayerRenderData;
 import com.SprintXXL.primitivetoolworks.client.render.tools.ToolTextureResolver;
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
-import com.SprintXXL.primitivetoolworks.library.modifiers.data.ModifierDefinition;
+import com.SprintXXL.primitivetoolworks.library.modifiers.Modifier;
 import com.SprintXXL.primitivetoolworks.library.modifiers.registry.ModifierRegistry;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.data.PartGroup;
 import com.SprintXXL.primitivetoolworks.library.parts.registry.PartRegistry;
-import com.SprintXXL.primitivetoolworks.library.patterns.data.PatternDefinition;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.patterns.Pattern;
 import com.SprintXXL.primitivetoolworks.library.parts.logic.PartValidation;
 import com.SprintXXL.primitivetoolworks.library.patterns.registry.PatternRegistry;
 import com.SprintXXL.primitivetoolworks.common.registry.ModBlocks;
 import com.SprintXXL.primitivetoolworks.common.registry.ModItems;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.registry.ToolTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -118,22 +118,22 @@ public class ModelHandler {
     public static void onTextureStitch(TextureStitchEvent.Pre event) {
 
         // Tool Layer Stitching \\
-        for (ToolType toolType : ToolType.values()) {
+        for (ToolType toolType : ToolTypeRegistry.getAllToolTypes()) {
 
-            for (PartDefinition part : PartRegistry.getAllParts()) {
+            for (Part part : PartRegistry.getAllParts()) {
 
-                if (!part.getAllowedToolTypes().contains(toolType)) {
+                if (!part.getAllowedToolType().contains(toolType)) {
                     continue;
                 }
 
-                if (part.getPartGroup() == PartGroup.EXTRA && !ToolDefaults.shouldRenderExtraLayer(toolType)) {
+                if (part.getPartGroup() == PartGroup.EXTRA && !toolType.shouldRenderExtraLayer()) {
                     continue;
                 }
 
-                for (MaterialDefinition material : MaterialRegistry.getAllMaterials()) {
+                for (Material material : MaterialRegistry.getAllMaterials()) {
 
-                    String materialID = material.getMaterialID();
-                    String partID = part.getPartID();
+                    String materialID = material.getID();
+                    String partID = part.getID();
 
                     if(!PartValidation.isValidMaterialPartCombo(materialID, partID)) {
                         continue;
@@ -158,11 +158,11 @@ public class ModelHandler {
         }
 
         // Modifier Stitching \\
-        for (ModifierDefinition modifier : ModifierRegistry.getAllModifiers()) {
+        for (Modifier modifier : ModifierRegistry.getAllModifiers()) {
 
-            String modifierID = modifier.getModifierID();
+            String modifierID = modifier.getID();
 
-            for (ToolType toolType : modifier.getAllowedToolTypes()) {
+            for (ToolType toolType : modifier.getAllowedToolType()) {
 
                 event.getMap().registerSprite(
                         new ResourceLocation(
@@ -174,12 +174,12 @@ public class ModelHandler {
         }
 
         // Part Stitching \\
-        for (PartDefinition part : PartRegistry.getAllParts()) {
+        for (Part part : PartRegistry.getAllParts()) {
 
-            for (MaterialDefinition material : MaterialRegistry.getAllMaterials()) {
+            for (Material material : MaterialRegistry.getAllMaterials()) {
 
-                String materialID = material.getMaterialID();
-                String partID = part.getPartID();
+                String materialID = material.getID();
+                String partID = part.getID();
 
                 if (!PartValidation.isValidMaterialPartCombo(materialID, partID)) {
                     continue;
@@ -198,9 +198,9 @@ public class ModelHandler {
         }
 
         // Pattern Stitching \\
-        for (PatternDefinition pattern : PatternRegistry.getAllPatterns()) {
+        for (Pattern pattern : PatternRegistry.getAllPatterns()) {
 
-            String patternID = pattern.getPatternID();
+            String patternID = pattern.getID();
 
             PatternRenderData patternData =
                     new PatternRenderData(patternID);

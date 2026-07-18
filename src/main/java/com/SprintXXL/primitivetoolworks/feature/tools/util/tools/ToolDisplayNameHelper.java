@@ -1,10 +1,9 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.util.tools;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.defaults.ToolDefaults;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 import net.minecraft.item.ItemStack;
 
 public final class ToolDisplayNameHelper {
@@ -19,10 +18,10 @@ public final class ToolDisplayNameHelper {
             toolType = fallbackToolType;
         }
 
-        MaterialDefinition mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
+        Material mainMaterial = MaterialRegistry.getMaterial(ToolNBT.getMainMaterial(stack));
 
         if (mainMaterial == null) {
-            mainMaterial = MaterialRegistry.getMaterial(ToolDefaults.getDefaultMainMaterial(toolType));
+            mainMaterial = MaterialRegistry.getMaterial(toolType.getDefaultMainMaterial());
         }
 
         if (mainMaterial == null) {

@@ -3,8 +3,9 @@ package com.SprintXXL.primitivetoolworks.feature.tools.features.levels.logic;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.levels.nbt.ToolLevelNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.features.modifiers.nbt.ToolModifierSlotNBT;
 import com.SprintXXL.primitivetoolworks.feature.tools.nbt.ToolNBT;
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
 import com.SprintXXL.primitivetoolworks.feature.tools.util.tools.ToolItemHelper;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.definitions.ModToolTypes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
@@ -31,7 +32,11 @@ public class ToolExperienceHandler {
 
         ToolType toolType = ToolNBT.getToolType(heldStack);
 
-        if (toolType == ToolType.SWORD) {
+        if (toolType == null) {
+            return;
+        }
+
+        if (toolType == ModToolTypes.SWORD) {
             return;
         }
 

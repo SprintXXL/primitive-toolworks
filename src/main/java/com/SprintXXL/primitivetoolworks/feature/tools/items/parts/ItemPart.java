@@ -1,9 +1,9 @@
 package com.SprintXXL.primitivetoolworks.feature.tools.items.parts;
 
 import com.SprintXXL.primitivetoolworks.feature.tools.util.parts.PartStackFactory;
-import com.SprintXXL.primitivetoolworks.library.materials.data.MaterialDefinition;
+import com.SprintXXL.primitivetoolworks.library.materials.Material;
 import com.SprintXXL.primitivetoolworks.library.materials.registry.MaterialRegistry;
-import com.SprintXXL.primitivetoolworks.library.parts.data.PartDefinition;
+import com.SprintXXL.primitivetoolworks.library.parts.Part;
 import com.SprintXXL.primitivetoolworks.library.parts.logic.PartCalculator;
 import com.SprintXXL.primitivetoolworks.library.parts.logic.PartValidation;
 import com.SprintXXL.primitivetoolworks.library.parts.nbt.PartNBT;
@@ -35,8 +35,8 @@ public class ItemPart extends Item {
         String partType = PartNBT.getPartType(stack);
         String materialID = PartNBT.getMaterial(stack);
 
-        PartDefinition part = PartRegistry.getPart(partType);
-        MaterialDefinition material = MaterialRegistry.getMaterial(materialID);
+        Part part = PartRegistry.getPart(partType);
+        Material material = MaterialRegistry.getMaterial(materialID);
 
         if (part == null || material == null) {
             return "Tool Part";
@@ -58,12 +58,12 @@ public class ItemPart extends Item {
             return;
         }
 
-        for (MaterialDefinition material : MaterialRegistry.getAllMaterials()) {
-            for (PartDefinition part : PartRegistry.getAllParts()) {
-                if (PartValidation.isValidMaterialPartCombo(material.getMaterialID(), part.getPartID())) {
+        for (Material material : MaterialRegistry.getAllMaterials()) {
+            for (Part part : PartRegistry.getAllParts()) {
+                if (PartValidation.isValidMaterialPartCombo(material.getID(), part.getID())) {
                     subItems.add(PartStackFactory.createDefaultPart(
-                            material.getMaterialID(),
-                            part.getPartID(),
+                            material.getID(),
+                            part.getID(),
                             part.getPartGroup()
                     ));
                 }

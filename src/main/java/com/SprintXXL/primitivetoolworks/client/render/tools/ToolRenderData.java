@@ -1,6 +1,6 @@
 package com.SprintXXL.primitivetoolworks.client.render.tools;
 
-import com.SprintXXL.primitivetoolworks.feature.tools.types.ToolType;
+import com.SprintXXL.primitivetoolworks.library.tooltypes.ToolType;
 
 import java.util.List;
 
